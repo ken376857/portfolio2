@@ -916,22 +916,37 @@ body {
 
 /* Prompt Button Styles */
 .prompt-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
+    background: white;
+    color: #28a745;
+    border: 3px solid;
+    border-image: linear-gradient(135deg, #28a745 0%, #20c997 100%) 1;
     padding: 1rem 1.5rem;
     border-radius: 12px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
     margin-top: 1rem;
+    position: relative;
+}
+
+.prompt-button::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border-radius: 12px;
+    z-index: -1;
 }
 
 .prompt-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+    background: rgba(40, 167, 69, 0.05);
 }
 
 .prompt-button:active {
@@ -940,62 +955,43 @@ body {
 
 /* Rich Prompt Button - Enhanced version */
 .rich-prompt-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 1.2rem 2rem;
-    border-radius: 16px;
+    background: transparent;
+    color: #28a745;
+    border: 2px solid #28a745;
+    padding: 1rem 1.5rem;
+    border-radius: 30px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
     margin-top: 1.5rem;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    justify-content: space-between;
+    gap: 1rem;
     position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-}
-
-.rich-prompt-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-.rich-prompt-button:hover::before {
-    left: 100%;
+    min-width: 240px;
+    text-align: left;
 }
 
 .rich-prompt-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    transform: translateY(-1px);
 }
 
 .rich-prompt-button:active {
     transform: translateY(-1px);
 }
 
-.button-icon {
-    font-size: 1.2rem;
-    animation: bounce 2s infinite;
-}
-
 .button-text {
-    flex: 1;
-    text-align: center;
+    color: #28a745;
+    font-weight: 500;
 }
 
 .button-arrow {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     transition: transform 0.3s ease;
+    color: #28a745;
+    font-weight: 500;
 }
 
 .rich-prompt-button:hover .button-arrow {
@@ -1143,25 +1139,25 @@ body {
 /* Process Steps Timeline Design */
 .process-steps {
     position: relative;
-    padding: 3rem 0;
-    margin: 3rem 0;
+    padding: 0 0 3rem 0;
+    margin: 0 0 3rem 0;
 }
 
 .process-vertical-line {
     position: absolute;
     left: 80px;
-    top: 0;
+    top: 40px;
     bottom: 0;
     width: 6px;
-    background: linear-gradient(to bottom, #4A90E2, #357ABD, #2E6AB0, #1E4A8C);
+    background: linear-gradient(to bottom, #90EE90, #32CD32, #228B22, #006400);
     border-radius: 3px;
     z-index: 1;
 }
 
 .process-step {
     position: relative;
-    margin-bottom: 4rem;
-    padding-left: 150px;
+    margin-bottom: 0;
+    padding-left: 100px;
     display: flex;
     align-items: flex-start;
     min-height: 80px;
@@ -1174,13 +1170,10 @@ body {
 
 .process-step-content {
     flex: 1;
-    padding: 2rem 2.5rem;
+    padding: 0.5rem 2.5rem;
     transition: transform 0.3s ease;
 }
 
-.process-step-content:hover {
-    transform: translateX(10px);
-}
 
 .process-step-title {
     font-size: 1.4rem;
@@ -1193,7 +1186,7 @@ body {
 }
 
 .step-label {
-    background: linear-gradient(135deg, #4A90E2, #357ABD);
+    background: linear-gradient(135deg, #32CD32, #228B22);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -1201,7 +1194,7 @@ body {
     font-weight: 600;
     min-width: 70px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+    box-shadow: 0 2px 8px rgba(50, 205, 50, 0.3);
 }
 
 .process-step-description {
@@ -1216,9 +1209,10 @@ body {
 
 .requirements-two-columns {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: auto auto;
+    gap: 3rem;
     margin-top: 1.5rem;
+    justify-content: start;
 }
 
 .requirements-column-left,
@@ -1231,14 +1225,7 @@ body {
 .requirements-column-left li,
 .requirements-column-right li {
     position: relative;
-    padding: 0.8rem 0 0.8rem 1.5rem;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background-color 0.3s ease;
-}
-
-.requirements-column-left li:last-child,
-.requirements-column-right li:last-child {
-    border-bottom: none;
+    padding: 0.3rem 0 0.3rem 1.2rem;
 }
 
 .requirements-column-left li::before,
@@ -1248,33 +1235,29 @@ body {
     left: 0;
     color: #4A90E2;
     font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.requirements-column-left li:hover,
-.requirements-column-right li:hover {
-    background-color: #f8f9ff;
+    font-size: 1rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .process-steps {
-        padding: 2rem 0;
+        padding: 0 0 2rem 0;
     }
     
     .process-vertical-line {
         left: 20px;
         width: 4px;
+        top: 30px;
     }
     
     .process-step {
-        padding-left: 60px;
-        margin-bottom: 3rem;
+        padding-left: 40px;
+        margin-bottom: 0;
     }
     
     
     .process-step-content {
-        padding: 1.5rem;
+        padding: 0.4rem 1.5rem;
     }
     
     .process-step-title {
@@ -2253,9 +2236,7 @@ body {
 /* Persona Section Styling */
 .persona-section {
     padding: 4rem 0;
-    background: #f8f9fa;
     margin: 4rem 0;
-    border-radius: 20px;
 }
 
 .persona-header {
@@ -2272,9 +2253,6 @@ body {
 .persona-container {
     display: flex;
     gap: 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
 }
 
 .persona-left {
@@ -2297,6 +2275,8 @@ body {
     align-items: center;
     gap: 2rem;
     margin-bottom: 3rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 2rem;
 }
 
 .persona-avatar {
@@ -2371,8 +2351,8 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 2rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
     border-bottom: 1px solid #e0e0e0;
 }
 
@@ -2443,17 +2423,135 @@ body {
 }
 
 .research-screenshot {
-    background: white;
-    border-radius: 15px;
-    padding: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
 }
 
 .research-screenshot-image {
     width: 100%;
     max-width: 300px;
-    height: auto;
+    height: 530px;
     border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: block;
+    object-fit: cover;
+    object-position: top;
+}
+
+
+.research-screenshot::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, rgba(248, 249, 250, 1) 0%, rgba(248, 249, 250, 0.8) 50%, transparent 100%);
+    pointer-events: none;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Image Modal Styles */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease;
+}
+
+.image-modal-content {
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.modal-image {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+.image-modal-caption {
+    margin: 15px auto;
+    display: block;
+    width: 80%;
+    text-align: center;
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10001;
+}
+
+.image-modal-close:hover,
+.image-modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { 
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to { 
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Mobile responsiveness for image modal */
+@media (max-width: 768px) {
+    .image-modal-close {
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+    }
+    
+    .image-modal-content {
+        width: 95%;
+    }
+    
+    .modal-image {
+        max-height: 75vh;
+    }
+    
+    .image-modal-caption {
+        font-size: 0.9rem;
+        width: 90%;
+    }
 }
 
 /* Research Layout */
@@ -2466,6 +2564,7 @@ body {
 
 .research-left {
     flex: 0 0 300px;
+    background: transparent;
 }
 
 .research-right {
@@ -2562,7 +2661,6 @@ body {
     .persona-container {
         flex-direction: column;
         gap: 2rem;
-        padding: 0 1rem;
     }
     
     .persona-profile {

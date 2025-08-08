@@ -761,12 +761,11 @@
         <div class="research-left">
             <div class="research-image-section">
                 <div class="research-screenshot">
-                    <img src="実績用/deep research1.png" alt="Deep Research結果画面のスクリーンショット" class="research-screenshot-image">
+                    <img src="実績用/deep research1.png" alt="Deep Research結果画面のスクリーンショット" class="research-screenshot-image" onclick="openImageModal('実績用/deep research1.png', 'Deep Research結果画面のスクリーンショット')">
                 </div>
                 <button class="prompt-button rich-prompt-button" onclick="openPromptModal('quantitative')">
-                    <span class="button-icon">📊</span>
                     <span class="button-text">プロンプトを確認</span>
-                    <span class="button-arrow">→</span>
+                    <span class="button-arrow">〉</span>
                 </button>
             </div>
         </div>
@@ -797,10 +796,6 @@
                         <li>ほとんど未経験参入なので、林業の専門用語などは使わずに<span class="highlight-orange">平易な言葉で説明</span>が必要</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="research-arrow">
-                <span>→</span>
             </div>
         </div>
     </div>
@@ -851,6 +846,15 @@
 - 各都道府県の林業統計
                 </pre>
             </div>
+        </div>
+    </div>
+    
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="image-modal-content">
+            <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div class="image-modal-caption" id="modalCaption"></div>
         </div>
     </div>
     
@@ -913,12 +917,11 @@
         <div class="research-left">
             <div class="research-image-section">
                 <div class="research-screenshot">
-                    <img src="実績用/deep research2.png" alt="定性調査結果画面のスクリーンショット" class="research-screenshot-image">
+                    <img src="実績用/deep research2.png" alt="定性調査結果画面のスクリーンショット" class="research-screenshot-image" onclick="openImageModal('実績用/deep research2.png', '定性調査結果画面のスクリーンショット')">
                 </div>
                 <button class="prompt-button rich-prompt-button" onclick="openPromptModal('qualitative')">
-                    <span class="button-icon">📋</span>
                     <span class="button-text">プロンプトを確認</span>
-                    <span class="button-arrow">→</span>
+                    <span class="button-arrow">〉</span>
                 </button>
             </div>
         </div>
@@ -948,10 +951,6 @@
                         <li><strong>環境の変化</strong>：自然の中で働く憧れ／良好な人間関係・公正評価／需要の持続性・地域に根ざす安心感</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="research-arrow">
-                <span>→</span>
             </div>
         </div>
     </div>

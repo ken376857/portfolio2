@@ -674,6 +674,29 @@ function closePromptModal(type) {
     }
 }
 
+// Image Modal Functions
+function openImageModal(imageSrc, altText) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    
+    if (modal && modalImage && modalCaption) {
+        modal.style.display = 'block';
+        modalImage.src = imageSrc;
+        modalImage.alt = altText;
+        modalCaption.textContent = altText;
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    }
+}
+
 // Close modal when clicking outside of it
 window.onclick = function(event) {
     const modals = document.querySelectorAll('.modal');
@@ -683,4 +706,17 @@ window.onclick = function(event) {
             document.body.style.overflow = 'auto';
         }
     });
+    
+    // Handle image modal
+    const imageModal = document.getElementById('imageModal');
+    if (event.target === imageModal) {
+        closeImageModal();
+    }
 }
+
+// Close image modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
