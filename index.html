@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>売上UP特化型ライター | Portfolio by なべけん（田邉健）</title>
+    <link rel="preload" href="fonts/yosugaraver1_2.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="prefetch" href="fonts/yosugaraver1_2.ttf">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=Pacifico&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Architects+Daughter&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -588,59 +590,118 @@
         </div>
     </div>
     
-    <h3>なべけんの役割</h3>
-    <p>クライアント ⇔ なべけん ⇔ ユーザー</p>
-    <p>広告運用・メルマガ運用・公式LINE運用・インスタ運用</p>
-    
-    <p>"貴社のすばらしい商品・サービスを広める一助になることで、悩みを解決して一歩踏みだす人を1人でも多く増やしたい"</p>
-    <p>その想いで、まるで貴社の社員のようにユーザーと徹底的に向き合い、商品・サービスを使って幸せになる人を増やす一助になります。</p>
-    <p>そして、貴社とユーザー、私の三方よしを実現いたします。</p>
+    <div class="nabeken-role-section">
+        <h3 class="role-section-title">なべけんの役割</h3>
+        
+        <div class="role-bridge-diagram">
+            <div class="bridge-element left">
+                <div class="bridge-label">企業</div>
+                <div class="bridge-icon company-icon">
+                    <div class="building-base"></div>
+                    <div class="building-main"></div>
+                    <div class="building-top"></div>
+                    <div class="building-details">
+                        <div class="building-window"></div>
+                        <div class="building-window"></div>
+                        <div class="building-window"></div>
+                        <div class="building-window"></div>
+                    </div>
+                </div>
+                <div class="bridge-description">商品、サービス、想い</div>
+            </div>
+            
+            <div class="bridge-arrow left-arrow">→</div>
+            
+            <div class="bridge-element center">
+                <div class="bridge-center-circle">私</div>
+                <div class="bridge-center-box">デザイン</div>
+            </div>
+            
+            <div class="bridge-arrow right-arrow">→</div>
+            
+            <div class="bridge-element right">
+                <div class="bridge-label">ユーザー</div>
+                <div class="bridge-icon user-icon">
+                    <div class="user-figure">
+                        <div class="user-head"></div>
+                        <div class="user-body"></div>
+                        <div class="user-sparkles">
+                            <span class="sparkle">✨</span>
+                            <span class="sparkle">✨</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bridge-description">行きたい、買いたい</div>
+            </div>
+        </div>
+        
+        <div class="role-services">
+            <p>広告運用・メルマガ運用・公式LINE運用・インスタ運用</p>
+        </div>
+        
+        <div class="role-philosophy">
+            <div class="philosophy-main">
+                <p>クライアントとユーザー、両方の立場に立ち、</p>
+                <p class="philosophy-highlight">"わかりやすく、心が動く体験"を設計し続けること</p>
+            </div>
+            
+            <div class="philosophy-details">
+                <p>"貴社のすばらしい商品・サービスを広める一助になることで、悩みを解決して一歩踏みだす人を1人でも多く増やしたい"</p>
+                <p>その想いで、まるで貴社の社員のようにユーザーと徹底的に向き合い、商品・サービスを使って幸せになる人を増やす一助になります。</p>
+                <p>そして、貴社とユーザー、私の三方よしを実現いたします。</p>
+            </div>
+        </div>
+    </div>
 </section>
 
-<section id="works">
+<section id="works" class="container">
     <div class="works-hero-title">
         <div class="title-line">NABEKEN's</div>
         <div class="title-line">WORKS</div>
     </div>
     
     <div class="work-card-container">
-        <div class="work-card">
-            <div class="work-main-content">
-                <div class="work-left-content">
-                    <div class="work-tags">
-                        <span class="work-tag lp-creation">LP制作</span>
-                        <span class="work-tag official-line">公式LINE</span>
+        <div class="work-card funnel-work-card">
+            <div class="funnel-content">
+                <div class="funnel-left">
+                    <div class="funnel-header">
+                        <div class="funnel-badges">
+                            <span class="funnel-badge primary">LP制作</span>
+                            <span class="funnel-badge secondary">公式LINE</span>
+                        </div>
                     </div>
-                    <h3 class="work-main-title">求人サイトのランディングページ制作<br>・ファネル構築</h3>
                     
-                    <div class="work-description">
+                    <h3 class="funnel-title">求人サイトのランディングページ制作<br>・ファネル構築</h3>
+                    
+                    <div class="funnel-description">
                         <p>株式会社RINDO様のランディングページ制作と公式LINEのファネル構築を担当いたしました。</p>
                     </div>
                     
-                    <div class="work-details">
-                        <div class="work-detail-item">
-                            <span class="detail-label">担当範囲</span>
-                            <span class="detail-content">ディレクション・セールスライティング・WordPressへの入稿</span>
+                    <div class="funnel-details">
+                        <div class="funnel-detail-row">
+                            <span class="funnel-detail-badge">担当範囲</span>
+                            <span class="funnel-detail-text">ディレクション・セールスライティング・WordPressへの入稿</span>
                         </div>
                         
-                        <div class="work-detail-item">
-                            <span class="detail-label">制作期間</span>
-                            <span class="detail-content">2か月間</span>
+                        <div class="funnel-detail-row">
+                            <span class="funnel-detail-badge">制作期間</span>
+                            <span class="funnel-detail-text">2か月間</span>
                         </div>
                         
-                        <div class="work-detail-item">
-                            <span class="detail-label">使用ツール</span>
-                            <span class="detail-content">WordPress、Figma、Google ドキュメント</span>
+                        <div class="funnel-detail-row">
+                            <span class="funnel-detail-badge">使用ツール</span>
+                            <span class="funnel-detail-text">WordPress、Figma、Google ドキュメント</span>
                         </div>
                     </div>
+                    
                 </div>
                 
-                <div class="work-right-content">
-                    <div class="work-images-grid">
-                        <img src="原稿/images/image17.png" alt="林業求人サイト モバイル画面1" class="work-mobile-image">
-                        <img src="原稿/images/image3.png" alt="林業求人サイト モバイル画面2" class="work-mobile-image">
-                        <img src="原稿/images/image1.png" alt="林業求人サイト モバイル画面3" class="work-mobile-image">
-                        <img src="原稿/images/image4.png" alt="林業求人サイト モバイル画面4" class="work-mobile-image">
+                <div class="funnel-right">
+                    <div class="funnel-mockups">
+                        <img src="原稿/images/image17.png" alt="林業求人サイト モバイル画面1" class="funnel-mockup-image">
+                        <img src="原稿/images/image3.png" alt="林業求人サイト モバイル画面2" class="funnel-mockup-image">
+                        <img src="原稿/images/image1.png" alt="林業求人サイト モバイル画面3" class="funnel-mockup-image">
+                        <img src="原稿/images/image4.png" alt="林業求人サイト モバイル画面4" class="funnel-mockup-image">
                     </div>
                 </div>
             </div>
@@ -649,10 +710,10 @@
     
     <div class="work-details-container">
         <h4 class="work-section-title">制作概要</h4>
-        <div class="work-details-section">
-            <div class="work-overview-item">
-                <span class="detail-label">事業内容</span>
-                <div class="detail-content">
+        <div class="work-overview-details">
+            <div class="work-overview-detail-row">
+                <span class="work-overview-detail-badge">事業内容</span>
+                <div class="work-overview-detail-text">
                     <ul>
                         <li>林業業界特化型の求人サイト運営事業</li>
                         <li>オウンドメディア『RINDO』の運営</li>
@@ -660,16 +721,16 @@
                 </div>
             </div>
             
-            <div class="work-overview-item">
-                <span class="detail-label">制作背景</span>
-                <div class="detail-content">
+            <div class="work-overview-detail-row">
+                <span class="work-overview-detail-badge">制作背景</span>
+                <div class="work-overview-detail-text">
                     <p>RINDOは林業業界特化の求人サイトですが、当初は会員登録機能がありませんでした。そのため、月間5,000PVほどのSEO集客はできたものの、顧客との継続的な接点を作る動線がなかったのです。</p>
                 </div>
             </div>
             
-            <div class="work-overview-item">
-                <span class="detail-label">制作目的</span>
-                <div class="detail-content">
+            <div class="work-overview-detail-row">
+                <span class="work-overview-detail-badge">制作目的</span>
+                <div class="work-overview-detail-text">
                     <ul>
                         <li>ランディングページを設けて、公式LINEへの登録を促すことで潜在顧客の獲得</li>
                         <li>公式LINEにて教育コンテンツを配信することで潜在顧客の顕在化</li>
@@ -678,9 +739,9 @@
                 </div>
             </div>
             
-            <div class="work-overview-item">
-                <span class="detail-label">KPI設計</span>
-                <div class="detail-content">
+            <div class="work-overview-detail-row">
+                <span class="work-overview-detail-badge">KPI設計</span>
+                <div class="work-overview-detail-text">
                     <p>今回のランディングページ制作におけるKPIは、公式LINEの接触者数を設定し逆算して設定。</p>
                     <ul>
                         <li>サイトアクセス数：10,000PV</li>
@@ -702,8 +763,10 @@
                 <div class="research-screenshot">
                     <img src="実績用/deep research1.png" alt="Deep Research結果画面のスクリーンショット" class="research-screenshot-image">
                 </div>
-                <button class="prompt-button" onclick="openPromptModal('quantitative')">
-                    プロンプトを確認
+                <button class="prompt-button rich-prompt-button" onclick="openPromptModal('quantitative')">
+                    <span class="button-icon">📊</span>
+                    <span class="button-text">プロンプトを確認</span>
+                    <span class="button-arrow">→</span>
                 </button>
             </div>
         </div>
@@ -714,9 +777,9 @@
                 <p>ソース元のリンクも出力してくれるため、情報の正確性・信憑性を自分自身で確認しに行くことができる。</p>
             </div>
             
-            <div class="research-results-section">
-                <div class="research-box research-results">
-                    <h6>Deep Researchによる定量リサーチ結果</h6>
+            <div class="research-section-layout">
+                <div class="research-results-section">
+                    <div class="research-button green-button">Deep Researchによる定量リサーチ結果</div>
                     <ul>
                         <li>年間新規就業者数：約<span class="highlight-green">3,000人</span>台で推移（2023年度は3,333人）</li>
                         <li>未経験からの転職：公式比率は不明だが、<span class="highlight-green">大半が未経験</span>での参入</li>
@@ -726,16 +789,18 @@
                         <li>男女比：男性約94%、女性約6%（約3千人）</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="research-hypothesis-section">
-                <div class="research-box research-hypothesis">
-                    <h6>仮説</h6>
+                
+                <div class="research-hypothesis-section">
+                    <div class="research-button orange-button">仮説</div>
                     <ul>
                         <li>ターゲットは男性で<span class="highlight-orange">30〜40代</span>がメインターゲットにすると、求職者が多く獲得できる</li>
                         <li>ほとんど未経験参入なので、林業の専門用語などは使わずに<span class="highlight-orange">平易な言葉で説明</span>が必要</li>
                     </ul>
                 </div>
+            </div>
+            
+            <div class="research-arrow">
+                <span>→</span>
             </div>
         </div>
     </div>
@@ -748,16 +813,95 @@
                 <span class="close" onclick="closePromptModal('quantitative')">&times;</span>
             </div>
             <div class="modal-body">
-                <p>ここに定量調査で使用したプロンプトを表示します。実際のプロンプト内容は後ほど提供いただく予定です。</p>
+                <p>林業業界の定量調査で実際に使用したChatGPT Deep Researchのプロンプトです。</p>
                 <pre>
-[ダミーのプロンプトテキスト]
+# 林業業界の定量調査プロンプト
 
-定量調査に関する詳細なプロンプトがここに表示されます。
-- 調査対象の定義
-- 分析すべきデータポイント
-- 出力形式の指定
-- 情報源の要件
-etc...
+## 調査目的
+林業業界特化の求人サイト向けランディングページ制作のための基礎データ収集
+
+## 調査項目
+以下の項目について、最新の統計データを収集してください：
+
+1. **就業者データ**
+   - 年間新規就業者数（過去3年間の推移）
+   - 就業者総数とその推移
+   - 平均年齢と年齢層別分布
+   - 男女比率
+
+2. **転職・採用データ**
+   - 未経験からの転職率
+   - 平均勤続年数
+   - 離職率（業界平均との比較）
+
+3. **地域分布**
+   - 都道府県別就業者数
+   - 地方別の求人動向
+
+## 出力形式
+- 各項目について具体的な数値を提示
+- 情報源のURLを明記
+- 統計年度を明確にする
+- 信頼性の高い公的統計を優先
+
+## 情報源
+- 農林水産省統計
+- 厚生労働省職業安定局
+- 総務省統計局
+- 各都道府県の林業統計
+                </pre>
+            </div>
+        </div>
+    </div>
+    
+    <!-- モーダル: 定性調査プロンプト -->
+    <div id="qualitativeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>定性調査のプロンプト</h3>
+                <span class="close" onclick="closePromptModal('qualitative')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>林業業界の定性調査で実際に使用したChatGPT Deep Researchのプロンプトです。</p>
+                <pre>
+# 林業業界の定性調査プロンプト
+
+## 調査目的
+林業業界で働く人々の離職理由と転職動機の深層理解
+
+## 調査対象
+林業業界での就業経験者（現職・元職問わず）
+
+## 調査項目
+以下の観点から、林業業界の課題と魅力を調査してください：
+
+1. **離職理由・課題**
+   - 人間関係の問題（パワハラ、閉鎖的環境）
+   - 労働環境・待遇面の不満
+   - 将来性・キャリアパスへの不安
+   - 仕事内容へのギャップ
+
+2. **転職理由・動機**
+   - 他業界からの転職理由
+   - 林業に求める価値観
+   - 働き方への期待
+
+3. **業界の魅力・やりがい**
+   - 自然との関わり
+   - 社会貢献性
+   - 技術習得の喜び
+   - 地域との結びつき
+
+## 分析手法
+- 実際の体験談やインタビュー記事を重点的に収集
+- SNSでの生の声も含める
+- ネガティブ・ポジティブ両面を公平に分析
+- 年代別・地域別の傾向も把握
+
+## 出力要件
+- 具体的なエピソード・体験談を含める
+- 情報源を明記
+- 課題と解決策の両面を提示
                 </pre>
             </div>
         </div>
@@ -771,18 +915,23 @@ etc...
                 <div class="research-screenshot">
                     <img src="実績用/deep research2.png" alt="定性調査結果画面のスクリーンショット" class="research-screenshot-image">
                 </div>
+                <button class="prompt-button rich-prompt-button" onclick="openPromptModal('qualitative')">
+                    <span class="button-icon">📋</span>
+                    <span class="button-text">プロンプトを確認</span>
+                    <span class="button-arrow">→</span>
+                </button>
             </div>
         </div>
         
         <div class="research-right">
             <div class="research-intro">
-                <p>技術職の離職理由（ペイン）と転職先に求める期待（ゲイン）を分析。</p>
-                <p>定量データだけでは見えない感情的要因や価値観を詳細に調査しました。</p>
+                <p><strong>ChatGPT</strong>の<strong>Deep Research</strong>を活用し、定量・定性調査を実施。</p>
+                <p>ソース元のリンクも出力してくれるため、情報の正確性・信憑性を自分自身で確認しに行くことができる。</p>
             </div>
             
-            <div class="research-results-section">
-                <div class="research-box research-results">
-                    <h6>技術職の離職理由（ペイン分析）</h6>
+            <div class="research-section-layout">
+                <div class="research-results-section">
+                    <div class="research-button green-button">Deep Researchによる定量リサーチ結果</div>
                     <ul>
                         <li><strong>人間関係</strong>：旧来の上下関係・怒号・パワハラ／閉鎖的で陰口・嫉妬が生じやすい／「見て覚えろ」指導や飲み会強制など私的拘束</li>
                         <li><strong>労働環境・待遇</strong>：長時間・少休日・人手不足常態化／3K＋安全リスク・炎天下/極寒・高所などで常時緊張／賃金不満・残業不払い・工具自腹・収入不安定</li>
@@ -790,17 +939,19 @@ etc...
                         <li><strong>仕事内容・やりがい</strong>：単調作業で心身摩耗・腱鞘炎など／努力が評価されずやりがい喪失・理想と現実のギャップ</li>
                     </ul>
                 </div>
-            </div>
-            
-            <div class="research-hypothesis-section">
-                <div class="research-box research-hypothesis">
-                    <h6>転職先に求める期待（ゲイン分析）</h6>
+                
+                <div class="research-hypothesis-section">
+                    <div class="research-button orange-button">仮説</div>
                     <ul>
                         <li><strong>働き方の改善</strong>：週休・残業抑制で余白確保／オンオフ明確・家族時間確保／ストレスの少ない職場</li>
                         <li><strong>スキルと成長</strong>：未経験から学べる研修制度への期待／単調から脱却し幅広い技能習得／社会貢献・感謝を実感できる仕事</li>
                         <li><strong>環境の変化</strong>：自然の中で働く憧れ／良好な人間関係・公正評価／需要の持続性・地域に根ざす安心感</li>
                     </ul>
                 </div>
+            </div>
+            
+            <div class="research-arrow">
+                <span>→</span>
             </div>
         </div>
     </div>
@@ -813,39 +964,41 @@ etc...
         
         <div class="persona-container">
             <div class="persona-left">
-                <div class="persona-profile">
-                    <div class="persona-avatar">
-                        <img src="アイコン/profile.png" alt="ペルソナ画像" class="persona-image">
+                <div class="persona-left-container">
+                    <div class="persona-profile">
+                        <div class="persona-avatar">
+                            <img src="アイコン/profile.png" alt="ペルソナ画像" class="persona-image">
+                        </div>
+                        <div class="persona-basic-info">
+                            <h5 class="persona-name">鈴木 太郎</h5>
+                            <p class="persona-age">35歳 男性</p>
+                        </div>
                     </div>
-                    <div class="persona-basic-info">
-                        <h5 class="persona-name">鈴木 太郎</h5>
-                        <p class="persona-age">35歳 男性</p>
-                    </div>
-                </div>
-                
-                <div class="persona-basic-section">
-                    <div class="persona-section-tag basic-tag">基本属性</div>
                     
-                    <div class="persona-attributes">
-                        <div class="persona-attr-row">
-                            <span class="persona-attr-label">職種</span>
-                            <span class="persona-attr-value">建設業界・技術職（職人）</span>
-                        </div>
-                        <div class="persona-attr-row">
-                            <span class="persona-attr-label">居住地</span>
-                            <span class="persona-attr-value">千葉県</span>
-                        </div>
-                        <div class="persona-attr-row">
-                            <span class="persona-attr-label">家族構成</span>
-                            <span class="persona-attr-value">妻（30代前半・医療事務でパート勤務）・5歳の娘</span>
-                        </div>
-                        <div class="persona-attr-row">
-                            <span class="persona-attr-label">年収</span>
-                            <span class="persona-attr-value">400万円（世帯年収550万円）</span>
-                        </div>
-                        <div class="persona-attr-row">
-                            <span class="persona-attr-label">趣味</span>
-                            <span class="persona-attr-value">家族でドライブやバイク仲間とのツーリングで、山などに行き、自然を感じること</span>
+                    <div class="persona-basic-section">
+                        <div class="persona-section-tag basic-tag">基本属性</div>
+                        
+                        <div class="persona-attributes">
+                            <div class="persona-attr-row">
+                                <span class="persona-attr-label">職種</span>
+                                <span class="persona-attr-value">建設業界・技術職（職人）</span>
+                            </div>
+                            <div class="persona-attr-row">
+                                <span class="persona-attr-label">居住地</span>
+                                <span class="persona-attr-value">千葉県</span>
+                            </div>
+                            <div class="persona-attr-row">
+                                <span class="persona-attr-label">家族構成</span>
+                                <span class="persona-attr-value">妻（30代前半・医療事務でパート勤務）・5歳の娘</span>
+                            </div>
+                            <div class="persona-attr-row">
+                                <span class="persona-attr-label">年収</span>
+                                <span class="persona-attr-value">400万円（世帯年収550万円）</span>
+                            </div>
+                            <div class="persona-attr-row">
+                                <span class="persona-attr-label">趣味</span>
+                                <span class="persona-attr-value">家族でドライブやバイク仲間とのツーリングで、山などに行き、自然を感じること</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1047,112 +1200,170 @@ etc...
     </div>
 </section>
 
-<section id="flow">
+<section id="flow" class="container">
     <div class="flow-container">
         <h2>Flow - ご依頼の流れ</h2>
     
-    <div class="flow-section">
-        <h3 class="flow-section-title">ご契約までの流れ</h3>
-        
-        <div class="flow-steps contract-flow">
-            <div class="flow-step">
-                <div class="flow-circle">
-                    <span class="flow-number">01</span>
-                    <h4 class="flow-title">ミーティング<br>（無料）</h4>
+    <div class="flow-section contract-flow-section">
+        <div class="contract-flow-wrapper">
+            <div class="contract-flow-steps">
+                <div class="contract-flow-step">
+                    <div class="contract-circle">
+                        <span class="contract-number">01</span>
+                    </div>
+                    <h4 class="contract-step-title">事前ヒアリング</h4>
+                    <div class="contract-arrow">▶</div>
                 </div>
-                <div class="flow-description">
-                    <p>まずは30分〜1時間ほどお時間をいただき、オンラインにてご興味をお持ちいただいた背景や目的などをお伺いさせていただきます。</p>
+                
+                <div class="contract-flow-step">
+                    <div class="contract-circle">
+                        <span class="contract-number">02</span>
+                    </div>
+                    <h4 class="contract-step-title">ヒアリング</h4>
+                    <div class="contract-arrow">▶</div>
                 </div>
-                <div class="flow-arrow">
-                    <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
-                        <path d="M30 5L35 10L30 15M5 10H35" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                
+                <div class="contract-flow-step">
+                    <div class="contract-circle">
+                        <span class="contract-number">03</span>
+                    </div>
+                    <h4 class="contract-step-title">ご提案・お見積り</h4>
+                    <div class="contract-arrow">▶</div>
+                </div>
+                
+                <div class="contract-flow-step">
+                    <div class="contract-circle">
+                        <span class="contract-number">04</span>
+                    </div>
+                    <h4 class="contract-step-title">ご契約</h4>
                 </div>
             </div>
             
-            <div class="flow-step">
-                <div class="flow-circle">
-                    <span class="flow-number">02</span>
-                    <h4 class="flow-title">ご提案・<br>お見積り（無料）</h4>
+            <div class="contract-flow-descriptions">
+                <div class="contract-description">
+                    <p>Googleフォームにて、事前に簡単なヒアリングシートを記入いただきます。（10〜15分）</p>
                 </div>
-                <div class="flow-description">
-                    <p>課題を解決するための最適な方針やスケジュール概要、費用をまとめてご提示します。内容は、ご要望に合わせて無償で調整いたします。</p>
+                
+                <div class="contract-description">
+                    <p>オンライン（zoom）にて30分程度のヒアリングを実施します。<br>具体的なニーズや制作の目的、ターゲット像、デザインの方向性などをお伺いします。</p>
                 </div>
-                <div class="flow-arrow">
-                    <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
-                        <path d="M30 5L35 10L30 15M5 10H35" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                
+                <div class="contract-description">
+                    <p>ヒアリング内容をもとに、ご予算や要望に応じた貴社に最適なご提案をさせていただき、詳細なお見積書を提示いたします。</p>
+                </div>
+                
+                <div class="contract-description">
+                    <p>ご提案内容にご満足いただけましたら正式にご契約となります。<br>クラウドサインでの電子締結となります。</p>
                 </div>
             </div>
             
-            <div class="flow-step">
-                <div class="flow-circle">
-                    <span class="flow-number">03</span>
-                    <h4 class="flow-title">ご契約</h4>
+            <div class="contract-tools">
+                <div class="tool-item">
+                    <div class="tool-label">使用ツール</div>
+                    <div class="tool-icon">📝</div>
                 </div>
-                <div class="flow-description">
-                    <p>ご提案内容にご同意いただけましたら、契約書（発注書・制作規約）を締結し、正式に着手します。必要に応じて着手金や支払条件、納期を確定します。</p>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">🎥</div>
+                    <div class="tool-name">ZOOM</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">🎥</div>
+                    <div class="tool-name">ZOOM</div>
+                </div>
+                
+                <div class="tool-item">
+                    <div class="tool-icon">📋</div>
+                    <div class="tool-name">CLOUDSIGN</div>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="flow-section">
-        <h3 class="flow-section-title">ご契約後の流れ</h3>
-        
-        <div class="flow-steps">
-            <div class="flow-step">
-                <div class="flow-circle">
-                    <span class="flow-number">01</span>
-                    <h4 class="flow-title">事前ヒアリング</h4>
+    <div class="flow-section after-contract-flow-section">
+        <div class="after-contract-flow-wrapper">
+            <div class="after-contract-flow-steps">
+                <div class="after-contract-flow-step">
+                    <div class="after-contract-circle">
+                        <span class="after-contract-number">01</span>
+                    </div>
+                    <h4 class="after-contract-step-title">プロジェクト開始</h4>
+                    <div class="after-contract-arrow">▶</div>
                 </div>
-                <div class="flow-description">
-                    <p>ヒアリングシートを用意しておりますので、シートにご記入いただきます。また、ロゴ・写真・商品資料・実績データなど、LP制作に必要な素材や参考URLをご共有いただきます。</p>
+                
+                <div class="after-contract-flow-step">
+                    <div class="after-contract-circle">
+                        <span class="after-contract-number">02</span>
+                    </div>
+                    <h4 class="after-contract-step-title">画像素材やテキストご提供</h4>
+                    <div class="after-contract-arrow">▶</div>
                 </div>
-                <div class="flow-arrow">
-                    <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
-                        <path d="M30 5L35 10L30 15M5 10H35" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                
+                <div class="after-contract-flow-step">
+                    <div class="after-contract-circle">
+                        <span class="after-contract-number">03</span>
+                    </div>
+                    <h4 class="after-contract-step-title">デザインのご確認・修正</h4>
+                    <div class="after-contract-arrow">▶</div>
                 </div>
-            </div>
-            
-            <div class="flow-step">
-                <div class="flow-circle">
-                    <span class="flow-number">02</span>
-                    <h4 class="flow-title">ヒアリング</h4>
-                </div>
-                <div class="flow-description">
-                    <p>シートの内容を元に、より具体的にお話をお伺いして、シートに書かれていない本質的な内容を確認します。</p>
-                </div>
-                <div class="flow-arrow">
-                    <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
-                        <path d="M30 5L35 10L30 15M5 10H35" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-            </div>
-            
-            <div class="flow-step">
-                <div class="flow-circle">
-                    <span class="flow-number">03</span>
-                    <h4 class="flow-title">ご確認・<br>修正</h4>
-                </div>
-                <div class="flow-description">
-                    <p>ライティング原稿→ワイヤー→デザイン→実装の順に段階的にご確認いただき、フィードバックを反映します。大幅な仕様変更が発生する場合は別途お見積りにて対応します。</p>
-                </div>
-                <div class="flow-arrow">
-                    <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
-                        <path d="M30 5L35 10L30 15M5 10H35" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                
+                <div class="after-contract-flow-step">
+                    <div class="after-contract-circle">
+                        <span class="after-contract-number">04</span>
+                    </div>
+                    <h4 class="after-contract-step-title">納品・アフターフォロー</h4>
                 </div>
             </div>
             
-            <div class="flow-step">
-                <div class="flow-circle">
-                    <span class="flow-number">04</span>
-                    <h4 class="flow-title">納品・<br>アフターフォロー</h4>
+            <div class="after-contract-flow-descriptions">
+                <div class="after-contract-description">
+                    <p>まず初めに、キックオフMTGを実施させていただきます。改めて要件を確認し、より詳細なヒアリング、スケジュールの共有などをさせていただきます。</p>
                 </div>
-                <div class="flow-description">
-                    <p>本番反映またはデータ納品後、表示確認・計測タグの動作確認までサポートします。公開後の微調整や改善提案（A/Bテスト・運用改善）もご希望に応じて対応します。</p>
+                
+                <div class="after-contract-description">
+                    <p>よりオリジナル性のあるデザインを作成するため、可能な限り貴社にて画像素材やテキストのご用意をお願いしております。難しい場合はご相談ください。</p>
+                </div>
+                
+                <div class="after-contract-description">
+                    <p>方向性のズレを防ぐために、納品までに複数回のフィードバックをお願いしております。随時Zoomなどで擦り合わせることも可能です。</p>
+                </div>
+                
+                <div class="after-contract-description">
+                    <p>アウトプットにご納得いただけましたら納品となります。Webサイトの場合は、更新方法のレクチャーMTGなども実施させていただいております。</p>
+                </div>
+            </div>
+            
+            <div class="after-contract-tools">
+                <div class="after-tool-item">
+                    <div class="after-tool-label">使用ツール</div>
+                    <div class="after-tool-icon">🎥</div>
+                    <div class="after-tool-name">ZOOM</div>
+                </div>
+                
+                <div class="after-tool-item">
+                    <div class="after-tool-icon">📱</div>
+                    <div class="after-tool-name">Google Drive</div>
+                </div>
+                
+                <div class="after-tool-item">
+                    <div class="after-tool-icon">📋</div>
+                    <div class="after-tool-name">Excel/Sheets</div>
+                </div>
+                
+                <div class="after-tool-item">
+                    <div class="after-tool-icon">💻</div>
+                    <div class="after-tool-name">Notion</div>
+                </div>
+                
+                <div class="after-tool-item">
+                    <div class="after-tool-icon">🎥</div>
+                    <div class="after-tool-name">ZOOM</div>
+                </div>
+                
+                <div class="after-tool-item">
+                    <div class="after-tool-icon">🎥</div>
+                    <div class="after-tool-name">ZOOM</div>
                 </div>
             </div>
         </div>
@@ -1161,40 +1372,60 @@ etc...
 </section>
 
 <section id="faq" class="container">
-    <h2>FAQ - よくある質問</h2>
+    <div class="faq-header">
+        <h2 class="faq-title">flow <span class="faq-subtitle">よくある質問</span></h2>
+    </div>
     
     <div class="faq-container">
         <div class="faq-item">
-            <div class="faq-question">
+            <div class="faq-question-bar">
                 <div class="faq-q-icon">Q</div>
-                <div class="faq-q-text">修正は何回までできますか？</div>
+                <div class="faq-q-text">デザインの実績が少ないようですが、依頼しても大丈夫でしょうか？</div>
             </div>
-            <div class="faq-answer">
+            <div class="faq-answer-container">
                 <div class="faq-a-icon">A</div>
                 <div class="faq-a-text">
-                    <p>制作プロセスの各段階（ライティング原稿、ワイヤーフレーム、デザイン、実装）で適切な回数の修正対応をさせていただきます。</p>
-                    <p>大幅な仕様変更の場合は別途お見積りとなります。</p>
+                    <p>はい、ご安心ください。</p>
+                    <p>実績数はまだ多くありませんが、「丁寧なリサーチ」「構成から考える提案」「相手の立場を想像する力」を活かし、課題に合ったデザインをご提案しています。また、現在は現役デザイナーのもとで実務経験を積みながら、着実に実績を重ねています。行政経験で培った親身さや納期の守る姿勢、丁寧なコミュニケーションも強みです。「ちょっと相談してみたい」でも構いませんので、どうぞお気軽にご連絡ください。</p>
                 </div>
             </div>
         </div>
         
         <div class="faq-item">
-            <div class="faq-question">
+            <div class="faq-question-bar">
                 <div class="faq-q-icon">Q</div>
-                <div class="faq-q-text">デザイナーやコーダーのアサインをお願いできますか？</div>
+                <div class="faq-q-text">デザインの修正は何回まででできますか？</div>
             </div>
-            <div class="faq-answer">
+            <div class="faq-answer-container">
+                <div class="faq-a-icon">A</div>
+                <div class="faq-a-text">
+                    <p>回数制限は設けておらず、「納得いくまで丁寧に進める」ことを大切にしています。</p>
+                    <p>ご依頼の背景や目的をしっかりヒアリングしたうえで、なるべく一度でご満足いただけるご提案を目指しています。</p>
+                    <p>ただし、方向性を大きく変えるような修正（例：デザイン決定後の大幅な構成変更など）の場合は、別途お見積もりをお願いすることがあります。</p>
+                    <p>その際も、必ず事前にご説明・ご相談のうえで進めさせていただきますのでご安心ください。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question-bar">
+                <div class="faq-q-icon">Q</div>
+                <div class="faq-q-text">チームでのプロジェクトに参加できますか？</div>
+            </div>
+            <div class="faq-answer-container">
                 <div class="faq-a-icon">A</div>
                 <div class="faq-a-text">
                     <p>はい、可能です。</p>
-                    <p>プロジェクトの規模や要件に応じて、信頼できるデザイナーやコーダーをアサインいたします。品質管理も含めてディレクションさせていただきます。</p>
+                    <p>これまでの行政での実務経験を活かし、「報連相の丁寧さ」や「協調性」には自信があります。</p>
+                    <p>チームメンバーとのスムーズな連携を心がけ、決められたルールやスケジュールに沿って誠実に対応いたします。</p>
+                    <p>オンラインでのやり取り（Slack、Notion、Chatworkなど）にも対応可能です。</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="container">
     <div class="contact-container">
         <h2>Contact</h2>
     
@@ -1211,6 +1442,41 @@ etc...
 
 <script type="module" src="animation.js"></script>
 <script src="script.js"></script>
+<script>
+// Font loading debug
+console.log('Font debug script loaded');
+
+// Check font loading immediately
+const checkYosugaraFont = () => {
+    const yosugaraLoaded = document.fonts.check('20px Yosugara');
+    console.log('Yosugara font check:', yosugaraLoaded);
+    return yosugaraLoaded;
+};
+
+// Check on load
+document.fonts.ready.then(() => {
+    console.log('All fonts loaded');
+    console.log('Available fonts:', [...document.fonts].map(f => f.family));
+    
+    setTimeout(() => {
+        const loaded = checkYosugaraFont();
+        if (!loaded) {
+            console.warn('Yosugara font failed to load after fonts ready');
+            // Force apply font anyway
+            const elements = document.querySelectorAll('.loading-nickname, .handwritten-name');
+            elements.forEach(el => {
+                console.log('Forcing font on element:', el);
+                el.style.fontFamily = "'Yosugara', 'Klee One', cursive";
+            });
+        }
+    }, 100);
+});
+
+// Also check on window load
+window.addEventListener('load', () => {
+    setTimeout(checkYosugaraFont, 500);
+});
+</script>
 
 
 
