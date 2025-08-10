@@ -697,11 +697,11 @@
                 </div>
                 
                 <div class="funnel-right">
-                    <div class="funnel-mockups">
-                        <img src="原稿/images/image17.png" alt="林業求人サイト モバイル画面1" class="funnel-mockup-image">
-                        <img src="原稿/images/image3.png" alt="林業求人サイト モバイル画面2" class="funnel-mockup-image">
-                        <img src="原稿/images/image1.png" alt="林業求人サイト モバイル画面3" class="funnel-mockup-image">
-                        <img src="原稿/images/image4.png" alt="林業求人サイト モバイル画面4" class="funnel-mockup-image">
+                    <div class="scroll-images">
+                        <img src="スクロールイメージ/3.png" alt="林業求人サイト画面1" class="scroll-image">
+                        <img src="スクロールイメージ/4.png" alt="林業求人サイト画面2" class="scroll-image">
+                        <img src="スクロールイメージ/2.png" alt="林業求人サイト画面3" class="scroll-image">
+                        <img src="スクロールイメージ/5.png" alt="林業求人サイト画面4" class="scroll-image">
                     </div>
                 </div>
             </div>
@@ -765,7 +765,7 @@
                 </div>
                 <button class="prompt-button rich-prompt-button" onclick="openPromptModal('quantitative')">
                     <span class="button-text">プロンプトを確認</span>
-                    <span class="button-arrow">〉</span>
+                    <span class="button-arrow">→</span>
                 </button>
             </div>
         </div>
@@ -810,40 +810,69 @@
             <div class="modal-body">
                 <p>林業業界の定量調査で実際に使用したChatGPT Deep Researchのプロンプトです。</p>
                 <pre>
-# 林業業界の定量調査プロンプト
+#Variables
+# ユーザーはこのセクションを編集して、調査内容をカスタマイズします。
+# --------------------------------------------------------------------------
+[調査対象業界]: 林業
+[調査項目リスト]:
+- 業界全体の年間転職者数
+- 未経験からの転職者数の比率または人数
+- 業界の平均年収（可能であれば年代別、地域別、経験年数別に分類）
+- 新規就業者数と離職者数の推移
+- 従事者の平均勤続年数
+- 従事者の平均年齢及び年齢構成
+- 従事者の男女比
+- 転職や就業にあたり有利となる資格やスキル
+[想定利用者]: セールスライター
+[利用目的]: [調査対象業界]への転職をテーマにしたランディングページの作成
 
-## 調査目的
-林業業界特化の求人サイト向けランディングページ制作のための基礎データ収集
+#Request
+プロのリサーチャーとして、あなたの持つDeep Research機能を最大限に活用し、日本の[調査対象業界]における転職関連の統計データを網羅的に調査し、詳細なレポートを作成してください。特に、[調査項目リスト]に記載された各項目について、信頼性の高い情報源に基づいた最新かつ正確なデータを収集・整理することを要求します。
 
-## 調査項目
-以下の項目について、最新の統計データを収集してください：
+#Role
+あなたは、官公庁の統計データや業界団体の公式レポート、信頼性の高い調査会社の報告書など、客観的な情報源の扱いに長けたプロのリサーチャーです。今回の調査結果は、[想定利用者]が[利用目的]のために使用することを深く理解しており、報告されるすべてのデータの正確性、最新性、そして引用可能性を最重要視します。あなたは、単に情報を収集するだけでなく、そのデータが持つ意味や背景を的確に捉え、価値あるインサイトを提供します。
 
-1. **就業者データ**
-   - 年間新規就業者数（過去3年間の推移）
-   - 就業者総数とその推移
-   - 平均年齢と年齢層別分布
-   - 男女比率
+#Regulation
+- 必ず日本語で出力してください。
+- 最終的な出力は、以下の3部構成でまとめてください。
+    1. **調査の概要と思考プロセス**: 調査の目的、検索に使用したキーワード、参照した主要な情報源の概要を記述します。
+    2. **調査結果**: [調査項目リスト]の各項目について、後述の指定フォーマットに従って詳細を報告します。
+    3. **結論・総括**: 調査全体から得られた重要なポイントや業界の傾向を要約します。
+- 「2. 調査結果」は、以下のフォーマットを厳守し、項目ごとに整理して報告してください。各行はマークダウン形式で記述してください。
 
-2. **転職・採用データ**
-   - 未経験からの転職率
-   - 平均勤続年数
-   - 離職率（業界平均との比較）
+(フォーマットここから)
+### 【調査項目名】
+- **結果:** (調査結果の要約と、データから読み取れる傾向や考察)
+- **数値データ:** (具体的な数値やデータ)
+- **出典:** [情報源の名称](URL) (公表年: YYYY年)
+- **補足:** (データの前提条件、対象範囲、解釈する上での注意点など)
+(フォーマットここまで)
 
-3. **地域分布**
-   - 都道府県別就業者数
-   - 地方別の求人動向
+#Rule
+- **Deep Researchの実行**: 必ずDeep Research機能（Webブラウジング機能）を起動し、オンラインでアクセス可能な最新の情報を検索してください。
+- **思考プロセスの明示**: 調査の初期段階で、どのような検索戦略を立て、どの情報源を優先的に調査したか、その思考の過程を簡潔に記述してください。
+- **情報源の厳選**: 信頼性が担保された一次情報源（例: 総務省統計局、厚生労働省、林野庁などの官公庁、関連業界団体、大手調査会社）を最優先で利用してください。個人のブログ、Q&Aサイト、信頼性の低いニュースメディアからの引用は避けてください。
+- **データの鮮度**: 可能な限り直近5年以内のデータを優先してください。もし古いデータしか見つからない場合は、その旨を「補足」欄に明記してください。
+- **出典の完全性**: 報告するすべての数値・情報には、必ず「出典（情報源の名称）」「URL」「公表年」を正確に記載してください。
+- **不明情報の報告**: 調査努力にもかかわらず、信頼できる情報が見つからなかった項目については、その旨を正直に「信頼できる公開データが見つかりませんでした」と報告してください。推測で回答しないでください。
 
-## 出力形式
-- 各項目について具体的な数値を提示
-- 情報源のURLを明記
-- 統計年度を明確にする
-- 信頼性の高い公的統計を優先
+#Review & Refine
+出力を作成した後、最終提出前に以下の項目について自己レビューを行い、必要に応じて内容を修正・改善してください。
+- **網羅性**: [調査項目リスト]のすべての項目に対して、回答または「データ不明」の報告がなされているか？
+- **正確性**: 報告された数値と出典元の情報に齬齬はないか？
+- **形式遵守**: #Regulationで指定された出力構成とフォーマットが完全に守られているか？
+- **役割遂行**: プロのリサーチャーとして、客観的でバイアスのない、信頼性の高いレポートになっているか？
 
-## 情報源
-- 農林水産省統計
-- 厚生労働省職業安定局
-- 総務省統計局
-- 各都道府県の林業統計
+#Reference
+以下は、あなたが生成すべき「調査結果」セクションのフォーマット例です。この形式と品質レベルを参考にしてください。
+
+(フォーマット例ここから)
+### 林業従事者の平均年収
+- **結果:** 林業従事者の平均年収は、全国平均で400万円台前半とされていますが、これは年齢や経験、役職、そして事業体の経営形態によって大きく変動します。特に、素材生産を主とする企業では比較的高く、森林組合などでは安定している傾向が見られます。
+- **数値データ:** 435万円 (令和4年度)
+- **出典:** [林野庁「令和4年度 森林・林業白書」第1部第4章](https://www.rinya.maff.go.jp/j/kikaku/hakusyo/r4hakusyo/zenbun.html) (公表年: 2023年)
+- **補足:** この数値は、林業事業体に雇用されている常用労働者の平均値です。個人経営の林家や自営の事業主は含まれておらず、実際の所得とは異なる場合があります。また、地域による差も大きい点に留意が必要です。
+(フォーマット例ここまで)
                 </pre>
             </div>
         </div>
@@ -868,44 +897,58 @@
             <div class="modal-body">
                 <p>林業業界の定性調査で実際に使用したChatGPT Deep Researchのプロンプトです。</p>
                 <pre>
-# 林業業界の定性調査プロンプト
+# Variables（変数）
+- ターゲット職種カテゴリー：{営業・販売、接客・サービス、事務・管理、製造・技術、IT・クリエイティブ、医療・介護、教育、その他}
+- 痛み・悩みの分析軸：{労働環境、人間関係、収入・待遇、将来性・キャリア、仕事内容・やりがい、プライベート・ワークライフバランス}
+- 得られる利益の分析軸：{経済的メリット、精神的充足、スキル・成長、社会的価値、ライフスタイル}
 
-## 調査目的
-林業業界で働く人々の離職理由と転職動機の深層理解
+# Request（依頼内容）
+各ターゲット職種カテゴリーから林業業界へ転職する際の痛み（Pain）と得られる利益（Gain）を、上記の分析軸に基づいて詳細に調査・分析してください。特に以下の点に注力してください：
 
-## 調査対象
-林業業界での就業経験者（現職・元職問わず）
+1. 現在の職種における具体的な痛み・悩み事例
+2. 林業業界への転職で解決される痛み・悩み
+3. 林業業界への転職で得られる新たな利益・価値
+4. 転職における心理的障壁と解決策
+5. 実際の転職成功事例とその要因
 
-## 調査項目
-以下の観点から、林業業界の課題と魅力を調査してください：
+# Role（役割）
+あなたは以下の専門性を持つ転職・キャリア分析のスペシャリストです：
+- 労働市場動向の深い理解
+- 業界間転職パターンの分析経験
+- 心理学的観点からの転職動機分析
+- 林業業界の現状と課題への精通
+- 定性調査手法の専門知識
 
-1. **離職理由・課題**
-   - 人間関係の問題（パワハラ、閉鎖的環境）
-   - 労働環境・待遇面の不満
-   - 将来性・キャリアパスへの不安
-   - 仕事内容へのギャップ
+# Regulation（規制・制約）
+- 実在する企業・個人の特定に繋がる情報は含めない
+- 偏見や先入観を排除し、客観的データに基づいた分析を行う
+- 林業業界のネガティブ面も公正に扱う
+- 情報源は信頼性の高いものに限定する
+- 推測と事実を明確に区別する
 
-2. **転職理由・動機**
-   - 他業界からの転職理由
-   - 林業に求める価値観
-   - 働き方への期待
+# Rule（ルール）
+1. 各職種カテゴリーごとに最低5つの具体的な痛み事例を提示
+2. 各痛みに対応する林業転職での解決可能性を%で評価
+3. 得られる利益は定量化可能なものと定性的なものを分ける
+4. 転職成功要因は優先順位を付けてランキング化
+5. 心理的障壁は解決難易度（高・中・低）で分類
 
-3. **業界の魅力・やりがい**
-   - 自然との関わり
-   - 社会貢献性
-   - 技術習得の喜び
-   - 地域との結びつき
+# Review & Refine（検証・改善）
+分析結果について以下の観点で検証し、必要に応じて改善提案を含めてください：
+- データの信頼性と網羅性
+- 分析の論理的一貫性
+- 実用性と行動可能性
+- 林業業界の実情との整合性
+- ターゲット層への訴求力
 
-## 分析手法
-- 実際の体験談やインタビュー記事を重点的に収集
-- SNSでの生の声も含める
-- ネガティブ・ポジティブ両面を公平に分析
-- 年代別・地域別の傾向も把握
-
-## 出力要件
-- 具体的なエピソード・体験談を含める
-- 情報源を明記
-- 課題と解決策の両面を提示
+# Reference（参考情報）
+以下の情報源を優先的に活用し、引用元を明記してください：
+- 厚生労働省の雇用統計データ
+- 林野庁の業界動向レポート
+- 転職サイトの実体験談・口コミ
+- 職業紹介事業者の調査レポート
+- 学術論文・研究機関の調査結果
+- 業界団体の公開資料
                 </pre>
             </div>
         </div>
@@ -921,7 +964,7 @@
                 </div>
                 <button class="prompt-button rich-prompt-button" onclick="openPromptModal('qualitative')">
                     <span class="button-text">プロンプトを確認</span>
-                    <span class="button-arrow">〉</span>
+                    <span class="button-arrow">→</span>
                 </button>
             </div>
         </div>
@@ -1097,14 +1140,205 @@
         </div>
     </div>
     
+    <h4 class="work-section-title">マーケティングファネル</h4>
+    
+    <div class="marketing-funnel-section">
+        <h5 class="marketing-subsection-title">カスタマージャーニーマップ（As Isの整理）</h5>
+        
+        <div class="journey-map-container">
+            <table class="journey-map-table">
+                <thead>
+                    <tr>
+                        <th>フェーズ</th>
+                        <th>認知</th>
+                        <th>興味・関心</th>
+                        <th>比較検討</th>
+                        <th>登録・応募</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="journey-row">
+                        <td class="journey-category">行動</td>
+                        <td>Googleで検索する</td>
+                        <td>林業の転職に関するRINDOの記事を読む</td>
+                        <td>他の仕事との違いを検索する</td>
+                        <td>求人サイトに登録する</td>
+                    </tr>
+                    <tr class="journey-row">
+                        <td class="journey-category">思考・心理</td>
+                        <td>今の仕事（林業以外）から他の業界への転職ってどこがあるんだろう？</td>
+                        <td>林業で働くのも悪くはなさそう！</td>
+                        <td>どの仕事とどのように比較すれば良いんだろう？</td>
+                        <td>どの求人サイトに登録して、応募先はどのように選べば良いのだろう？</td>
+                    </tr>
+                    <tr class="journey-row">
+                        <td class="journey-category">ネガティブな体験</td>
+                        <td>なし</td>
+                        <td>林業は良さそうなものの、次に何をすれば良いのかわからない。すぐに応募したいと言うわけでもない。</td>
+                        <td>適切な比較ができているのか不安になる<br>見落としがあって、転職後に後悔をしないかモヤモヤする</td>
+                        <td>一度、ネット検索でRINDOの記事をみただけでは、記憶に残らず転職サイト探しで悩む<br>RINDOは会員登録がなかったため、ユーザーとの継続的な接点がない<br>経歴書の入力が必要で、登録の手間が煩わしく後回しにする</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="marketing-funnel-section">
+        <h5 class="marketing-subsection-title">カスタマージャーニーマップ（To Beの整理）</h5>
+        
+        <div class="journey-map-container">
+            <table class="journey-map-table">
+                <thead>
+                    <tr>
+                        <th>フェーズ</th>
+                        <th>認知</th>
+                        <th>興味・関心</th>
+                        <th>比較検討</th>
+                        <th>応募</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="journey-row">
+                        <td class="journey-category">行動（共通）</td>
+                        <td>Googleで検索する</td>
+                        <td>林業の転職に関する記事を読む</td>
+                        <td>他の仕事との違いを検索する</td>
+                        <td>求人サイトに登録する</td>
+                    </tr>
+                    <tr class="journey-row">
+                        <td class="journey-category">思考・心理</td>
+                        <td>今の仕事（林業以外）から他の業界への転職ってどこがあるんだろう？（共通）</td>
+                        <td>林業の転職に関する特典もあるみたいだし、LINE登録だけでもしてみようかな！</td>
+                        <td>特典の中で、林業と他の業界・職種との違いが明確でイメージが掴めてきた！</td>
+                        <td>RINDOのLINEで流れてきた求人に応募してみようかな！</td>
+                    </tr>
+                    <tr class="journey-row">
+                        <td class="journey-category">ポジティブな変化</td>
+                        <td>なし</td>
+                        <td>興味を持った次の行動にすぐに移せる<br>履歴書不要・いきなり求人紹介でないので、安心して登録できる</td>
+                        <td>今の仕事では得られない「やりがい」などが明確になり、不安なく応募に進める</td>
+                        <td>受け身でも応募に進めるため、気になったところを逃さずに応募できる</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="marketing-funnel-section">
+        <h5 class="marketing-subsection-title">課題の整理と明確化</h5>
+        
+        <div class="challenges-list">
+            <ul class="challenge-items">
+                <li class="challenge-item">会員サイトがなく顧客との継続的な接点がなく、林業への興味の醸成ができない</li>
+                <li class="challenge-item">興味を持った次のアクションが「求人への応募」のため、ハードルが高く応募率が平均より低い2%以上も低い</li>
+                <li class="challenge-item">他の仕事との比較がされておらず、林業への転職に踏み切れない可能性がある</li>
+                <li class="challenge-item">オウンドメディアの記事で、求人応募（登録）を促すバナーが設置されておらず、行動促進ができていない</li>
+                <li class="challenge-item">応募後の流れがわからず、読者の不安が払拭できずに応募をためらっている</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="marketing-funnel-section">
+        <h5 class="marketing-subsection-title">ランディングページの構成</h5>
+        
+        <div class="landing-page-structure">
+            <div class="lp-structure-list">
+                <div class="lp-structure-item">ファーストビュー</div>
+                <div class="lp-structure-item">特典案内</div>
+                <div class="lp-structure-item">悩みの代弁</div>
+                <div class="lp-structure-item">ベネフィット</div>
+                <div class="lp-structure-item">解決策の提示①</div>
+                <div class="lp-structure-item">解決策の提示②</div>
+                <div class="lp-structure-item">応募までの流れ</div>
+                <div class="lp-structure-item">口コミ</div>
+                <div class="lp-structure-item">おすすめする人</div>
+                <div class="lp-structure-item">おすすめしない人</div>
+                <div class="lp-structure-item">よくある質問</div>
+                <div class="lp-structure-item">メッセージ</div>
+            </div>
+            
+            <div class="lp-explanation">
+                <p>ランディングページでは、3秒以内の離脱率70%と言われており、読者を留まらせるためにファーストビューで興味づけを実施。さらに、ターゲットが魅力に感じる「特典」についても、早いタイミングで案内してさらに興味づけ。</p>
+                
+                <p>続いて、「悩みの代弁」を列挙することで、カクテルパーティ効果によるターゲットの引付を実施。続けて、悩みを解決した先の未来（ベネフィット）を提示することで、ターゲットに未来をアピール。そして、ターゲットが望む未来を叶える手段が「RINDOの転職サービスであること」を「解決策の提示」パートで提示。</p>
+                
+                <p>興味を持ったターゲットが行動に移せるように、解決策を提示した後に「応募までの流れ」を案内。</p>
+                
+                <p>まだ公式LINEへ登録することに「怪しさや不安」を感じているユーザーに対し、口コミを通じて林業の魅力をアピール。その後に、林業業界への転職が向いている・RINDOのサービスをおすすめする人の特徴を列挙して、登録を促すために再アピール。</p>
+                
+                <p>「よくある質問」を通じて、それでも行動しない理由・読者が疑問に感じるであろうことを先回りで列挙して、公式LINEへ登録する上での不安を完全に払拭。</p>
+                
+                <p>最後に、運営者からのメッセージパートで、熱意と登録を促すメッセージで読者の背中の後押し。</p>
+            </div>
+        </div>
+    </div>
+    
     <h4 class="work-section-title">KPI設計</h4>
-    <p>今回のランディングページ制作におけるKPIは、公式LINEの接触者数を設定し逆算して設定。</p>
-    <table border="1">
-        <tr><td>サイトアクセス数</td><td>10,000PV</td></tr>
-        <tr><td>LPアクセス数</td><td>280PV（CTR：3%）</td></tr>
-        <tr><td>LINE登録者数</td><td>8名（CVR：3%）</td></tr>
-        <tr><td>LINE接触者数</td><td>4名（開封率：60%）</td></tr>
-    </table>
+    <p class="kpi-description">今回のランディングページ制作におけるKPIは、公式LINEの接触者数を設定し逆算して設定。</p>
+    
+    <div class="kpi-flow-container">
+        <div class="kpi-flow-steps">
+            <div class="kpi-step">
+                <div class="kpi-step-circle">
+                    <div class="kpi-step-number">01</div>
+                </div>
+                <div class="kpi-step-content">
+                    <h5 class="kpi-step-title">サイトアクセス数</h5>
+                    <div class="kpi-step-value">10,000<span class="kpi-unit">PV</span></div>
+                </div>
+                <div class="kpi-arrow">
+                    <span class="arrow-line"></span>
+                    <span class="arrow-head">→</span>
+                    <div class="kpi-conversion-rate">CTR: 3%</div>
+                </div>
+            </div>
+            
+            <div class="kpi-step">
+                <div class="kpi-step-circle">
+                    <div class="kpi-step-number">02</div>
+                </div>
+                <div class="kpi-step-content">
+                    <h5 class="kpi-step-title">LPアクセス数</h5>
+                    <div class="kpi-step-value">280<span class="kpi-unit">PV</span></div>
+                </div>
+                <div class="kpi-arrow">
+                    <span class="arrow-line"></span>
+                    <span class="arrow-head">→</span>
+                    <div class="kpi-conversion-rate">CVR: 3%</div>
+                </div>
+            </div>
+            
+            <div class="kpi-step">
+                <div class="kpi-step-circle">
+                    <div class="kpi-step-number">03</div>
+                </div>
+                <div class="kpi-step-content">
+                    <h5 class="kpi-step-title">LINE登録者数</h5>
+                    <div class="kpi-step-value">8<span class="kpi-unit">名</span></div>
+                </div>
+                <div class="kpi-arrow">
+                    <span class="arrow-line"></span>
+                    <span class="arrow-head">→</span>
+                    <div class="kpi-conversion-rate">開封率: 60%</div>
+                </div>
+            </div>
+            
+            <div class="kpi-step final-step">
+                <div class="kpi-step-circle final-circle">
+                    <div class="kpi-step-number">04</div>
+                </div>
+                <div class="kpi-step-content">
+                    <h5 class="kpi-step-title">LINE接触者数</h5>
+                    <div class="kpi-step-value final-value">4<span class="kpi-unit">名</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="kpi-flow-note">
+            <div class="kpi-note-icon">💡</div>
+            <div class="kpi-note-text">最終目標である「LINE接触者数4名」から逆算してKPIを設計し、各段階の目標値を明確化</div>
+        </div>
+    </div>
     
     <h4 class="work-section-title">ビジネスインパクト試算</h4>
     <p class="business-impact-subtitle">※月間アクセス数を10,000PVで試算</p>
@@ -1115,25 +1349,49 @@
                 <h5 class="impact-title">求人への応募率</h5>
             </div>
             <div class="impact-chart">
-                <div class="chart-bars">
-                    <div class="chart-bar before-bar">
-                        <div class="bar-fill" style="height: 16.7%;"></div>
-                        <span class="bar-value">0.5%</span>
-                        <span class="bar-label">Before</span>
+                <div class="chart-container">
+                    <div class="chart-y-axis">
+                        <div class="y-axis-label">3%</div>
+                        <div class="y-axis-label">2.5%</div>
+                        <div class="y-axis-label">2%</div>
+                        <div class="y-axis-label">1.5%</div>
+                        <div class="y-axis-label">1%</div>
+                        <div class="y-axis-label">0.5%</div>
+                        <div class="y-axis-label">0%</div>
                     </div>
-                    <div class="chart-bar after-bar">
-                        <div class="bar-fill" style="height: 50%;"></div>
-                        <span class="bar-value">1.5%</span>
-                        <span class="bar-label">After</span>
+                    <div class="chart-main">
+                        <div class="chart-grid">
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                            <div class="grid-line"></div>
+                        </div>
+                        <div class="chart-bars">
+                            <div class="chart-bar before-bar">
+                                <div class="bar-fill" style="height: 6.67%;"></div>
+                                <span class="bar-value">0.2%</span>
+                                <span class="bar-label">Before</span>
+                            </div>
+                            <div class="chart-bar after-bar">
+                                <div class="bar-fill" style="height: 50%;"></div>
+                                <span class="bar-value">1.5%</span>
+                                <span class="bar-label">After</span>
+                            </div>
+                        </div>
+                        <div class="chart-x-axis">
+                            <div class="x-axis-line"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="chart-arrow">↗</div>
-                <div class="chart-change">+200%（3倍向上）</div>
+                <div class="chart-change">+650%（7.5倍向上）</div>
             </div>
             <div class="impact-details">
                 <div class="detail-item">
                     <span class="detail-label">改善前：</span>
-                    <span class="detail-text">月間応募者数：約50人</span>
+                    <span class="detail-text">月間応募者数：約20人</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">改善後：</span>
@@ -1196,12 +1454,251 @@
             </div>
         </div>
     </div>
+    
+    <h4 class="work-section-title">方針決定（To Beの整理）</h4>
+    
+    <div class="policy-section">
+        <div class="policy-item">
+            <h5 class="policy-title">わかりやすさを徹底</h5>
+            <p class="policy-description">ターゲットが、いつもの生活でテキストをみない可能性があるため、文章量をできるかぎり減らすことを徹底。さらに、アイコンや素材を配置することで、視覚的に情報が得られるように設計。</p>
+        </div>
+        
+        <div class="policy-item">
+            <h5 class="policy-title">林業業界のアピールをメインにする</h5>
+            <p class="policy-description">「林業特化型の転職事業」に民間企業が参入していないほど、林業業界の知名度が低いことがメイン課題。知名度・業界イメージの向上も兼ねたページにするために、業界の特徴について重点的に説明。</p>
+        </div>
+        
+        <div class="policy-item">
+            <h5 class="policy-title">ロイヤルカスタマー以外の登録を減らす</h5>
+            <p class="policy-description">RINDOはエージェント事業ではないため、見込みが浅い登録者が増えると事業に差し支えることが課題。そのため、メリットだけでなくデメリットも伝えることで、見込みが浅い顧客の登録を排除。</p>
+        </div>
+    </div>
+    
+    <h4 class="work-section-title">リサーチ</h4>
+    
+    <div class="research-section">
+        <p class="research-description">競合・ベンチマーク、デザインベンチマークを調査し、多数比較・検討を実施。</p>
+        <p class="research-description">林業業界特化型の転職サービスがないため、ターゲットが見慣れているであろう「製造業」や「技術職」のランディングページを中心にリサーチ。</p>
+        <p class="research-highlight">特に、独自の方法でチェックした「高い成約率の実績があるページ」を重点的に参考。</p>
+    </div>
+    
+    <h4 class="work-section-title">LP設計・構成要素詳解</h4>
+    
+    <div class="lp-design-section">
+        <div class="lp-component">
+            <h5 class="component-title">メインビジュアル</h5>
+            
+            <div class="main-visual-container">
+                <div class="main-visual-left">
+                    <div class="smartphone-mockup">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <img src="data:image/jpeg;base64,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" alt="林業転職ランディングページのスマートフォン表示" class="mockup-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="main-visual-right">
+                    <div class="component-details">
+                        <div class="detail-item detail-item-no-margin">
+                            <h6 class="detail-subtitle">都会出身の若者がどんどん増えている</h6>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <p class="detail-text">事実に基づき意外なにも「移住者が多い」ということを伝える</p>
+                        </div>
+                        
+                        <div class="detail-item detail-item-no-margin">
+                            <h6 class="detail-subtitle">キャッチコピー「将来性のある林業で感謝されながら働く。」</h6>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <p class="detail-text">林業業界の強みである「将来性」と「感謝される」というターゲットに響くコピーを採用</p>
+                        </div>
+                        
+                        <div class="detail-item detail-item-no-margin">
+                            <h6 class="detail-subtitle">5つの特徴</h6>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <p class="detail-text">経験者や体力に自信がある人しか働けないのではという「偏見」を覆しつつ、RINDOの強みをアピールするために、5つの特徴を列挙。</p>
+                        </div>
+                        
+                        <div class="detail-item detail-item-no-margin">
+                            <h6 class="detail-subtitle">マイクロコピー「友だち追加で5大特典プレゼント」</h6>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <p class="detail-text">プレゼント訴求で登録率アップを促す</p>
+                        </div>
+                        
+                        <div class="detail-item detail-item-no-margin">
+                            <h6 class="detail-subtitle">CTA「今すぐ求人紹介を受ける」</h6>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <p class="detail-text">行動を促すために、ターゲットの立場になった言葉を採用。さらに、「相談」などの能動的なキーワードを使うと萎縮することがあるため、受動的な「紹介を受ける」を採用。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">特典案内</h5>
+            <p class="component-description">「求人紹介が受けられる」だけでは、ユーザーとしては魅力に感じず登録を促せません。さらに、まだ林業業界への志望度が高くないと、登録を後回しにされてしまいます。</p>
+            <p class="component-description">今すぐに登録してもらうために、「林業に興味がない人が理解を深められるコンテンツ」を特典として用意。</p>
+            <p class="component-highlight">特典設計まで関わることで、求職者の獲得最大化につながります。</p>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">悩みの代弁</h5>
+            <p class="component-description">このパートでは、心理学「カクテルパーティー効果」を狙っています。この心理学は、「自分の関心がある会話・情報は、情報過多なインターネットでも選別して選びとる」というものです。</p>
+            <p class="component-description">ユーザーは、数多くの情報に触れているため「自分のことだ」と思ってもらい「必要なページだ」と感じてもらうために必要なパートです。</p>
+            
+            <div class="component-details">
+                <div class="detail-item detail-item-no-margin">
+                    <h6 class="detail-subtitle">「仕事が忙しくてプライベートがない」</h6>
+                </div>
+                
+                <div class="detail-item">
+                    <p class="detail-text">ペルソナとしている「技術職」は、肉体的な疲労感が強く「休めていない」と感じている人が多いのではという仮説を立てました。また、転職理由として多くの人があげる理由の1つでもあるため、1つ目に採用しています。</p>
+                </div>
+                
+                <div class="detail-item detail-item-no-margin">
+                    <h6 class="detail-subtitle">「工場や現場で働ける自信がない」</h6>
+                </div>
+                
+                <div class="detail-item">
+                    <p class="detail-text">林業への転職者は、未経験者が多いことがリサーチでわかりました。しかし、多くの方は「林業＝重労働」という偏見を持っています。その偏見を持っている人に情報が届くように、ターゲットの不安を代弁。</p>
+                </div>
+                
+                <div class="detail-item detail-item-no-margin">
+                    <h6 class="detail-subtitle">「今の仕事にやりがいや将来性を感じない」</h6>
+                </div>
+                
+                <div class="detail-item">
+                    <p class="detail-text">技術職で活躍されている人の中には、「体力的な辛さ」や「労働時間のながさ」「厳しい人間関係・上下関係」「将来への不安」を感じて退職している人が多いです。そのような人に「林業が新しい選択肢であること」を伝えるべく、代表的な悩みの代弁として3つ目に提示。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">ベネフィット</h5>
+            <p class="component-description">ここでは、ターゲットが理想としている未来（ベネフィット）を想像できるように、素材付きで情報を列挙。特に、ユーザーが不安に感じる「仕事の将来性」や「手に職がつけられるか」などの情報を上部に掲載。</p>
+            <p class="component-description">また、ベネフィットを載せるだけでは「なぜそのような未来が手に入るのか」がイメージできません。不信感を払拭するためにも、最低限の文字数で簡潔に「未来が叶えられる理由」を1文で説明」</p>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">解決策の提示</h5>
+            <p class="component-description">林業に対して興味を持ったターゲットに対して、「RINDOへの登録が理想を叶える解決策である」と理解してもらうために、「選ばれる理由」として特徴を列挙。</p>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">解決策の提示（メイン）</h5>
+            <p class="component-description">RINDOの特徴の中でも、「未経験から林業の仕事を経験した運営者への相談」は最も魅力的な解決策であると考え、独立して解決策の1つとして説明。</p>
+            <p class="component-description">さらに、運営者を実名顔出しで掲載することで、事業への透明性をアピール。</p>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">応募までの流れ</h5>
+            <p class="component-description">複雑だったり、電話で登録を確認されたりすると、登録率を大きく下げてしまいかねません。しつこい紹介・勧誘がないことを伝えるためにも、「個別相談」は任意であることを目立つように記載。</p>
+            <p class="component-description">また、応募までは履歴書・職務経歴書は不要なため、応募までの流れに記載しないことで「かんたんさ」のアピールを最大化。</p>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">口コミ</h5>
+            <p class="component-description">当時、RINDOを通じて転職成功した方はゼロ名でした。そのため、すでに林業でご活躍されている方へのインタビューを実施し、口コミで林業の魅力をアピール。</p>
+            
+            <div class="component-details">
+                <div class="detail-item detail-item-no-margin">
+                    <h6 class="detail-subtitle">自然に囲まれてリフレッシュできる</h6>
+                </div>
+                
+                <div class="detail-item">
+                    <p class="detail-text">未経験から転職を目指したい方が親近感が湧くように「「高校までは東京」という部分をピックアップ。さらに、感謝されることだけでなく、インスタグラムなどのSNS集客に携われる可能性を伝えるために、メイン業務以外もあえてピックアップ。</p>
+                </div>
+                
+                <div class="detail-item detail-item-no-margin">
+                    <h6 class="detail-subtitle">林業だからこそ20代で起業できた</h6>
+                </div>
+                
+                <div class="detail-item">
+                    <p class="detail-text">意外にも林業は「独立・起業」とも相性が良いことを口コミを通じてアピール。さらに、安定して仕事ができていることの理由に「林業ならではの人間関係」という内容を引用することで、人間関係の良さをよりアピール。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">おすすめする人</h5>
+            <p class="component-description">大前提として、ここまで読んでいるユーザーは、林業あるいはRINDOに興味を持っています。興味を持っている読者を後押しするために必要なパートがブレット（ベネフィットや条件などを表現する箇条書き）。</p>
+            <p class="component-description">ブレットは、提示したオファーを受けたときに受けられるメリットを箇条書きにするパート。</p>
+            <p class="component-description">ここでは、林業業界への転職で実現できること（ベネフィット）を願望に変えて「おすすめする人」にし、親近感を持たせつつイメージを膨らませる内容を記述。</p>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">おすすめしない人</h5>
+            <p class="component-description">「登録して欲しくない人」を明記することで、登録前の時点でミスマッチを減らすことを実施。</p>
+            <p class="component-description">林業は魅力的ではありますが、一部の人にはマイナスに捉えられてしまうこともあります。面談・面接時点でミスマッチがおこらないように、マイナス面もきちんと明記。</p>
+            <p class="component-description">特に、どれだけやりがいがあっても、給料が日本の中央値よりも低いことは否めません。このような事実を隠すのではなく、記載することでミスマッチを防止。</p>
+            <p class="component-description">また、「汚れること」は仕事の特性上で、どうしても避けられないためミスマッチが内容に明記。</p>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">よくある質問</h5>
+            <p class="component-description">ユーザーは常に「公式LINEに登録しない理由」を探しています。その不安を払拭して登録を促すために、本文との重複内容も含めてQ&A形式で不安の払拭を実施。</p>
+            
+            <div class="component-details">
+                <div class="detail-item detail-item-no-margin">
+                    <h6 class="detail-subtitle">体力に自信がないのですが、林業に就職できますか？</h6>
+                </div>
+                
+                <div class="detail-item">
+                    <p class="detail-text">「林業＝体力仕事」というイメージがあり、参入障壁になっている理由の1つ。本文でも解説はしていますが、よくある質問でも繰り返し「体力がなくても問題がないこと」をアピール。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lp-component">
+            <h5 class="component-title">メッセージ</h5>
+            <p class="component-description">「ピーク・エンドの法則」によれば、「感情が最も高まったときの印象と最後の印象だけで、全体的な印象を判断する」と言われています。そのため、運営者である中村氏のメッセージを最後に記載することで、ユーザーに強い印象を与える構成を採用。</p>
+            <p class="component-description">さらに、最後まで読んだユーザーを公式LINEへの登録を促すために、セールスライティングの型である「PASONAの法則」を採用して執筆（Nは省略）。</p>
+            
+            <div class="pasona-framework">
+                <div class="pasona-item">
+                    <h6 class="pasona-title">Problem：問題・悩みの代弁</h6>
+                    <p class="pasona-text">林業に興味はあるものの、知識やスキルがないとお仕事に応募するのも不安になりますよね。</p>
+                    <p class="pasona-text">とはいえ、今の仕事に将来性ややりがいを感じずに、仕事を変えたいという想いがあるのではないでしょうか。</p>
+                </div>
+                
+                <div class="pasona-item">
+                    <h6 class="pasona-title">Affinity：共感</h6>
+                    <p class="pasona-text">たしかに、わたしも人材会社の営業マンという全く別の仕事をしていたため、林業に対してイメージが湧かずに不安を抱えていました。</p>
+                </div>
+                
+                <div class="pasona-item">
+                    <h6 class="pasona-title">Solution：解決策</h6>
+                    <p class="pasona-text">しかし、思い切って20日間の林業体験に参加し、今では週3日ほど素材生産の手伝いをするようになりました。すると、林業に対するイメージが一気に変わり、大きなやりがいを感じながら働いています。</p>
+                    <p class="pasona-text">林業で活躍している人は「森林整備や改善を通じて環境をより良くしたい」という想いを持って働いている人ばかりです。さらに、森林大国である日本において林業は将来性があり、仕事がなくなる不安もありません。</p>
+                </div>
+                
+                <div class="pasona-item">
+                    <h6 class="pasona-title">Action：行動促進</h6>
+                    <p class="pasona-text">将来性がある林業でともに働き、やりがいを感じて感謝されながら働きましょう。</p>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </section>
 
 <section id="flow" class="container">
     <div class="flow-container">
-        <h2>Flow - ご依頼の流れ</h2>
+        <div class="flow-hero-title">
+            <div class="title-line">Flow</div>
+            <div class="title-line japanese-subtitle">ご依頼の流れ</div>
+        </div>
     
     <div class="flow-section contract-flow-section">
         <div class="contract-flow-wrapper">
@@ -1372,7 +1869,10 @@
 
 <section id="faq" class="container">
     <div class="faq-header">
-        <h2 class="faq-title">flow <span class="faq-subtitle">よくある質問</span></h2>
+        <div class="faq-hero-title">
+            <div class="title-line">FAQ</div>
+            <div class="title-line japanese-subtitle">よくある質問</div>
+        </div>
     </div>
     
     <div class="faq-container">
@@ -1426,7 +1926,10 @@
 
 <section id="contact" class="container">
     <div class="contact-container">
-        <h2>Contact</h2>
+        <div class="contact-hero-title">
+            <div class="title-line">Contact</div>
+            <div class="title-line japanese-subtitle">お問い合わせ</div>
+        </div>
     
     <h3>さいごに</h3>
     <p>貴社のすばらしい商品・サービスを広める一助になることで、悩みを解決して一歩踏みだす人を1人でも多く増やしたい。その想いで、まるで貴社の社員のようにユーザーと徹底的に向き合い、商品・サービスを使って幸せになる人を増やす一助になります。そして、貴社とユーザー、私の三方よしを実現いたします。</p>
