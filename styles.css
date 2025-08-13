@@ -4867,7 +4867,7 @@ table th {
 }
 
 .challenge-item {
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.5rem 1rem 3rem;
     margin-bottom: 0.8rem;
     line-height: 1.6;
     position: relative;
