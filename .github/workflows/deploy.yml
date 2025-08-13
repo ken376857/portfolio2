@@ -1,0 +1,23 @@
+name: Deploy to ConoHa WING
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Deploy to ConoHa via SFTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.CONOHA_HOST }}
+        username: ${{ secrets.CONOHA_USERNAME }}
+        password: ${{ secrets.CONOHA_PASSWORD }}
+        port: 22
+        protocol: sftp
+        local-dir: ./
+        server-dir: /public_html/
