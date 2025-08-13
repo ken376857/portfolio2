@@ -1885,86 +1885,16 @@ body {
 }
 
 .building-icon {
-    width: 35px;
-    height: 35px;
-    border: 2px solid #1e5cb8;
-    background: transparent;
-    position: relative;
-    border-radius: 2px;
-}
-
-.building-1 {
-    height: 40px;
-}
-
-.building-1::before {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 6px;
-    height: 6px;
-    border: 1px solid #1e5cb8;
-    background: transparent;
-}
-
-.building-1::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 6px;
-    height: 6px;
-    border: 1px solid #1e5cb8;
-    background: transparent;
-}
-
-.building-2 {
+    font-size: 20px;
+    color: #1e5cb8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
     height: 45px;
-}
-
-.building-2::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    width: 15px;
-    height: 15px;
-    border: 1px solid #1e5cb8;
-    background: transparent;
-}
-
-.building-3 {
-    height: 38px;
-}
-
-.building-3::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    border: 1px solid #1e5cb8;
-    background: transparent;
-}
-
-.building-3::after {
-    content: '';
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    border: 1px solid #1e5cb8;
-    background: transparent;
-}
-
-.building-4 {
-    width: 40px;
-    height: 42px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
 }
 
 /* 接続線システム */
