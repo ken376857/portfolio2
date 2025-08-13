@@ -4877,7 +4877,8 @@ table th {
     content: "✓";
     position: absolute;
     left: 0.5rem;
-    top: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
     color: #dc3545;
     font-weight: bold;
     font-size: 1.1rem;
