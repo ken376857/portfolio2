@@ -5075,10 +5075,9 @@ table th {
 
 .policy-highlight {
     background: #f8f9fa;
-    border: 2px solid #4CAF50;
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .policy-highlight-content {
