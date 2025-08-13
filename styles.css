@@ -2273,7 +2273,7 @@ body {
 }
 
 .detail-item {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
