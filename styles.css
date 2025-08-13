@@ -2000,6 +2000,20 @@ body {
     transform: translateY(-50%);
 }
 
+/* 中央サービステキスト */
+.center-services {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1e5cb8;
+    text-align: center;
+    z-index: 5;
+    white-space: nowrap;
+}
+
 .role-services {
     margin: 3rem 0 2rem;
     text-align: center;
