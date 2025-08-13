@@ -1784,16 +1784,39 @@ body {
     overflow: hidden;
 }
 
-.nabeken-role-section::before {
-    content: '';
+/* Personal User Circle Positioning */
+.personal-user-circle {
     position: absolute;
-    top: -100px;
-    left: -100px;
-    width: 300px;
-    height: 300px;
-    border: 2px dashed #c5d4ed;
+    top: 40%;
+    left: 10%;
+    width: 500px;
+    height: 500px;
+    border: 2px dashed #a8c1e8;
     border-radius: 50%;
     opacity: 0.3;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Enterprise Client Circle Positioning */
+.enterprise-client-circle {
+    position: absolute;
+    top: 40%;
+    right: 10%;
+    width: 500px;
+    height: 500px;
+    border: 2px dashed #a8c1e8;
+    border-radius: 50%;
+    opacity: 0.3;
+    transform: translate(50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* KEEP OLD ::before HIDDEN */
+.nabeken-role-section::before {
+    display: none !important;
 }
 
 .nabeken-role-section::after {
@@ -1803,7 +1826,7 @@ body {
     right: -150px;
     width: 400px;
     height: 400px;
-    border: 2px dashed #c5d4ed;
+    border: 2px dashed #a8c1e8;
     border-radius: 50%;
     opacity: 0.3;
 }
@@ -1825,6 +1848,42 @@ body {
     overflow: hidden;
 }
 
+/* SVG Curved Lines */
+.svg-curves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* User Connection Lines Styling */
+.user-line {
+    stroke: #1e5cb8;
+    stroke-width: 3;
+    fill: none;
+    opacity: 0.7;
+    stroke-linecap: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    filter: drop-shadow(0 2px 4px rgba(30, 92, 184, 0.2));
+    animation: drawLine 2s ease-in-out forwards;
+}
+
+/* Staggered animation delays for each line */
+.user-line-1 { animation-delay: 0.2s; }
+.user-line-2 { animation-delay: 0.4s; }
+.user-line-3 { animation-delay: 0.6s; }
+.user-line-4 { animation-delay: 0.8s; }
+
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
 .hub-center-circle {
     position: absolute;
     top: 50%;
@@ -1832,9 +1891,9 @@ body {
     transform: translate(-50%, -50%);
     width: 140px;
     height: 140px;
-    background: #1e5cb8;
-    color: white;
-    border: 4px solid white;
+    background: white;
+    color: #1e5cb8;
+    border: 4px solid #1e5cb8;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1851,7 +1910,7 @@ body {
 .left-icons-group {
     position: absolute;
     left: 10%;
-    top: 20%;
+    top: 10%;
     bottom: 20%;
     display: flex;
     flex-direction: column;
@@ -1861,23 +1920,29 @@ body {
 }
 
 .person-icon {
-    font-size: 20px;
+    font-size: 35px;
     color: #1e5cb8;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 85px;
+    height: 85px;
+    min-width: 85px;
+    min-height: 85px;
+    max-width: 85px;
+    max-height: 85px;
     background: #f5f5f5;
     border-radius: 50%;
     border: 1px solid #e0e0e0;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
 }
 
 /* 右側建物アイコン群 */
 .right-icons-group {
     position: absolute;
     right: 10%;
-    top: 20%;
+    top: 10%;
     bottom: 20%;
     display: flex;
     flex-direction: column;
@@ -1887,22 +1952,57 @@ body {
 }
 
 .building-icon {
-    font-size: 20px;
+    font-size: 35px;
     color: #1e5cb8;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 85px;
+    height: 85px;
+    min-width: 85px;
+    min-height: 85px;
+    max-width: 85px;
+    max-height: 85px;
     background: #f5f5f5;
     border-radius: 50%;
     border: 1px solid #e0e0e0;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
 }
 
 /* 2つ目と3つ目の建物アイコンを左側にずらす */
-.building-2,
+.building-2 {
+    transform: translateX(-100px) translateY(-15px);
+}
+
 .building-3 {
-    transform: translateX(-30px);
+    transform: translateX(-100px) translateY(15px);
+}
+
+/* 1つ目の建物アイコンを下に、4つ目を上にずらす */
+.building-1 {
+    transform: translateY(-10px) translateX(30px);
+}
+
+.building-4 {
+    transform: translateY(10px) translateX(30px);
+}
+
+/* 左側人型アイコンを建物アイコンと左右対称に配置 */
+.person-1 {
+    transform: translateY(-10px) translateX(-40px);
+}
+
+.person-2 {
+    transform: translateX(80px) translateY(-15px);
+}
+
+.person-3 {
+    transform: translateX(80px) translateY(15px);
+}
+
+.person-4 {
+    transform: translateY(10px) translateX(-40px);
 }
 
 /* 接続線システム */
@@ -1921,42 +2021,6 @@ body {
     border-radius: 2px;
 }
 
-/* 左側人型アイコンへの線 */
-.line-to-person-1 {
-    top: 20%;
-    left: 27%;
-    width: 15%;
-    height: 3px;
-    transform: rotate(-42deg);
-    transform-origin: right center;
-}
-
-.line-to-person-2 {
-    top: 37%;
-    left: 27%;
-    width: 15%;
-    height: 3px;
-    transform: rotate(-18deg);
-    transform-origin: right center;
-}
-
-.line-to-person-3 {
-    top: 63%;
-    left: 27%;
-    width: 15%;
-    height: 3px;
-    transform: rotate(18deg);
-    transform-origin: right center;
-}
-
-.line-to-person-4 {
-    top: 80%;
-    left: 27%;
-    width: 15%;
-    height: 3px;
-    transform: rotate(42deg);
-    transform-origin: right center;
-}
 
 /* 右側建物アイコンへの線 */
 .line-to-building-1 {
@@ -2099,6 +2163,11 @@ body {
         gap: 20px;
     }
     
+    /* モバイル版では曲線を簡略化 */
+    .svg-curves {
+        opacity: 0.8;
+    }
+    
     .right-icons-group {
         right: auto;
         left: 50%;
@@ -2130,6 +2199,22 @@ body {
         top: 5%;
         left: 50%;
         transform: translateX(-50%);
+    }
+    
+    .personal-user-circle {
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .enterprise-client-circle {
+        bottom: 5%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
+    
+    .nabeken-role-section::before {
+        display: none !important;
     }
     
     .right-label {

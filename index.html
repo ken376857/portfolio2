@@ -592,15 +592,29 @@
     </div>
     
     <div class="nabeken-role-section">
+        <div class="personal-user-circle"></div>
+        <div class="enterprise-client-circle"></div>
         <h3 class="role-section-title">なべけんの役割</h3>
         
         <div class="role-hub-diagram">
+            <!-- SVG曲線レイヤー -->
+            <svg class="svg-curves" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" data-version="2025-08-13-v2">
+                <!-- 個人ユーザー1からなべけんへの優雅な曲線 -->
+                <path class="user-line user-line-1" d="M 100 60 Q 280 40 500 200" stroke="#1e5cb8" stroke-width="3" fill="none" opacity="0.7"/>
+                <!-- TEST: 個人ユーザー2からなべけんへの上向き曲線 -->
+                <path class="user-line user-line-2" d="M 100 130 Q 400 80 500 200" stroke="#1e5cb8" stroke-width="3" fill="none" opacity="0.7"/>
+                <!-- TEST: 個人ユーザー3からなべけんへの下向き曲線 -->
+                <path class="user-line user-line-3" d="M 100 270 Q 400 320 500 200" stroke="#1e5cb8" stroke-width="3" fill="none" opacity="0.7"/>
+                <!-- 個人ユーザー4からなべけんへの美しい弧 -->
+                <path class="user-line user-line-4" d="M 100 340 Q 280 360 500 200" stroke="#1e5cb8" stroke-width="3" fill="none" opacity="0.7"/>
+            </svg>
+            
             <!-- 左側人型アイコン群 -->
             <div class="left-icons-group">
-                <i class="fa-regular fa-user person-icon"></i>
-                <i class="fa-regular fa-user person-icon"></i>
-                <i class="fa-regular fa-user person-icon"></i>
-                <i class="fa-regular fa-user person-icon"></i>
+                <i class="fa-regular fa-user person-icon person-1"></i>
+                <i class="fa-regular fa-user person-icon person-2"></i>
+                <i class="fa-regular fa-user person-icon person-3"></i>
+                <i class="fa-regular fa-user person-icon person-4"></i>
             </div>
             
             <!-- 中央ハブ円 -->
@@ -617,11 +631,7 @@
             </div>
             
             <!-- 接続線 -->
-            <div class="connection-lines">
-                <div class="line-to-person-1"></div>
-                <div class="line-to-person-2"></div>
-                <div class="line-to-person-3"></div>
-                <div class="line-to-person-4"></div>
+            <div class="building-connection-lines">
                 <div class="line-to-building-1"></div>
                 <div class="line-to-building-2"></div>
                 <div class="line-to-building-3"></div>
@@ -638,7 +648,7 @@
             
             <!-- なべけん下のサービステキスト -->
             <div class="center-services">
-                広告運用・メルマガ運用・公式LINE運用・インスタ運用
+                広告運用・メルマガ運用<br>公式LINE運用・インスタ運用
             </div>
         </div>
         

@@ -20,4 +20,4 @@ jobs:
         port: 22
         protocol: sftp
         local-dir: ./
-        server-dir: /public_html/
+        server-dir: /public_html/portfolio.tnbkn.com/
