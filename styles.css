@@ -2447,7 +2447,7 @@ body {
 /* Persona Section Styling */
 .persona-section {
     padding: 2rem 0;
-    margin: 2rem 0;
+    margin: 0.5rem 0 2rem 0;
 }
 
 .persona-header {
