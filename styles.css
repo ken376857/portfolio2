@@ -1990,13 +1990,13 @@ body {
 
 .left-label {
     top: 50%;
-    left: 10%;
+    left: 2%;
     transform: translateY(-50%);
 }
 
 .right-label {
     top: 50%;
-    right: 10%;
+    right: 2%;
     transform: translateY(-50%);
 }
 
