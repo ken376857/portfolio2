@@ -4873,14 +4873,6 @@ table th {
     position: relative;
 }
 
-.challenge-item::before {
-    content: "⚠";
-    position: absolute;
-    left: 0.5rem;
-    top: 1rem;
-    color: #ff6b6b;
-    font-weight: bold;
-}
 
 
 /* Landing Page Structure */
