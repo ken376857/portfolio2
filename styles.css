@@ -1989,15 +1989,15 @@ body {
 }
 
 .left-label {
-    bottom: 10%;
+    top: 50%;
     left: 10%;
-    transform: translateX(-20%);
+    transform: translateY(-50%);
 }
 
 .right-label {
-    bottom: 10%;
+    top: 50%;
     right: 10%;
-    transform: translateX(20%);
+    transform: translateY(-50%);
 }
 
 .role-services {
