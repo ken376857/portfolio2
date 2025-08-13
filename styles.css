@@ -4869,11 +4869,8 @@ table th {
 .challenge-item {
     padding: 1rem 1.5rem;
     margin-bottom: 0.8rem;
-    border-left: 4px solid #ff6b6b;
-    border-radius: 6px;
     line-height: 1.6;
     position: relative;
-    transition: all 0.3s ease;
 }
 
 .challenge-item::before {
@@ -4885,10 +4882,6 @@ table th {
     font-weight: bold;
 }
 
-.challenge-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
-}
 
 /* Landing Page Structure */
 .landing-page-structure {
