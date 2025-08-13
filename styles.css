@@ -4874,7 +4874,7 @@ table th {
 }
 
 .challenge-item::before {
-    content: "☐";
+    content: "☑";
     position: absolute;
     left: 0.5rem;
     top: 1rem;
