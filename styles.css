@@ -1899,6 +1899,12 @@ body {
     border: 1px solid #e0e0e0;
 }
 
+/* 2つ目と3つ目の建物アイコンを左側にずらす */
+.building-2,
+.building-3 {
+    transform: translateX(-30px);
+}
+
 /* 接続線システム */
 .connection-lines {
     position: absolute;
@@ -1964,19 +1970,19 @@ body {
 
 .line-to-building-2 {
     top: 37%;
-    right: 27%;
-    width: 15%;
+    right: 32%;
+    width: 20%;
     height: 3px;
-    transform: rotate(18deg);
+    transform: rotate(8deg);
     transform-origin: left center;
 }
 
 .line-to-building-3 {
     top: 63%;
-    right: 27%;
-    width: 15%;
+    right: 32%;
+    width: 20%;
     height: 3px;
-    transform: rotate(-18deg);
+    transform: rotate(-8deg);
     transform-origin: left center;
 }
 
