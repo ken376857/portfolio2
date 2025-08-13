@@ -1851,11 +1851,12 @@ body {
 .left-icons-group {
     position: absolute;
     left: 10%;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 25%;
+    bottom: 25%;
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    justify-content: space-between;
+    align-items: center;
     z-index: 5;
 }
 
@@ -1876,11 +1877,12 @@ body {
 .right-icons-group {
     position: absolute;
     right: 10%;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 20%;
+    bottom: 20%;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    justify-content: space-between;
+    align-items: center;
     z-index: 5;
 }
 
@@ -1915,11 +1917,11 @@ body {
 
 /* 左側人型アイコンへの線 */
 .line-to-person-1 {
-    top: 33%;
+    top: 25%;
     left: 27%;
     width: 15%;
     height: 3px;
-    transform: rotate(-28deg);
+    transform: rotate(-35deg);
     transform-origin: right center;
 }
 
@@ -1932,48 +1934,48 @@ body {
 }
 
 .line-to-person-3 {
-    top: 67%;
+    top: 75%;
     left: 27%;
     width: 15%;
     height: 3px;
-    transform: rotate(28deg);
+    transform: rotate(35deg);
     transform-origin: right center;
 }
 
 /* 右側建物アイコンへの線 */
 .line-to-building-1 {
-    top: 26%;
+    top: 20%;
     right: 27%;
     width: 15%;
     height: 3px;
-    transform: rotate(38deg);
+    transform: rotate(42deg);
     transform-origin: left center;
 }
 
 .line-to-building-2 {
-    top: 40%;
+    top: 37%;
     right: 27%;
     width: 15%;
     height: 3px;
-    transform: rotate(15deg);
+    transform: rotate(18deg);
     transform-origin: left center;
 }
 
 .line-to-building-3 {
-    top: 60%;
+    top: 63%;
     right: 27%;
     width: 15%;
     height: 3px;
-    transform: rotate(-15deg);
+    transform: rotate(-18deg);
     transform-origin: left center;
 }
 
 .line-to-building-4 {
-    top: 74%;
+    top: 80%;
     right: 27%;
     width: 15%;
     height: 3px;
-    transform: rotate(-38deg);
+    transform: rotate(-42deg);
     transform-origin: left center;
 }
 
