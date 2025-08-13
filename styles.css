@@ -4874,12 +4874,21 @@ table th {
 }
 
 .challenge-item::before {
-    content: "☑";
+    content: "✓";
     position: absolute;
     left: 0.5rem;
     top: 1rem;
-    color: #666;
+    color: #28a745;
     font-weight: bold;
+    font-size: 1.1rem;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #28a745;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
 }
 
 
