@@ -2098,6 +2098,7 @@ body {
     position: absolute;
     left: 100%;
     margin-left: 10px;
+    white-space: nowrap;
 }
 
 .y-axis-label:nth-child(1) { top: 0; }
