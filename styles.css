@@ -1989,39 +1989,6 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Corner decorations */
-.philosophy-main::before {
-    content: 'logical thinking';
-    position: absolute;
-    bottom: 100px;
-    left: 50px;
-    font-style: italic;
-    color: #999;
-    font-size: 0.9rem;
-    opacity: 0.6;
-}
-
-.philosophy-main::after {
-    content: 'Actively listen';
-    position: absolute;
-    top: 150px;
-    right: 100px;
-    font-style: italic;
-    color: #999;
-    font-size: 0.9rem;
-    opacity: 0.6;
-}
-
-.philosophy-details::after {
-    content: 'Aiming higher';
-    position: absolute;
-    bottom: 50px;
-    right: 50px;
-    font-style: italic;
-    color: #999;
-    font-size: 0.9rem;
-    opacity: 0.6;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -2071,11 +2038,6 @@ body {
         font-size: 1.3rem !important;
     }
     
-    .philosophy-main::before,
-    .philosophy-main::after,
-    .philosophy-details::after {
-        display: none;
-    }
 }
 
 /* Business Impact Section */
