@@ -1905,6 +1905,37 @@ body {
     z-index: 10;
 }
 
+/* 線の初期状態：非表示 */
+.user-line, .client-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    opacity: 0.7;
+}
+
+/* 線描画アニメーション */
+.user-line.animate-draw, .client-line.animate-draw {
+    animation: drawFromCenter 2s ease-out forwards;
+}
+
+/* 個別の遅延時間 */
+.user-line-1.animate-draw { animation-delay: 0.2s; }
+.user-line-2.animate-draw { animation-delay: 0.6s; }
+.user-line-3.animate-draw { animation-delay: 1.0s; }
+.user-line-4.animate-draw { animation-delay: 1.4s; }
+.client-line-1.animate-draw { animation-delay: 1.8s; }
+.client-line-2.animate-draw { animation-delay: 2.2s; }
+.client-line-3.animate-draw { animation-delay: 2.6s; }
+.client-line-4.animate-draw { animation-delay: 3.0s; }
+
+@keyframes drawFromCenter {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
 /* 左側人型アイコン群 */
 .left-icons-group {
     position: absolute;

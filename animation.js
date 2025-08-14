@@ -80,6 +80,36 @@ function animate() {
 
 animate();
 
+// なべけんの役割図アニメーション
+function initRoleDiagramAnimation() {
+    const roleSection = document.querySelector('.nabeken-role-section');
+    const userLines = document.querySelectorAll('.user-line');
+    const clientLines = document.querySelectorAll('.client-line');
+    
+    if (!roleSection) return;
+    
+    // IntersectionObserverでスクロール検知
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // なべけんから各アイコンへ線が描画されるアニメーション開始
+                userLines.forEach(line => line.classList.add('animate-draw'));
+                clientLines.forEach(line => line.classList.add('animate-draw'));
+                
+                // 一度実行したら監視を停止
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.3 // 30%表示されたときに発動
+    });
+    
+    observer.observe(roleSection);
+}
+
+// DOM読み込み完了後に初期化
+document.addEventListener('DOMContentLoaded', initRoleDiagramAnimation);
+
 // Handle window resize
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
