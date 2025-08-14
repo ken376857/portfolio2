@@ -3940,7 +3940,7 @@ section#sales-letter .funnel-badge.primary,
 }
 
 .ui-tag {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #1d86fc, #0066cc);
 }
 
 .lp-tag {
@@ -5695,10 +5695,10 @@ table th {
     color: white !important;
 }
 
-/* 派遣求職者向けオウンドメディア運営セクション - 全バッジを明るく鮮やかな水色に変更 */
+/* 派遣求職者向けオウンドメディア運営セクション - 全バッジを#1d86fcベースのグラデーションに変更 */
 #seo-media .funnel-badge.primary,
 #seo-media .funnel-badge.secondary,
 #seo-media .funnel-detail-badge {
-    background: linear-gradient(135deg, #00d4ff, #00a6cc) !important;
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important;
     color: white !important;
 }
