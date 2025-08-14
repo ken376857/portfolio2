@@ -884,6 +884,16 @@ body {
     color: white;
 }
 
+/* セールスレター制作セクション専用のグラデーション - 最強優先度 */
+section#sales-letter .funnel-badges .funnel-badge.primary.sales-letter-badge,
+section#sales-letter .funnel-badge.primary,
+.funnel-badge.primary.sales-letter-badge,
+.sales-letter-badge {
+    background: linear-gradient(135deg, #bbb5d4 0%, #bbb5d4 33%, #8cb3db 66%, #4faddf 100%) !important;
+    color: white !important;
+    border: none !important;
+}
+
 .funnel-title {
     font-size: clamp(1.8rem, 3vw, 2.2rem);
     font-weight: 700;
@@ -5669,4 +5679,26 @@ table th {
     .phone-screen {
         border-radius: 12px;
     }
+}
+
+/* セールスレター制作セクション - 担当範囲・運営期間・使用ツールのグラデーション変更 */
+#sales-letter .funnel-detail-badge {
+    background: linear-gradient(135deg, #bbb5d4 0%, #bbb5d4 33%, #8cb3db 66%, #4faddf 100%) !important;
+    color: white !important;
+}
+
+/* ライティング支援事業セクション - 全バッジを青ベースに変更 */
+#writing-business .funnel-badge.primary,
+#writing-business .funnel-badge.secondary,
+#writing-business .funnel-detail-badge {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+    color: white !important;
+}
+
+/* 派遣求職者向けオウンドメディア運営セクション - 全バッジを明るく鮮やかな水色に変更 */
+#seo-media .funnel-badge.primary,
+#seo-media .funnel-badge.secondary,
+#seo-media .funnel-detail-badge {
+    background: linear-gradient(135deg, #00d4ff, #00a6cc) !important;
+    color: white !important;
 }
