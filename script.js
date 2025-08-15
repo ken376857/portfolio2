@@ -600,51 +600,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize typing effect after a delay
     setTimeout(initTypingEffect, 1000);
     
-    // ベン図の円描画アニメーション
+    // ベン図のJavaScript干渉を完全無効化
+    function resetVennCircleStyles() {
+        // 何もしない - CSS!importantに任せる
+        return;
+    }
+    
+    // ベン図の円描画アニメーション（完全無効化）
     function animateVennCircles(section) {
-        const circles = section.querySelectorAll('.venn-circle');
-        
-        circles.forEach((circle, index) => {
-            // 既存のtransformを保持しながらscaleを追加
-            let baseTransform = '';
-            let targetOpacity = '0.2'; // デフォルトは薄い透明度
-            
-            if (circle.classList.contains('venn-circle-1')) {
-                // ヒアリング力セクションと分析力・学び続ける姿勢セクションの上の円は中央配置
-                if (section.classList.contains('hearing-power-section') || 
-                    section.classList.contains('analysis-power-section') || 
-                    section.classList.contains('learning-power-section')) {
-                    baseTransform = 'translateX(-50%)';
-                }
-                
-                // ヒアリング力セクションでは venn-circle-1 がメイン
-                if (section.classList.contains('hearing-power-section')) {
-                    targetOpacity = '1';
-                }
-            }
-            
-            // 分析力セクションでは venn-circle-2 がメイン
-            if (section.classList.contains('analysis-power-section') && circle.classList.contains('venn-circle-2')) {
-                targetOpacity = '1';
-            }
-            
-            // 学び続ける姿勢セクションでは venn-circle-3 がメイン
-            if (section.classList.contains('learning-power-section') && circle.classList.contains('venn-circle-3')) {
-                targetOpacity = '1';
-            }
-            
-            // 初期状態を設定
-            circle.style.transform = `${baseTransform} scale(0)`;
-            circle.style.opacity = '0';
-            circle.style.transition = 'transform 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 1.5s ease-in-out';
-            
-            // 遅延をつけて順次アニメーション
-            setTimeout(() => {
-                circle.style.transform = `${baseTransform} scale(1)`;
-                circle.style.opacity = targetOpacity;
-                circle.classList.add('circle-drawn');
-            }, index * 400);
-        });
+        // 何もしない - CSS!importantに任せる
+        return;
     }
     
     // Skills Section Animation

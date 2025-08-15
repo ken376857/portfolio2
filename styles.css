@@ -2096,20 +2096,10 @@ section#sales-letter .funnel-badge.primary,
 }
 
 /* ヒアリング力のベン図の2つの円の縁を薄くする */
-.hearing-power-section .hearing-venn-diagram .venn-circle-2,
-.hearing-power-section .hearing-venn-diagram .venn-circle-3 {
+.hearing-power-section .hearing-venn-diagram .venn-circle-2 {
     opacity: 0.2;
 }
 
-/* 人を理解するヒアリング力の円の塗りつぶしを薄いブルーベースの白に設定 */
-.hearing-power-section .hearing-venn-diagram .venn-circle-1 {
-    background: rgba(240, 248, 255, 0.7);
-    box-shadow: 
-        0 0 20px rgba(37, 99, 235, 0.3),
-        0 0 40px rgba(37, 99, 235, 0.2),
-        0 0 60px rgba(37, 99, 235, 0.1),
-        inset 0 0 20px rgba(255, 255, 255, 0.4);
-}
 
 /* 分析的に捉えて課題特定する力のセクションの強調効果 */
 .analysis-power-section .analysis-venn-diagram .venn-center-text,
@@ -2234,81 +2224,85 @@ section#sales-letter .funnel-badge.primary,
     opacity: 0;
 }
 
-.hearing-power-section .venn-circle-1 {
-    transform: translateX(-50%) scale(0);
-}
 
-.hearing-power-section .venn-circle-2,
-.hearing-power-section .venn-circle-3 {
-    transform: scale(0);
-}
 
-/* 分析力セクションのアニメーション初期状態 */
-.analysis-power-section .venn-circle-2 {
-    transform: scale(0);
-}
 
-.analysis-power-section .venn-circle-1,
-.analysis-power-section .venn-circle-3 {
-    transform: scale(0);
-}
 
-/* 学び続ける姿勢セクションのアニメーション初期状態 */
-.learning-power-section .venn-circle-3 {
-    transform: scale(0);
-}
-
-.learning-power-section .venn-circle-1,
-.learning-power-section .venn-circle-2 {
-    transform: scale(0);
-}
-
-/* 分析力セクションの円の中央ポジション調整 */
-.analysis-power-section .analysis-venn-diagram .venn-circle-1 {
-    transform: translateX(-50%) scale(0);
-}
-
-/* 学び続ける姿勢セクションの円の中央ポジション調整 */
-.learning-power-section .learning-venn-diagram .venn-circle-1 {
-    transform: translateX(-50%) scale(0);
-}
 
 .venn-circle {
     position: absolute;
     width: 280px;
     height: 280px;
     border-radius: 50%;
-    opacity: 0.7;
+    opacity: 0.7 !important;
+    transform: scale(1) !important;
 }
 
 .venn-circle-1 {
-    background: transparent;
-    border: 4px solid #2563eb;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
+    background: transparent !important;
+    border: 4px solid #2563eb !important;
+    top: -60px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 99999 !important;
+    position: absolute !important;
+    opacity: 0.7 !important;
+    width: 280px !important;
+    height: 280px !important;
+    border-radius: 50% !important;
+    animation: none !important;
+}
+
+@keyframes test-simple-animation {
+    0% {
+        border: 4px solid red;
+    }
+    50% {
+        border: 4px solid blue;
+    }
+    100% {
+        border: 4px solid green;
+    }
+}
+
+@keyframes test-fade-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.5);
+    }
+    50% {
+        opacity: 0.3;
+        transform: translateX(-50%) scale(0.8);
+    }
+    100% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1);
+    }
 }
 
 .venn-circle-2 {
     background: transparent;
     border: 4px solid #2563eb;
-    bottom: -20px;
-    left: -20px;
+    bottom: -24px;
+    left: -50px;
     z-index: 1;
+    opacity: 0.7 !important;
+    transform: scale(1) !important;
 }
 
 .venn-circle-3 {
     background: transparent;
     border: 4px solid #2563eb;
-    bottom: -20px;
-    right: -20px;
+    bottom: -24px;
+    right: -50px;
     z-index: 2;
+    opacity: 0.7 !important;
+    transform: scale(1) !important;
 }
 
 .venn-center-text {
     position: absolute;
-    top: 28%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
@@ -2325,16 +2319,17 @@ section#sales-letter .funnel-badge.primary,
 .venn-left-text {
     position: absolute;
     top: 73%;
-    left: 30%;
+    left: 22%;
     transform: translate(-50%, -50%);
     z-index: 5;
     text-align: center;
 }
 
+
 .venn-right-text {
     position: absolute;
     top: 73%;
-    left: 70%;
+    left: 78%;
     transform: translate(-50%, -50%);
     z-index: 5;
     text-align: center;
@@ -5658,19 +5653,17 @@ table th {
 
 /* Problems Section - Checkbox Style */
 .problems-section {
-    background: #fafbfc;
     padding: 3rem 2rem;
-    border-radius: 20px;
     margin: 3rem 0;
 }
 
 .problems-title {
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: #334155;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 3rem;
-    letter-spacing: 0.01em;
+    line-height: 1.4;
 }
 
 .problems-list {
@@ -5682,38 +5675,36 @@ table th {
 }
 
 .problem-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-}
-
-.problem-checkbox {
-    width: 24px;
-    height: 24px;
-    border: 2px solid #cbd5e1;
-    border-radius: 4px;
-    background: white;
-    flex-shrink: 0;
-    margin-top: 0.25rem;
+    padding: 1rem 1.5rem 1rem 3rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
     position: relative;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+    color: #ffffff;
 }
 
-.problem-checkbox::after {
-    content: '';
+.problem-item::before {
+    content: "✓";
     position: absolute;
+    left: 0.5rem;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    background: #e2e8f0;
-    border-radius: 2px;
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
 }
 
 .problem-text {
     font-size: 1.1rem;
-    color: #475569;
+    color: #ffffff;
     line-height: 1.6;
     font-weight: 400;
     letter-spacing: 0.01em;
