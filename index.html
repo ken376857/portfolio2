@@ -12,6 +12,14 @@
 </head>
 <body>
 
+<!-- ダークオーバーレイ -->
+<div id="dark-overlay" class="dark-overlay"></div>
+
+<!-- RINDO背景レイヤー -->
+<div id="rindo-background-layer" class="rindo-background-layer">
+    <div class="rindo-background-overlay"></div>
+</div>
+
 <!-- Loading Screen -->
 <div id="loading-screen" class="loading-screen">
     <div class="loading-content">
@@ -493,8 +501,17 @@
         </div>
     </div>
     
+    <div class="scroll-guide-container">
+        <div class="scroll-arrow">
+            <div class="arrow-down"></div>
+        </div>
+    </div>
+    
     <div class="strength-section-header">
-        <h2 class="strength-section-title">3 STRENGTHS<br><span class="strength-subtitle-japanese">3つの強み</span></h2>
+        <div class="strength-section-title">
+            <div class="title-line">NABEKEN's</div>
+            <div class="title-line">3 STRENGTHS</div>
+        </div>
     </div>
     
     <div class="strengths-details">
@@ -604,7 +621,13 @@
                         <div class="venn-circle venn-circle-2"></div>
                         <div class="venn-circle venn-circle-3"></div>
                         <div class="venn-center-text">
+                            <h4 class="hearing-title">人を理解する<br>ヒアリング力</h4>
+                        </div>
+                        <div class="venn-left-text">
                             <h4 class="analysis-title">分析的に捉えて<br>課題特定する力</h4>
+                        </div>
+                        <div class="venn-right-text">
+                            <h4 class="learning-title">広く・深く<br><span style="white-space: nowrap;">学び続ける姿勢</span></h4>
                         </div>
                     </div>
                 </div>
@@ -619,6 +642,12 @@
                         <div class="venn-circle venn-circle-2"></div>
                         <div class="venn-circle venn-circle-3"></div>
                         <div class="venn-center-text">
+                            <h4 class="hearing-title">人を理解する<br>ヒアリング力</h4>
+                        </div>
+                        <div class="venn-left-text">
+                            <h4 class="analysis-title">分析的に捉えて<br>課題特定する力</h4>
+                        </div>
+                        <div class="venn-right-text">
                             <h4 class="learning-title">広く・深く<br><span style="white-space: nowrap;">学び続ける姿勢</span></h4>
                         </div>
                     </div>
@@ -742,7 +771,7 @@
     </div>
     
     <div class="work-card-container">
-        <div class="work-card funnel-work-card">
+        <div class="work-card funnel-work-card" id="rindo-funnel-section">
             <div class="funnel-content">
                 <div class="funnel-left">
                     <div class="funnel-header">

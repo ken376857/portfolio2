@@ -153,6 +153,21 @@ document.addEventListener('DOMContentLoaded', function() {
                             }, 1500);
                         }
                     }
+                    
+                    // ヒアリング力セクションの円描画アニメーション
+                    if (entry.target.classList.contains('hearing-power-section')) {
+                        animateVennCircles(entry.target);
+                    }
+                    
+                    // 分析力セクションの円描画アニメーション
+                    if (entry.target.classList.contains('analysis-power-section')) {
+                        animateVennCircles(entry.target);
+                    }
+                    
+                    // 学び続ける姿勢セクションの円描画アニメーション
+                    if (entry.target.classList.contains('learning-power-section')) {
+                        animateVennCircles(entry.target);
+                    }
                 }
             });
         }, observerOptions);
@@ -160,6 +175,24 @@ document.addEventListener('DOMContentLoaded', function() {
         // Observe elements including handwritten name, profile section, and skills section
         const elementsToAnimate = document.querySelectorAll('.skill-category, .achievement-card, .handwritten-name, #profile, #skills');
         elementsToAnimate.forEach(el => observer.observe(el));
+        
+        // ヒアリング力セクションのアニメーション監視
+        const hearingPowerSection = document.querySelector('.hearing-power-section');
+        if (hearingPowerSection) {
+            observer.observe(hearingPowerSection);
+        }
+        
+        // 分析力セクションのアニメーション監視
+        const analysisPowerSection = document.querySelector('.analysis-power-section');
+        if (analysisPowerSection) {
+            observer.observe(analysisPowerSection);
+        }
+        
+        // 学び続ける姿勢セクションのアニメーション監視
+        const learningPowerSection = document.querySelector('.learning-power-section');
+        if (learningPowerSection) {
+            observer.observe(learningPowerSection);
+        }
         
         // Skills section specific observer for staggered animations
         const skillsObserver = new IntersectionObserver((entries) => {
@@ -567,6 +600,53 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize typing effect after a delay
     setTimeout(initTypingEffect, 1000);
     
+    // ベン図の円描画アニメーション
+    function animateVennCircles(section) {
+        const circles = section.querySelectorAll('.venn-circle');
+        
+        circles.forEach((circle, index) => {
+            // 既存のtransformを保持しながらscaleを追加
+            let baseTransform = '';
+            let targetOpacity = '0.2'; // デフォルトは薄い透明度
+            
+            if (circle.classList.contains('venn-circle-1')) {
+                // ヒアリング力セクションと分析力・学び続ける姿勢セクションの上の円は中央配置
+                if (section.classList.contains('hearing-power-section') || 
+                    section.classList.contains('analysis-power-section') || 
+                    section.classList.contains('learning-power-section')) {
+                    baseTransform = 'translateX(-50%)';
+                }
+                
+                // ヒアリング力セクションでは venn-circle-1 がメイン
+                if (section.classList.contains('hearing-power-section')) {
+                    targetOpacity = '1';
+                }
+            }
+            
+            // 分析力セクションでは venn-circle-2 がメイン
+            if (section.classList.contains('analysis-power-section') && circle.classList.contains('venn-circle-2')) {
+                targetOpacity = '1';
+            }
+            
+            // 学び続ける姿勢セクションでは venn-circle-3 がメイン
+            if (section.classList.contains('learning-power-section') && circle.classList.contains('venn-circle-3')) {
+                targetOpacity = '1';
+            }
+            
+            // 初期状態を設定
+            circle.style.transform = `${baseTransform} scale(0)`;
+            circle.style.opacity = '0';
+            circle.style.transition = 'transform 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 1.5s ease-in-out';
+            
+            // 遅延をつけて順次アニメーション
+            setTimeout(() => {
+                circle.style.transform = `${baseTransform} scale(1)`;
+                circle.style.opacity = targetOpacity;
+                circle.classList.add('circle-drawn');
+            }, index * 400);
+        });
+    }
+    
     // Skills Section Animation
     function animateSkillsSection() {
         const skillItems = document.querySelectorAll('.skill-item, .claude-gemini-item, .ai-tools-item');
@@ -656,6 +736,84 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// ダークオーバーレイ制御
+function initDarkOverlay() {
+    const darkOverlay = document.getElementById('dark-overlay');
+    const serviceSection = document.getElementById('service');
+    const serviceIntroSection = document.querySelector('.service-intro');
+    
+    if (!darkOverlay || !serviceSection || !serviceIntroSection) return;
+    
+    function checkServicePosition() {
+        const serviceRect = serviceSection.getBoundingClientRect();
+        const serviceIntroRect = serviceIntroSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // SERVICEセクションが画面に表示されているかチェック（開始点を遅く）
+        const serviceVisible = serviceRect.top < windowHeight - 200 && serviceRect.bottom > 0;
+        
+        // 「私にお任せください！」セクションが画面に入る前まで適用（終点を遅く）
+        const serviceIntroNotStarted = serviceIntroRect.top > windowHeight - 300;
+        
+        console.log('SERVICE visible:', serviceVisible, 'Service Intro not started:', serviceIntroNotStarted);
+        
+        if (serviceVisible && serviceIntroNotStarted) {
+            darkOverlay.classList.add('active');
+        } else {
+            darkOverlay.classList.remove('active');
+        }
+    }
+    
+    // スクロールイベントリスナー
+    window.addEventListener('scroll', checkServicePosition);
+    
+    // 初期チェック
+    checkServicePosition();
+}
+
+// DOMが読み込まれた後にダークオーバーレイを初期化
+document.addEventListener('DOMContentLoaded', initDarkOverlay);
+
+// RINDO ファネルセクション背景制御
+function initRindoBackground() {
+    const rindoSection = document.getElementById('rindo-funnel-section');
+    const salesLetterSection = document.getElementById('sales-letter');
+    const backgroundLayer = document.getElementById('rindo-background-layer');
+    const worksTitle = document.querySelector('.works-hero-title');
+    
+    if (!rindoSection || !salesLetterSection || !backgroundLayer || !worksTitle) return;
+    
+    function checkRindoSectionPosition() {
+        const rindoRect = rindoSection.getBoundingClientRect();
+        const salesLetterRect = salesLetterSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // RINDOセクションの開始から次のセクション（sales-letter）の開始より少し早めまで
+        const isInRange = rindoRect.top < windowHeight && salesLetterRect.top > 400;
+        
+        if (isInRange) {
+            backgroundLayer.classList.add('active');
+            worksTitle.classList.add('white-text');
+            document.body.classList.add('rindo-text-white');
+            console.log('RINDO背景オン');
+        } else {
+            backgroundLayer.classList.remove('active');
+            worksTitle.classList.remove('white-text');
+            document.body.classList.remove('rindo-text-white');
+            console.log('RINDO背景オフ');
+        }
+    }
+    
+    // スクロールイベントリスナー
+    window.addEventListener('scroll', checkRindoSectionPosition);
+    
+    // 初期チェック
+    checkRindoSectionPosition();
+}
+
+// DOMが読み込まれた後にRINDO背景を初期化
+document.addEventListener('DOMContentLoaded', initRindoBackground);
 
 // Modal Functions
 function openPromptModal(type) {
