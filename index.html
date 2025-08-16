@@ -12,6 +12,7 @@
 </head>
 <body>
 
+<div class="hero-service-background">
 <!-- ダークオーバーレイ -->
 <div id="dark-overlay" class="dark-overlay"></div>
 
@@ -56,7 +57,7 @@
             <div class="title-badge">
                 <span class="title-text">売上UP特化型</span>
                 <div class="experience-badge">
-                    <span class="experience-text">売上貢献<br>1,000万円<span class="sub-text">以上</span></span>
+                    <span class="experience-text">売上貢献<br><span id="sales-counter" data-target="1231">0</span>万円<span class="sub-text">以上</span></span>
                 </div>
             </div>
             <div class="role-badge">
@@ -497,6 +498,7 @@
             <div class="arrow-down"></div>
         </div>
     </div>
+</div>
     
     <div class="strength-section-header">
         <div class="strength-section-title">
@@ -733,7 +735,7 @@
             
             <!-- なべけん下のサービステキスト -->
             <div class="center-services">
-                広告運用・メルマガ運用<br>公式LINE運用・インスタ運用
+                広告運用・メルマガ運用<br>公式LINE運用・インスタ運用<br>HP/LP制作・SEO集客
             </div>
         </div>
         
@@ -824,7 +826,7 @@
     </div>
     
     <div class="work-details-container">
-        <h4 class="work-section-title">制作概要</h4>
+        <h4 class="work-section-title rindo-section">制作概要</h4>
         <div class="work-overview-details">
             <div class="work-overview-detail-row">
                 <span class="work-overview-detail-badge">事業内容</span>
@@ -870,7 +872,7 @@
     </div>
     
     <div class="work-details-container">
-        <h4 class="work-section-title">調査・分析プロセスー定量調査</h4>
+        <h4 class="work-section-title rindo-section">調査・分析プロセスー定量調査</h4>
     
     <div class="research-layout">
         <div class="research-left">
@@ -1069,7 +1071,7 @@
         </div>
     </div>
     
-    <h4 class="work-section-title">調査・分析プロセスー定性調査</h4>
+    <h4 class="work-section-title rindo-section">調査・分析プロセスー定性調査</h4>
     
     <div class="research-layout">
         <div class="research-left">
@@ -1115,7 +1117,7 @@
     
     <div class="persona-section">
         <div class="persona-header">
-            <h4 class="work-section-title">ペルソナ設定</h4>
+            <h4 class="work-section-title rindo-section">ペルソナ設定</h4>
             <p class="persona-subtitle-text">定量調査・定性調査の仮説から、ペルソナ像を設定しました</p>
         </div>
         
@@ -1199,7 +1201,7 @@
         </div>
     </div>
     
-    <h4 class="work-section-title">制作プロセス</h4>
+    <h4 class="work-section-title rindo-section">制作プロセス</h4>
     
     <div class="process-steps">
         <div class="process-vertical-line"></div>
@@ -1260,7 +1262,7 @@
         </div>
     </div>
     
-    <h4 class="work-section-title">カスタマージャーニーマップ（As Isの整理）</h4>
+    <h4 class="work-section-title rindo-section">カスタマージャーニーマップ（As Isの整理）</h4>
     
     <div class="marketing-funnel-section">
         
@@ -1302,7 +1304,7 @@
         </div>
     </div>
     
-    <h4 class="work-section-title">カスタマージャーニーマップ（To Beの整理）</h4>
+    <h4 class="work-section-title rindo-section">カスタマージャーニーマップ（To Beの整理）</h4>
     
     <div class="marketing-funnel-section">
         
@@ -1344,7 +1346,7 @@
         </div>
     </div>
     
-    <h4 class="work-section-title">課題の整理と明確化</h4>
+    <h4 class="work-section-title rindo-section">課題の整理と明確化</h4>
     
     <div class="marketing-funnel-section">
         
@@ -1359,7 +1361,7 @@
         </div>
     </div>
     
-    <h4 class="work-section-title">ランディングページの構成</h4>
+    <h4 class="work-section-title rindo-section">ランディングページの構成</h4>
     
     <div class="marketing-funnel-section">
         
@@ -1395,7 +1397,7 @@
         </div>
     </div>
     
-    <h4 class="work-section-title">KPI設計</h4>
+    <h4 class="work-section-title rindo-section">KPI設計</h4>
     <p class="kpi-description">今回のランディングページ制作におけるKPIは、公式LINEの接触者数を設定し逆算して設定。</p>
     
     <div class="kpi-flow-container">
@@ -1441,7 +1443,7 @@
         </div>
     </div>
     
-    <h4 class="work-section-title">ビジネスインパクト試算</h4>
+    <h4 class="work-section-title rindo-section">ビジネスインパクト試算</h4>
     
     <div class="business-impact-cards">
         <div class="impact-card">
@@ -2102,78 +2104,48 @@
         </div>
     
     <div class="flow-section contract-flow-section">
-        <h3 class="work-section-title">ご依頼までの流れ</h3>
+        <h3 class="work-section-title">ご依頼までの流れ（完全無料）</h3>
         <div class="contract-flow-wrapper">
             <div class="contract-flow-steps">
-                <div class="contract-flow-step">
-                    <div class="contract-circle">
-                        <span class="contract-number">01</span>
+                <div class="contract-flow-row">
+                    <div class="contract-flow-step">
+                        <div class="contract-number">1</div>
+                        <div class="contract-step-content">
+                            <h4 class="contract-step-title">ミーティング</h4>
+                            <p class="contract-step-description">まずは30分〜1時間ほどお時間をいただき、オンラインにてご興味をお持ちいただいた背景や目的などをお伺いさせていただきます。</p>
+                            <div class="contract-step-line"></div>
+                            <div class="meeting-tools">
+                                <span class="meeting-tool-badge">Google Meet</span>
+                                <span class="meeting-tool-badge">Zoom</span>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="contract-step-title">事前ヒアリング</h4>
-                    <div class="contract-arrow">▶</div>
-                </div>
-                
-                <div class="contract-flow-step">
-                    <div class="contract-circle">
-                        <span class="contract-number">02</span>
+                    
+                    <div class="contract-flow-step">
+                        <div class="contract-number">2</div>
+                        <div class="contract-step-content">
+                            <h4 class="contract-step-title">ご提案・お見積り</h4>
+                            <p class="contract-step-description">課題を解決するための最適な方針やスケジュール概要、費用をまとめてご提示します。内容は、ご要望に合わせて無償で調整いたします。</p>
+                            <div class="contract-step-line"></div>
+                            <div class="meeting-tools">
+                                <span class="meeting-tool-badge">スプレッドシート</span>
+                                <span class="meeting-tool-badge">Canva</span>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="contract-step-title">ヒアリング</h4>
-                    <div class="contract-arrow">▶</div>
-                </div>
-                
-                <div class="contract-flow-step">
-                    <div class="contract-circle">
-                        <span class="contract-number">03</span>
+                    
+                    <div class="contract-flow-step">
+                        <div class="contract-number">3</div>
+                        <div class="contract-step-content">
+                            <h4 class="contract-step-title">ご契約</h4>
+                            <p class="contract-step-description">ご提案内容にご同意いただけましたら、契約書を締結し、正式に着手します。必要に応じて着手金や支払条件、納期を確定します。</p>
+                            <div class="contract-step-line"></div>
+                            <div class="meeting-tools">
+                                <span class="meeting-tool-badge">クラウドサイン</span>
+                                <span class="meeting-tool-badge">GMOサイン</span>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="contract-step-title">ご提案・お見積り</h4>
-                    <div class="contract-arrow">▶</div>
-                </div>
-                
-                <div class="contract-flow-step">
-                    <div class="contract-circle">
-                        <span class="contract-number">04</span>
-                    </div>
-                    <h4 class="contract-step-title">ご契約</h4>
-                </div>
-            </div>
-            
-            <div class="contract-flow-descriptions">
-                <div class="contract-description">
-                    <p>Googleフォームにて、事前に簡単なヒアリングシートを記入いただきます。（10〜15分）</p>
-                </div>
-                
-                <div class="contract-description">
-                    <p>オンライン（zoom）にて30分程度のヒアリングを実施します。<br>具体的なニーズや制作の目的、ターゲット像、デザインの方向性などをお伺いします。</p>
-                </div>
-                
-                <div class="contract-description">
-                    <p>ヒアリング内容をもとに、ご予算や要望に応じた貴社に最適なご提案をさせていただき、詳細なお見積書を提示いたします。</p>
-                </div>
-                
-                <div class="contract-description">
-                    <p>ご提案内容にご満足いただけましたら正式にご契約となります。<br>クラウドサインでの電子締結となります。</p>
-                </div>
-            </div>
-            
-            <div class="contract-tools">
-                <div class="tool-item">
-                    <div class="tool-label">使用ツール</div>
-                    <div class="tool-icon">📝</div>
-                </div>
-                
-                <div class="tool-item">
-                    <div class="tool-icon">🎥</div>
-                    <div class="tool-name">ZOOM</div>
-                </div>
-                
-                <div class="tool-item">
-                    <div class="tool-icon">🎥</div>
-                    <div class="tool-name">ZOOM</div>
-                </div>
-                
-                <div class="tool-item">
-                    <div class="tool-icon">📋</div>
-                    <div class="tool-name">CLOUDSIGN</div>
                 </div>
             </div>
         </div>
@@ -2183,86 +2155,62 @@
         <h3 class="work-section-title">ご依頼から納品までの流れ</h3>
         <div class="after-contract-flow-wrapper">
             <div class="after-contract-flow-steps">
-                <div class="after-contract-flow-step">
-                    <div class="after-contract-circle">
-                        <span class="after-contract-number">01</span>
+                <div class="after-contract-flow-row">
+                    <div class="after-contract-flow-step">
+                        <div class="after-contract-number">1</div>
+                        <div class="after-contract-step-content">
+                            <h4 class="after-contract-step-title">事前ヒアリング</h4>
+                            <p class="after-contract-step-description">ヒアリングシートを用意しておりますので、シートにご記入いただきます。また、ロゴ・写真・商品資料・実績データなど、LP制作に必要な素材や参考URLをご共有いただきます。</p>
+                            <div class="after-contract-step-line"></div>
+                            <div class="after-meeting-tools">
+                                <span class="meeting-tool-badge">Googleフォーム</span>
+                                <span class="meeting-tool-badge">スプレッドシート</span>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="after-contract-step-title">プロジェクト開始</h4>
-                    <div class="after-contract-arrow">▶</div>
-                </div>
-                
-                <div class="after-contract-flow-step">
-                    <div class="after-contract-circle">
-                        <span class="after-contract-number">02</span>
+                    
+                    <div class="after-contract-flow-step">
+                        <div class="after-contract-number">2</div>
+                        <div class="after-contract-step-content">
+                            <h4 class="after-contract-step-title">ヒアリング</h4>
+                            <p class="after-contract-step-description">シートの内容を元に、より具体的にお話をお伺いして、シートに書かれていない本質的な内容を確認します。</p>
+                            <div class="after-contract-step-line"></div>
+                            <div class="after-meeting-tools">
+                                <span class="meeting-tool-badge">Google Meet</span>
+                                <span class="meeting-tool-badge">Zoom</span>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="after-contract-step-title">画像素材やテキストご提供</h4>
-                    <div class="after-contract-arrow">▶</div>
                 </div>
                 
-                <div class="after-contract-flow-step">
-                    <div class="after-contract-circle">
-                        <span class="after-contract-number">03</span>
+                <div class="after-contract-flow-row">
+                    <div class="after-contract-flow-step">
+                        <div class="after-contract-number">3</div>
+                        <div class="after-contract-step-content">
+                            <h4 class="after-contract-step-title">ご確認・修正</h4>
+                            <p class="after-contract-step-description">ライティング原稿→ワイヤー→デザイン→実装の順に段階的にご確認いただき、フィードバックを反映します。大幅な仕様変更が発生する場合は別途お見積りにて対応します。</p>
+                            <div class="after-contract-step-line"></div>
+                            <div class="after-meeting-tools">
+                                <span class="meeting-tool-badge">Googleドキュメント</span>
+                                <span class="meeting-tool-badge">Google Meet</span>
+                                <span class="meeting-tool-badge">Zoom</span>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="after-contract-step-title">デザインのご確認・修正</h4>
-                    <div class="after-contract-arrow">▶</div>
-                </div>
-                
-                <div class="after-contract-flow-step">
-                    <div class="after-contract-circle">
-                        <span class="after-contract-number">04</span>
+                    
+                    <div class="after-contract-flow-step">
+                        <div class="after-contract-number">4</div>
+                        <div class="after-contract-step-content">
+                            <h4 class="after-contract-step-title">納品・アフターフォロー</h4>
+                            <p class="after-contract-step-description">本番反映またはデータ納品後、表示確認・計測タグの動作確認までサポートします。公開後の微調整や改善提案（A/Bテスト・運用改善）もご希望に応じて対応します。</p>
+                            <div class="after-contract-step-line"></div>
+                            <div class="after-meeting-tools">
+                                <span class="meeting-tool-badge">Slack</span>
+                                <span class="meeting-tool-badge">Chatwork</span>
+                                <span class="meeting-tool-badge">LINE</span>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="after-contract-step-title">納品・アフターフォロー</h4>
-                </div>
-            </div>
-            
-            <div class="after-contract-flow-descriptions">
-                <div class="after-contract-description">
-                    <p>まず初めに、キックオフMTGを実施させていただきます。改めて要件を確認し、より詳細なヒアリング、スケジュールの共有などをさせていただきます。</p>
-                </div>
-                
-                <div class="after-contract-description">
-                    <p>よりオリジナル性のあるデザインを作成するため、可能な限り貴社にて画像素材やテキストのご用意をお願いしております。難しい場合はご相談ください。</p>
-                </div>
-                
-                <div class="after-contract-description">
-                    <p>方向性のズレを防ぐために、納品までに複数回のフィードバックをお願いしております。随時Zoomなどで擦り合わせることも可能です。</p>
-                </div>
-                
-                <div class="after-contract-description">
-                    <p>アウトプットにご納得いただけましたら納品となります。Webサイトの場合は、更新方法のレクチャーMTGなども実施させていただいております。</p>
-                </div>
-            </div>
-            
-            <div class="after-contract-tools">
-                <div class="after-tool-item">
-                    <div class="after-tool-label">使用ツール</div>
-                    <div class="after-tool-icon">🎥</div>
-                    <div class="after-tool-name">ZOOM</div>
-                </div>
-                
-                <div class="after-tool-item">
-                    <div class="after-tool-icon">📱</div>
-                    <div class="after-tool-name">Google Drive</div>
-                </div>
-                
-                <div class="after-tool-item">
-                    <div class="after-tool-icon">📋</div>
-                    <div class="after-tool-name">Excel/Sheets</div>
-                </div>
-                
-                <div class="after-tool-item">
-                    <div class="after-tool-icon">💻</div>
-                    <div class="after-tool-name">Notion</div>
-                </div>
-                
-                <div class="after-tool-item">
-                    <div class="after-tool-icon">🎥</div>
-                    <div class="after-tool-name">ZOOM</div>
-                </div>
-                
-                <div class="after-tool-item">
-                    <div class="after-tool-icon">🎥</div>
-                    <div class="after-tool-name">ZOOM</div>
                 </div>
             </div>
         </div>

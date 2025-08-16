@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProfileHoverEffects();
     initScrollDownIndicator();
     initTocLinks();
+    initSalesCounterAnimation();
 
     // Profile Section Animations
     function initProfileAnimations() {
@@ -843,3 +844,29 @@ document.addEventListener('keydown', function(event) {
         closeImageModal();
     }
 });
+
+// Sales Counter Animation
+function initSalesCounterAnimation() {
+    const counter = document.getElementById('sales-counter');
+    if (!counter) return;
+    
+    const target = parseInt(counter.getAttribute('data-target'));
+    const duration = 2000; // 2秒間でアニメーション
+    const increment = target / (duration / 16); // 60FPSで計算
+    let current = 0;
+    
+    function updateCounter() {
+        current += increment;
+        if (current >= target) {
+            counter.textContent = target.toLocaleString();
+        } else {
+            counter.textContent = Math.floor(current).toLocaleString();
+            requestAnimationFrame(updateCounter);
+        }
+    }
+    
+    // ページロード後少し遅れてアニメーション開始
+    setTimeout(() => {
+        updateCounter();
+    }, 1500);
+}

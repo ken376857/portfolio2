@@ -11,8 +11,10 @@ camera.position.z = 4;
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#bg-animation'),
     antialias: true,
+    alpha: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 0); // 透明な背景
 
 // Geometry
 const geometry = new THREE.PlaneGeometry(20, 12, 100, 100);
