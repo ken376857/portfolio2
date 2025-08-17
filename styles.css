@@ -5291,6 +5291,8 @@ section#sales-letter .funnel-badge.primary,
     font-weight: 500;
     color: #ffffff;
     padding-right: 20px; /* Add padding for more space from the line */
+    padding-left: 0; /* Remove left padding */
+    margin-left: 0; /* Remove left margin */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -6523,7 +6525,7 @@ table th {
     font-size: 1rem;
     font-weight: 600;
     color: #2c3e50;
-    margin: 1.2rem 0 0.8rem 0;
+    margin: 0 0 0.8rem 0;
     line-height: 1.4;
     position: relative;
     padding-bottom: 0.5rem;
@@ -6601,12 +6603,8 @@ table th {
 }
 
 .pasona-item {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, #f8f9fa, #ffffff);
-    border: 1px solid #e9ecef;
-    border-radius: 10px;
-    border-left: 4px solid #4CAF50;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .pasona-item:last-child {
@@ -6674,14 +6672,44 @@ table th {
         margin-bottom: 0;
     }
     
+    .main-visual-component .main-visual-layout,
+    .lp-component > div[style*="display: flex"] {
+        position: relative;
+        display: block;
+        gap: 0;
+        margin-bottom: 0;
+    }
+    
     .main-visual-component .main-visual-image {
         flex: none;
         position: relative;
-        border-radius: 32px;
+        border-radius: 48px;
         overflow: hidden; /* 角丸の境界から画像がはみ出ないように */
+        margin-bottom: 10rem; /* テキストがはみ出る分の余白 */
     }
     
-    .main-visual-component .main-visual-image::after {
+    .lp-component > div[style*="display: flex"] > div[style*="flex: 0 0 300px"] {
+        flex: none;
+        position: relative;
+        border-radius: 48px;
+        overflow: hidden; /* 角丸の境界から画像がはみ出ないように */
+        margin-bottom: 0; /* デフォルトは余白なし */
+    }
+    
+    /* 悩みの代弁パートのみ余白を設定 */
+    .lp-component:has(.component-title:contains("悩みの代弁")) > div[style*="display: flex"] > div[style*="flex: 0 0 300px"],
+    .lp-component .component-title:contains("悩みの代弁") ~ div > div[style*="flex: 0 0 300px"] {
+        margin-bottom: 80rem; /* 悩みの代弁パートは80rem */
+    }
+    
+    /* メッセージパートのみ余白を設定 */
+    .lp-component:has(.component-title:contains("メッセージ")) > div[style*="display: flex"] > div[style*="flex: 0 0 300px"],
+    .lp-component .component-title:contains("メッセージ") ~ div > div[style*="flex: 0 0 300px"] {
+        margin-bottom: 0; /* メッセージパートは余白なし */
+    }
+    
+    .main-visual-component .main-visual-image::after,
+    .lp-component > div[style*="display: flex"] > div[style*="flex: 0 0 300px"]::after {
         content: '';
         position: absolute;
         top: 0;
@@ -6689,11 +6717,12 @@ table th {
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.6); /* 黒っぽい透明エフェクト */
-        border-radius: 32px; /* 角丸をもっと効かせる */
+        border-radius: 48px; /* 角丸をもっと効かせる */
         z-index: 1;
     }
     
-    .main-visual-component .main-visual-content {
+    .main-visual-component .main-visual-content,
+    .lp-component > div[style*="display: flex"] > div[style*="flex: 1"] {
         position: absolute;
         top: 0;
         left: 0;
@@ -6704,23 +6733,27 @@ table th {
         padding: 1.5rem 0; /* 左右の余白を削除、上下のみ保持 */
         color: white;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
     }
     
-    .main-visual-component .component-description {
+    .main-visual-component .component-description,
+    .lp-component .component-description {
         width: 100%;
     }
     
-    .main-visual-component .component-subtitle {
+    .main-visual-component .component-subtitle,
+    .lp-component .component-subtitle {
         color: white !important;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
     
-    .main-visual-component .component-subtitle::before {
+    .main-visual-component .component-subtitle::before,
+    .lp-component .component-subtitle::before {
         color: #ffffff;
     }
     
-    .main-visual-component .component-description p {
+    .main-visual-component .component-description p,
+    .lp-component .component-description p {
         color: white !important;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
@@ -6754,8 +6787,8 @@ table th {
     }
     
     .pasona-item {
-        padding: 1.2rem;
-        margin-bottom: 1.5rem;
+        padding: 0;
+        margin-bottom: 0;
     }
     
     .pasona-title {
@@ -6770,6 +6803,7 @@ table th {
         margin: 1rem -1rem;
         border-radius: 0;
     }
+    
     
     .component-title {
         padding: 1rem;
@@ -6792,7 +6826,7 @@ table th {
     }
     
     .pasona-item {
-        padding: 1rem;
+        padding: 0;
     }
 }
 
