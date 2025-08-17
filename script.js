@@ -18,14 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize all animations and interactions
     initProfileAnimations();
-    initCareerTimeline();
-    initSkillInteractions();
     initLoveTags();
     initScrollAnimations();
-    initProfileHoverEffects();
     initScrollDownIndicator();
     initTocLinks();
-    initSalesCounterAnimation();
 
     // Profile Section Animations
     function initProfileAnimations() {
@@ -41,18 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.style.transform = 'translateY(0)';
             }, index * 100);
         });
-    }
-    
-    // Career Timeline Interactions - Remove all interactions
-    function initCareerTimeline() {
-        // No interactions
-    }
-    
-    // Remove all click effects
-    
-    // Skill Category Interactions - Remove hover effects
-    function initSkillInteractions() {
-        // No hover interactions
     }
     
     // Love Tags Interactive Effects
@@ -143,38 +127,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Trigger underline animation for profile section
                     if (entry.target.id === 'profile') {
-                        console.log('Profile section detected in viewport');
                         const underlineElement = document.querySelector('.underline-animation');
-                        console.log('Underline element found:', underlineElement);
                         if (underlineElement) {
                             setTimeout(() => {
-                                console.log('Adding animate-underline class');
                                 underlineElement.classList.add('animate-underline');
-                                console.log('Classes after adding:', underlineElement.classList.toString());
                             }, 1500);
                         }
                     }
                     
-                    // ヒアリング力セクションの円描画アニメーション
-                    if (entry.target.classList.contains('hearing-power-section')) {
-                        animateVennCircles(entry.target);
-                    }
                     
-                    // 分析力セクションの円描画アニメーション
-                    if (entry.target.classList.contains('analysis-power-section')) {
-                        animateVennCircles(entry.target);
-                    }
                     
-                    // 学び続ける姿勢セクションの円描画アニメーション
-                    if (entry.target.classList.contains('learning-power-section')) {
-                        animateVennCircles(entry.target);
-                    }
+                    
                 }
             });
         }, observerOptions);
         
-        // Observe elements including handwritten name, profile section, and skills section
-        const elementsToAnimate = document.querySelectorAll('.skill-category, .achievement-card, .handwritten-name, #profile, #skills');
+        // Observe elements including handwritten name, profile section, skills section, and TOC section
+        const elementsToAnimate = document.querySelectorAll('.skill-category, .achievement-card, .handwritten-name, #profile, #skills, .toc-section, .career-item');
         elementsToAnimate.forEach(el => observer.observe(el));
         
         // ヒアリング力セクションのアニメーション監視
@@ -550,10 +519,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, frameTime);
     }
     
-    // Profile Hover Effects - Remove all hover effects
-    function initProfileHoverEffects() {
-        // No hover effects
-    }
     
     // Add CSS for scroll animations
     const scrollAnimationStyle = document.createElement('style');
@@ -578,6 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(scrollAnimationStyle);
     
+    
     // Typing effect for profile quote
     function initTypingEffect() {
         const quote = document.querySelector('.profile-quote');
@@ -601,17 +567,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize typing effect after a delay
     setTimeout(initTypingEffect, 1000);
     
-    // ベン図のJavaScript干渉を完全無効化
-    function resetVennCircleStyles() {
-        // 何もしない - CSS!importantに任せる
-        return;
-    }
-    
-    // ベン図の円描画アニメーション（完全無効化）
-    function animateVennCircles(section) {
-        // 何もしない - CSS!importantに任せる
-        return;
-    }
     
     // Skills Section Animation
     function animateSkillsSection() {
@@ -653,10 +608,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Scroll Down Indicator
+    // Scroll Down Indicator with smart visibility control
     function initScrollDownIndicator() {
         const scrollIndicator = document.querySelector('.scroll-down-indicator');
-        if (scrollIndicator) {
+        const heroSection = document.querySelector('.hero-section');
+        
+        if (scrollIndicator && heroSection) {
+            // Click functionality
             scrollIndicator.addEventListener('click', () => {
                 const tocSection = document.querySelector('.toc-section');
                 if (tocSection) {
@@ -666,6 +624,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             });
+            
+            // Smart visibility control based on hero section visibility
+            function updateScrollIndicatorVisibility() {
+                const heroRect = heroSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Show indicator only when hero section is visible
+                // Hide when hero section is mostly out of view
+                const heroVisible = heroRect.bottom > windowHeight * 0.2;
+                
+                if (heroVisible) {
+                    scrollIndicator.classList.remove('hidden');
+                } else {
+                    scrollIndicator.classList.add('hidden');
+                }
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', updateScrollIndicatorVisibility, { passive: true });
+            
+            // Initial check
+            updateScrollIndicatorVisibility();
         }
     }
     
@@ -679,28 +659,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetSection = document.querySelector(targetId);
                 
                 if (targetSection) {
-                    // Add very gentle click animation with dreamy floating effect
-                    link.style.transform = 'scale(1.1) translateY(-6px)';
-                    link.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.5)';
-                    link.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.12), 0 12px 24px rgba(100, 116, 139, 0.15)';
-                    
-                    setTimeout(() => {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        // Reset animation to default state with very smooth transition
-                        setTimeout(() => {
-                            link.style.transform = '';
-                            link.style.boxShadow = '';
-                            link.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                        }, 400);
-                    }, 200);
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
     }
+    
+    
+    // TOC Section Initialization
+    function initTocSection() {
+        const tocSection = document.querySelector('.toc-section');
+        if (tocSection) {
+            tocSection.classList.add('initialized');
+        }
+    }
+    
+    // 初期化関数の呼び出し
+    initTocSection();
+    initTocLinks();
+    initLoveTags();
+    initScrollDownIndicator();
+    
+    // 売上カウンターアニメーション開始
+    setTimeout(() => {
+        initSalesCounterAnimation();
+    }, 1000);
 });
 
 // ダークオーバーレイ制御
@@ -722,7 +708,6 @@ function initDarkOverlay() {
         // 「私にお任せください！」セクションが画面に入る前まで適用（終点を遅く）
         const serviceIntroNotStarted = serviceIntroRect.top > windowHeight - 300;
         
-        console.log('SERVICE visible:', serviceVisible, 'Service Intro not started:', serviceIntroNotStarted);
         
         if (serviceVisible && serviceIntroNotStarted) {
             darkOverlay.classList.add('active');
@@ -762,12 +747,10 @@ function initRindoBackground() {
             backgroundLayer.classList.add('active');
             worksTitle.classList.add('white-text');
             document.body.classList.add('rindo-text-white');
-            console.log('RINDO背景オン');
         } else {
             backgroundLayer.classList.remove('active');
             worksTitle.classList.remove('white-text');
             document.body.classList.remove('rindo-text-white');
-            console.log('RINDO背景オフ');
         }
     }
     
