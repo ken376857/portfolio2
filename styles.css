@@ -3365,6 +3365,14 @@ section#sales-letter .funnel-badge.primary,
     .building-4 {
         transform: translateY(-20px) translateX(40px);
     }
+    
+    .strength-hero-tag {
+        margin-bottom: 0;
+    }
+    
+    .role-hub-diagram {
+        margin-top: -1rem;
+    }
 }
     
     .philosophy-main p {
