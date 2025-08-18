@@ -3258,8 +3258,9 @@ section#sales-letter .funnel-badge.primary,
     }
     
     .personal-user-circle {
-        width: 120px;
-        height: 120px;
+        width: 200px;
+        height: 200px;
+        top: 26%;
     }
     
     .person-icon {
@@ -3318,8 +3319,9 @@ section#sales-letter .funnel-badge.primary,
     
     /* 企業クライアント側の調整 */
     .enterprise-client-circle {
-        width: 120px;
-        height: 120px;
+        width: 200px;
+        height: 200px;
+        top: 26%;
     }
     
     .right-icons-group {
