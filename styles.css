@@ -1805,7 +1805,7 @@ section#sales-letter .funnel-badge.primary,
 .strengths-venn-diagram {
     background: linear-gradient(135deg, #FAF4E8 0%, #F5E6D3 50%, #F0E0C8 100%);
     padding: 5rem 3rem;
-    margin: 4rem 0;
+    margin: 2rem 0 4rem 0; /* Reduce top margin from 4rem to 2rem */
     border-radius: 20px;
     position: relative;
     min-height: 500px;
@@ -2026,7 +2026,7 @@ section#sales-letter .funnel-badge.primary,
 /* スクロールガイド */
 .scroll-guide-container {
     text-align: center;
-    margin: 3rem 0;
+    margin: 1rem 0;
 }
 
 .scroll-arrow {
@@ -2035,34 +2035,25 @@ section#sales-letter .funnel-badge.primary,
 }
 
 .arrow-down {
-    width: 24px;
-    height: 40px;
+    width: auto;
+    height: auto;
     margin: 0 auto;
     position: relative;
     border: none;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #3b82f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .arrow-down::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 30px;
-    background: #3b82f6;
-    transform: translateX(-50%);
+    content: '↓';
 }
 
 .arrow-down::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    border-right: 2px solid #3b82f6;
-    border-bottom: 2px solid #3b82f6;
-    transform: translateX(-50%) rotate(45deg);
+    display: none;
 }
 
 @keyframes bounce {
@@ -2079,21 +2070,11 @@ section#sales-letter .funnel-badge.primary,
 
 @media (max-width: 768px) {
     .scroll-guide-container {
-        margin: 2rem 0;
+        margin: 0.5rem 0;
     }
     
     .arrow-down {
-        width: 20px;
-        height: 32px;
-    }
-    
-    .arrow-down::before {
-        height: 24px;
-    }
-    
-    .arrow-down::after {
-        width: 10px;
-        height: 10px;
+        font-size: 2rem;
     }
 }
 
@@ -2114,6 +2095,7 @@ section#sales-letter .funnel-badge.primary,
     letter-spacing: 0.1em;
     position: relative;
     display: inline-block;
+    line-height: 0.9;
 }
 
 .strength-subtitle-japanese {
@@ -2124,7 +2106,7 @@ section#sales-letter .funnel-badge.primary,
 .strength-section-title::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -25px;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
@@ -2589,6 +2571,22 @@ section#sales-letter .funnel-badge.primary,
     .venn-circle {
         width: 180px;
         height: 180px;
+    }
+    
+    .venn-circle-1 {
+        width: 180px !important;
+        height: 180px !important;
+        top: -30px !important;
+    }
+    
+    .venn-circle-2 {
+        bottom: -8px !important;
+        left: -20px !important;
+    }
+    
+    .venn-circle-3 {
+        bottom: -8px !important;
+        right: -20px !important;
     }
     
     
