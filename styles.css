@@ -56,7 +56,6 @@ img, video, iframe {
     opacity: 0;
     z-index: 2;
     transition: opacity 0.8s ease;
-    pointer-events: none;
 }
 
 .rindo-background-layer.active {
@@ -693,6 +692,31 @@ section.container:last-child {
 }
 
 @media (max-width: 768px) {
+    /* Career Section Mobile Optimization - Left-aligned Timeline */
+    #career {
+        padding: 3rem 1rem; /* Add minimal horizontal padding */
+    }
+    
+    #career .career-date {
+        left: 0; /* Position at very left edge */
+        width: 80px; /* Compact width for mobile */
+        padding-right: 10px; /* Minimal spacing from timeline */
+        text-align: right;
+        font-size: 0.8rem; /* Slightly smaller font for mobile */
+    }
+    
+    #career .career-timeline::before {
+        left: 90px; /* Move timeline much closer to left */
+    }
+    
+    #career .career-item {
+        padding-left: 110px; /* Adjust content to follow timeline */
+    }
+    
+    #career .career-item::before {
+        left: 90px; /* Match timeline position */
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -5065,8 +5089,14 @@ section#sales-letter .funnel-badge.primary,
 
 @media (max-width: 768px) {
     .toc-section {
-        padding: 0.5rem 0;
+        padding: 0.5rem 1rem; /* Add horizontal padding */
     }
+    
+    .index-hero-title {
+        margin-left: 1rem; /* Add left margin for INDEX title */
+    }
+    
+    /* Fix Profile title center alignment on mobile */
     
     .toc-content {
         padding: 0.5rem 1rem;
@@ -5273,11 +5303,11 @@ section#sales-letter .funnel-badge.primary,
     left: 140px; /* Match the line's new position */
     top: 3px; /* Adjusted from 5px for better vertical alignment */
     transform: translateX(-50%); /* Center the dot on the line */
-    width: 16px;
-    height: 16px;
+    width: 12px; /* Reduced from 16px */
+    height: 12px; /* Reduced from 16px */
     background: white;
     border-radius: 50%;
-    border: 3px solid white;
+    border: 2px solid white; /* Reduced from 3px */
     z-index: 2;
 }
 
@@ -6921,4 +6951,39 @@ table th {
 #seo-media .funnel-detail-badge {
     background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important;
     color: white !important;
+}
+
+/* ===== FINAL MOBILE OVERRIDE - Career Section ===== */
+@media (max-width: 768px) {
+    /* Career Section Mobile - Final Override */
+    #career {
+        padding: 3rem 1rem !important; /* Restore minimal padding for title centering */
+    }
+    
+    /* Keep CAREER title left-aligned as original */
+    #career .career-hero-title {
+        text-align: left !important; /* Maintain original left alignment */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    #career .career-date {
+        left: -0.5rem !important; /* Move even further left */
+        width: 75px !important; /* Slightly smaller width */
+        padding-right: 8px !important; /* Reduce spacing from timeline */
+        text-align: right !important;
+        font-size: 0.8rem !important; /* Slightly smaller font for mobile */
+    }
+    
+    #career .career-timeline::before {
+        left: 75px !important; /* Move timeline closer to left */
+    }
+    
+    #career .career-item {
+        padding-left: 95px !important; /* Reduce content padding */
+    }
+    
+    #career .career-item::before {
+        left: 75px !important; /* Move dot to match timeline */
+    }
 }
