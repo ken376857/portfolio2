@@ -24,22 +24,6 @@ img, video, iframe {
     font-display: swap;
 }
 
-/* ダークオーバーレイ */
-.dark-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0);
-    z-index: 1;
-    pointer-events: none;
-    transition: background 0.8s ease;
-}
-
-.dark-overlay.active {
-    background: rgba(0, 0, 0, 0.7);
-}
 
 /* RINDO 背景レイヤー */
 .rindo-background-layer {
@@ -256,20 +240,22 @@ body {
     width: 100%;
     height: 100%;
     background: url('https://tnbkn.com/wp-content/uploads/nabeken-background-scaled.webp') center center / cover no-repeat fixed;
-    opacity: 0.3;
-    z-index: -1;
+    z-index: -2;
     pointer-events: none;
 }
 
-#bg-animation {
+.hero-service-background::after {
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0, 0, 0, 0.6);
     z-index: -1;
-    opacity: 0.7;
+    pointer-events: none;
 }
+
 
 .container {
     max-width: 1200px;
@@ -462,7 +448,7 @@ section.container:last-child {
 
 .hero-description p {
     font-size: 1.8rem;
-    color: #2d3748;
+    color: #ffffff;
     line-height: 1.8;
     margin-bottom: 0.5rem;
     font-weight: 400;
@@ -489,7 +475,7 @@ section.container:last-child {
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.6rem;
-    color: #666666;
+    color: #ffffff;
 }
 
 .portfolio-credit {
@@ -501,13 +487,13 @@ section.container:last-child {
 .portfolio-text {
     font-size: 2rem;
     font-weight: 600;
-    color: #4a5568;
+    color: #ffffff;
     font-family: 'Georgia', serif;
 }
 
 .portfolio-author {
     font-size: 1.3rem;
-    color: #6b7280;
+    color: #ffffff;
     font-weight: 400;
 }
 
@@ -1046,10 +1032,6 @@ body.rindo-text-white #works .lp-explanation p {
     color: #333333 !important;
 }
 
-/* RINDO背景表示時は通常のダークオーバーレイを無効にする */
-body.rindo-text-white .dark-overlay {
-    display: none !important;
-}
 
 /* リサーチパートは元の色に戻す */
 body.rindo-text-white #works .research-description,
@@ -1658,14 +1640,8 @@ section#sales-letter .funnel-badge.primary,
     }
     
     .requirements-two-columns {
-        display: flex;
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 1rem;
-    }
-    
-    .requirements-column-left,
-    .requirements-column-right {
-        width: 100%;
     }
 }
 
@@ -1745,7 +1721,7 @@ section#sales-letter .funnel-badge.primary,
 .strength-hero-title {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #2c3e50;
+    color: #ffffff;
     line-height: 1.4;
     margin: 0;
 }
@@ -2096,7 +2072,7 @@ section#sales-letter .funnel-badge.primary,
 .strength-section-title {
     font-size: 3.5rem;
     font-weight: 700;
-    color: #2c3e50;
+    color: #ffffff;
     margin: 0;
     letter-spacing: 0.1em;
     position: relative;
@@ -2172,7 +2148,11 @@ section#sales-letter .funnel-badge.primary,
 
 .hearing-power-right {
     flex: 1;
-    padding-left: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    margin-left: 2rem;
 }
 
 .hearing-venn-diagram {
@@ -2296,7 +2276,11 @@ section#sales-letter .funnel-badge.primary,
 
 .analysis-power-right {
     flex: 1;
-    padding-left: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    margin-left: 2rem;
 }
 
 /* 学び続ける姿勢セクションの2カラムレイアウト */
@@ -2315,7 +2299,11 @@ section#sales-letter .funnel-badge.primary,
 
 .learning-power-right {
     flex: 1;
-    padding-left: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    margin-left: 2rem;
 }
 
 /* ベン図の円描画アニメーション - 初期状態 */
@@ -2408,6 +2396,7 @@ section#sales-letter .funnel-badge.primary,
     transform: translate(-50%, -50%);
     z-index: 5;
     text-align: center;
+    color: #ffffff;
 }
 
 /* 学び続ける姿勢セクションでの中央テキスト位置調整 */
@@ -2424,6 +2413,7 @@ section#sales-letter .funnel-badge.primary,
     transform: translate(-50%, -50%);
     z-index: 5;
     text-align: center;
+    color: #ffffff;
 }
 
 
@@ -2431,6 +2421,10 @@ section#sales-letter .funnel-badge.primary,
     position: absolute;
     top: 73%;
     left: 78%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    text-align: center;
+    color: #ffffff;
     transform: translate(-50%, -50%);
     z-index: 5;
     text-align: center;
@@ -4562,8 +4556,7 @@ section#sales-letter .funnel-badge.primary,
     
     .contract-number,
     .after-contract-number {
-        font-size: clamp(6rem, 15vw, 8rem);
-        min-width: 100px;
+        font-size: 1.5rem;
     }
     
     .contract-arrow,
@@ -4576,12 +4569,6 @@ section#sales-letter .funnel-badge.primary,
     .contract-flow-step:last-child .contract-arrow,
     .after-contract-flow-step:last-child .after-contract-arrow {
         display: none;
-    }
-    
-    .contract-flow-row,
-    .after-contract-flow-row {
-        flex-direction: column;
-        gap: 2rem;
     }
     
     .contract-flow-descriptions,
@@ -4759,7 +4746,7 @@ section#sales-letter .funnel-badge.primary,
 .profile-hero-title {
     font-size: clamp(4rem, 8vw, 8rem);
     font-weight: 800;
-    color: #475569;
+    color: #ffffff;
     text-align: left;
     margin: 4rem 0 6rem 0;
     letter-spacing: -0.02em;
@@ -5212,21 +5199,21 @@ section#sales-letter .funnel-badge.primary,
 .profile-name {
     font-size: 2.8rem;
     font-weight: 700;
-    color: #374151;
+    color: #ffffff;
     margin-bottom: 0.5rem;
 }
 
 .profile-name-roman {
     font-size: 1.3rem;
     font-weight: 500;
-    color: #a0aec0;
+    color: #ffffff;
     margin-bottom: 2rem;
     letter-spacing: 0.1em;
 }
 
 .profile-details p {
     font-size: 1rem;
-    color: #4a5568;
+    color: #ffffff;
     margin-bottom: 0.5rem;
 }
 
@@ -5234,7 +5221,7 @@ section#sales-letter .funnel-badge.primary,
     margin-top: 2rem;
     font-size: 0.95rem;
     line-height: 1.8;
-    color: #6b7280;
+    color: #ffffff;
 }
 
 .profile-intro p:first-child {
@@ -5248,16 +5235,18 @@ section#sales-letter .funnel-badge.primary,
 
 .handwritten-name {
     position: absolute;
-    top: -5%;
-    left: -25%;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-15deg);
     font-family: 'Yosugara', 'Klee One', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-    font-size: 5rem;
-    color: #2d3748;
-    transform: rotate(-15deg);
+    font-size: 3.5rem;
+    color: #ffffff;
     opacity: 0;
     transition: opacity 0.8s ease 0.5s;
     pointer-events: none;
     z-index: 2;
+    white-space: nowrap;
+    letter-spacing: 0.1em;
 }
 
 .handwritten-name.animate-in {
@@ -5287,22 +5276,6 @@ section#sales-letter .funnel-badge.primary,
     position: relative;
     transition: all 0.8s ease;
     z-index: 10;
-    --dark-opacity: 0;
-}
-
-#career::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(59, 130, 246, calc(var(--dark-opacity) * 0.25));
-    transition: background-color 0.1s ease;
-    pointer-events: none;
-    z-index: -1;
 }
 
 .career-main-title {

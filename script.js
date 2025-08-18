@@ -178,33 +178,13 @@ document.addEventListener('DOMContentLoaded', function() {
             skillsObserver.observe(skillsSection);
         }
         
-        // Career section background animation with smooth scroll-based control
+        // Career items scroll-based fade in animation (without background filter)
         const careerSection = document.getElementById('career');
         
-        function updateCareerBackground() {
+        function updateCareerItems() {
             if (!careerSection) return;
             
-            const rect = careerSection.getBoundingClientRect();
             const windowHeight = window.innerHeight;
-            
-            // Calculate visibility progress (0 to 1)
-            // Starts when section enters viewport, completes when fully visible
-            const visibilityProgress = Math.max(0, Math.min(1, 
-                (windowHeight - rect.top) / (windowHeight * 0.8)
-            ));
-            
-            // Apply background blue tint based on scroll progress  
-            const overlay = careerSection.querySelector('::before') || careerSection;
-            const blueOpacity = Math.min(1, 1 * visibilityProgress);
-            
-            // Update CSS custom property for smooth transition
-            careerSection.style.setProperty('--dark-opacity', blueOpacity);
-            
-            if (visibilityProgress > 0.1) {
-                careerSection.classList.add('blue-background');
-            } else {
-                careerSection.classList.remove('blue-background');
-            }
             
             // Career items scroll-based fade in animation
             const careerItems = careerSection.querySelectorAll('.career-item');
@@ -261,10 +241,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Add scroll listener for career background and TOC animation
-        window.addEventListener('scroll', updateCareerBackground, { passive: true });
+        // Add scroll listener for career items and TOC animation
+        window.addEventListener('scroll', updateCareerItems, { passive: true });
         window.addEventListener('scroll', updateTocAnimation, { passive: true });
-        updateCareerBackground(); // Initial call
+        updateCareerItems(); // Initial call
         updateTocAnimation(); // Initial call
         
         // Profile title scroll-based animation
@@ -693,42 +673,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
 });
 
-// ダークオーバーレイ制御
-function initDarkOverlay() {
-    const darkOverlay = document.getElementById('dark-overlay');
-    const serviceSection = document.getElementById('service');
-    const serviceIntroSection = document.querySelector('.service-intro');
-    
-    if (!darkOverlay || !serviceSection || !serviceIntroSection) return;
-    
-    function checkServicePosition() {
-        const serviceRect = serviceSection.getBoundingClientRect();
-        const serviceIntroRect = serviceIntroSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // SERVICEセクションが画面に表示されているかチェック（開始点を遅く）
-        const serviceVisible = serviceRect.top < windowHeight - 200 && serviceRect.bottom > 0;
-        
-        // 「私にお任せください！」セクションが画面に入る前まで適用（終点を遅く）
-        const serviceIntroNotStarted = serviceIntroRect.top > windowHeight - 300;
-        
-        
-        if (serviceVisible && serviceIntroNotStarted) {
-            darkOverlay.classList.add('active');
-        } else {
-            darkOverlay.classList.remove('active');
-        }
-    }
-    
-    // スクロールイベントリスナー
-    window.addEventListener('scroll', checkServicePosition);
-    
-    // 初期チェック
-    checkServicePosition();
-}
-
-// DOMが読み込まれた後にダークオーバーレイを初期化
-document.addEventListener('DOMContentLoaded', initDarkOverlay);
 
 // RINDO ファネルセクション背景制御
 function initRindoBackground() {
@@ -767,6 +711,36 @@ function initRindoBackground() {
 
 // DOMが読み込まれた後にRINDO背景を初期化
 document.addEventListener('DOMContentLoaded', initRindoBackground);
+
+// なべけんの役割図アニメーション
+function initRoleDiagramAnimation() {
+    const roleSection = document.querySelector('.nabeken-role-section');
+    const userLines = document.querySelectorAll('.user-line');
+    const clientLines = document.querySelectorAll('.client-line');
+    
+    if (!roleSection) return;
+    
+    // IntersectionObserverでスクロール検知
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // なべけんから各アイコンへ線が描画されるアニメーション開始
+                userLines.forEach(line => line.classList.add('animate-draw'));
+                clientLines.forEach(line => line.classList.add('animate-draw'));
+                
+                // 一度実行したら監視を停止
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.3 // 30%表示されたときに発動
+    });
+    
+    observer.observe(roleSection);
+}
+
+// DOM読み込み完了後に役割図アニメーションを初期化
+document.addEventListener('DOMContentLoaded', initRoleDiagramAnimation);
 
 // Modal Functions
 function openPromptModal(type) {
