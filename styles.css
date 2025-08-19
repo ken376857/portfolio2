@@ -5912,6 +5912,34 @@ table th {
     line-height: 1.4;
 }
 
+.highlight-nayami {
+    font-size: 1.1em;
+}
+
+.highlight-nayami .char-o,
+.highlight-nayami .char-na,
+.highlight-nayami .char-mi {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+}
+
+.highlight-nayami .char-o::before,
+.highlight-nayami .char-na::before,
+.highlight-nayami .char-mi::before {
+    content: '・';
+    position: absolute;
+    top: -0.7em;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #3b82f6;
+    font-size: 0.8em;
+    -webkit-text-fill-color: #3b82f6;
+}
+
 .problems-list {
     max-width: 900px;
     margin: 0 auto;
