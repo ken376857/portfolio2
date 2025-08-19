@@ -646,6 +646,7 @@ section.container:last-child {
     }
 }
 
+
 /* Responsive Hero Section */
 @media (max-width: 1200px) {
     .hero-content {
