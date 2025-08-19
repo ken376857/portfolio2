@@ -7031,6 +7031,85 @@ table th {
     color: white !important;
 }
 
+/* セールスレター制作セクション - テキストを白文字に変更 */
+#sales-letter .funnel-title,
+#sales-letter .funnel-description,
+#sales-letter .funnel-detail-text {
+    color: white !important;
+}
+
+/* セールスレター制作セクション以降の全体背景画像設定 */
+.sales-letter-background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://tnbkn.com/wp-content/uploads/pro-freelance-scaled.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+}
+.sales-letter-background-layer.active {
+    opacity: 1;
+}
+.sales-letter-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* SEOメディア背景レイヤー */
+.seo-media-background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://tnbkn.com/wp-content/uploads/nabeken-2-scaled.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+}
+.seo-media-background-layer.active {
+    opacity: 1;
+}
+.seo-media-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* ライティング支援事業セクション - テキストを白文字に変更 */
+#writing-business .funnel-title,
+#writing-business .funnel-description,
+#writing-business .funnel-detail-text {
+    color: white !important;
+}
+
+/* 派遣求職者向けオウンドメディア運営セクション - テキストを白文字に変更 */
+#seo-media .funnel-title,
+#seo-media .funnel-description,
+#seo-media .funnel-detail-text {
+    color: white !important;
+}
+
 /* ライティング支援事業セクション - 全バッジを青ベースに変更 */
 #writing-business .funnel-badge.primary,
 #writing-business .funnel-badge.secondary,

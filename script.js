@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initHearingCircleAnimation();
     initAnalysisCircleAnimation();
     initLearningCircleAnimation();
+    initStrengthsTitleAnimation();
+    initFlowTitleAnimation();
+    initFaqTitleAnimation();
+    initContactTitleAnimation();
 
     // Profile Section Animations
     function initProfileAnimations() {
@@ -264,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Calculate scroll progress (0 to 1)
                 // Balanced calculation - visible animation but reaches center in time
                 const rawProgress = Math.max(0, Math.min(1, 
-                    (windowHeight - rect.top) / (windowHeight * 0.6)
+                    (windowHeight - rect.top) / (windowHeight * 1.0)
                 ));
                 
                 // Apply gentle easing for smooth but visible animation
@@ -275,44 +279,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const firstLineOffset = 30 * (1 - scrollProgress);
                 const lastLineOffset = -30 * (1 - scrollProgress);
                 
-                // Apply transforms with smooth text alignment transition
+                // Apply smooth transforms without text alignment changes
                 if (firstLine) {
                     firstLine.style.transform = `translateX(${firstLineOffset}%)`;
-                    // Reset padding that might interfere
-                    firstLine.style.paddingLeft = '0';
-                    firstLine.style.paddingRight = '0';
-                    
-                    // Smooth text alignment transition based on scroll progress
-                    if (scrollProgress < 0.4) {
-                        firstLine.style.textAlign = 'right';
-                    } else if (scrollProgress > 0.8) {
-                        firstLine.style.textAlign = 'center';
-                    } else {
-                        // Transition zone - use a mix of positioning and alignment
-                        firstLine.style.textAlign = 'right';
-                        const transitionOffset = (scrollProgress - 0.4) / 0.4; // 0 to 1 over transition zone
-                        const additionalOffset = -15 * transitionOffset; // Additional movement toward center
-                        firstLine.style.transform = `translateX(${firstLineOffset + additionalOffset}%)`;
-                    }
+                    firstLine.style.textAlign = 'center'; // Keep consistent alignment
                 }
                 if (lastLine) {
                     lastLine.style.transform = `translateX(${lastLineOffset}%)`;
-                    // Reset padding that might interfere
-                    lastLine.style.paddingLeft = '0';
-                    lastLine.style.paddingRight = '0';
-                    
-                    // Smooth text alignment transition based on scroll progress
-                    if (scrollProgress < 0.4) {
-                        lastLine.style.textAlign = 'left';
-                    } else if (scrollProgress > 0.8) {
-                        lastLine.style.textAlign = 'center';
-                    } else {
-                        // Transition zone - use a mix of positioning and alignment
-                        lastLine.style.textAlign = 'left';
-                        const transitionOffset = (scrollProgress - 0.4) / 0.4; // 0 to 1 over transition zone
-                        const additionalOffset = 15 * transitionOffset; // Additional movement toward center
-                        lastLine.style.transform = `translateX(${lastLineOffset + additionalOffset}%)`;
-                    }
+                    lastLine.style.textAlign = 'center'; // Keep consistent alignment
                 }
             }
             
@@ -337,48 +311,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Calculate scroll progress (0 to 1)
                 const rawProgress = Math.max(0, Math.min(1, 
-                    (windowHeight - rect.top) / (windowHeight * 0.6)
+                    (windowHeight - rect.top) / (windowHeight * 1.0)
                 ));
                 
                 // Apply gentle easing for smooth but visible animation
-                const scrollProgress = Math.sqrt(rawProgress);
+                const scrollProgress = Math.sqrt(rawProgress); // Square root easing for gradual acceleration
                 
                 // Calculate positions based on scroll progress
                 const firstLineOffset = 30 * (1 - scrollProgress);
                 const lastLineOffset = -30 * (1 - scrollProgress);
                 
-                // Apply transforms with smooth text alignment transition
+                // Apply smooth transforms without text alignment changes
                 if (firstLine) {
                     firstLine.style.transform = `translateX(${firstLineOffset}%)`;
-                    firstLine.style.paddingLeft = '0';
-                    firstLine.style.paddingRight = '0';
-                    
-                    if (scrollProgress < 0.4) {
-                        firstLine.style.textAlign = 'right';
-                    } else if (scrollProgress > 0.8) {
-                        firstLine.style.textAlign = 'center';
-                    } else {
-                        firstLine.style.textAlign = 'right';
-                        const transitionOffset = (scrollProgress - 0.4) / 0.4;
-                        const additionalOffset = -15 * transitionOffset;
-                        firstLine.style.transform = `translateX(${firstLineOffset + additionalOffset}%)`;
-                    }
+                    firstLine.style.textAlign = 'center'; // Keep consistent alignment
                 }
                 if (lastLine) {
                     lastLine.style.transform = `translateX(${lastLineOffset}%)`;
-                    lastLine.style.paddingLeft = '0';
-                    lastLine.style.paddingRight = '0';
-                    
-                    if (scrollProgress < 0.4) {
-                        lastLine.style.textAlign = 'left';
-                    } else if (scrollProgress > 0.8) {
-                        lastLine.style.textAlign = 'center';
-                    } else {
-                        lastLine.style.textAlign = 'left';
-                        const transitionOffset = (scrollProgress - 0.4) / 0.4;
-                        const additionalOffset = 15 * transitionOffset;
-                        lastLine.style.transform = `translateX(${lastLineOffset + additionalOffset}%)`;
-                    }
+                    lastLine.style.textAlign = 'center'; // Keep consistent alignment
                 }
             }
             
@@ -403,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Calculate scroll progress (0 to 1)
                 const rawProgress = Math.max(0, Math.min(1, 
-                    (windowHeight - rect.top) / (windowHeight * 0.6)
+                    (windowHeight - rect.top) / (windowHeight * 1.0)
                 ));
                 
                 // Apply gentle easing for smooth but visible animation
@@ -413,38 +363,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const firstLineOffset = 30 * (1 - scrollProgress);
                 const lastLineOffset = -30 * (1 - scrollProgress);
                 
-                // Apply transforms with smooth text alignment transition
+                // Apply smooth transforms without text alignment changes
                 if (firstLine) {
                     firstLine.style.transform = `translateX(${firstLineOffset}%)`;
-                    firstLine.style.paddingLeft = '0';
-                    firstLine.style.paddingRight = '0';
-                    
-                    if (scrollProgress < 0.4) {
-                        firstLine.style.textAlign = 'right';
-                    } else if (scrollProgress > 0.8) {
-                        firstLine.style.textAlign = 'center';
-                    } else {
-                        firstLine.style.textAlign = 'right';
-                        const transitionOffset = (scrollProgress - 0.4) / 0.4;
-                        const additionalOffset = -15 * transitionOffset;
-                        firstLine.style.transform = `translateX(${firstLineOffset + additionalOffset}%)`;
-                    }
+                    firstLine.style.textAlign = 'center'; // Keep consistent alignment
                 }
                 if (lastLine) {
                     lastLine.style.transform = `translateX(${lastLineOffset}%)`;
-                    lastLine.style.paddingLeft = '0';
-                    lastLine.style.paddingRight = '0';
-                    
-                    if (scrollProgress < 0.4) {
-                        lastLine.style.textAlign = 'left';
-                    } else if (scrollProgress > 0.8) {
-                        lastLine.style.textAlign = 'center';
-                    } else {
-                        lastLine.style.textAlign = 'left';
-                        const transitionOffset = (scrollProgress - 0.4) / 0.4;
-                        const additionalOffset = 15 * transitionOffset;
-                        lastLine.style.transform = `translateX(${lastLineOffset + additionalOffset}%)`;
-                    }
+                    lastLine.style.textAlign = 'center'; // Keep consistent alignment
                 }
             }
             
@@ -660,6 +586,56 @@ function initRindoBackground() {
 
 // DOMが読み込まれた後にRINDO背景を初期化
 document.addEventListener('DOMContentLoaded', initRindoBackground);
+
+// 統合背景制御
+function initBackgroundSwitching() {
+    const salesLetterSection = document.getElementById('sales-letter');
+    const writingBusinessSection = document.getElementById('writing-business');
+    const seoMediaSection = document.getElementById('seo-media');
+    const flowSection = document.getElementById('flow');
+    
+    const salesLetterBackgroundLayer = document.getElementById('sales-letter-background-layer');
+    const seoMediaBackgroundLayer = document.getElementById('seo-media-background-layer');
+    
+    if (!salesLetterSection || !writingBusinessSection || !seoMediaSection || !flowSection || 
+        !salesLetterBackgroundLayer || !seoMediaBackgroundLayer) return;
+    
+    function checkBackgroundPosition() {
+        const windowHeight = window.innerHeight;
+        
+        const salesLetterRect = salesLetterSection.getBoundingClientRect();
+        const writingBusinessRect = writingBusinessSection.getBoundingClientRect();
+        const seoMediaRect = seoMediaSection.getBoundingClientRect();
+        const flowRect = flowSection.getBoundingClientRect();
+        
+        // 全ての背景をリセット
+        salesLetterBackgroundLayer.classList.remove('active');
+        seoMediaBackgroundLayer.classList.remove('active');
+        
+        if (flowRect.top <= windowHeight) {
+            // flowセクション以降: ファーストビュー（背景なし）
+            // 何も表示しない
+        } else if (seoMediaRect.top <= windowHeight) {
+            // seo-mediaセクション: ファーストビュー（背景なし）
+            // 何も表示しない
+        } else if (writingBusinessRect.top <= windowHeight) {
+            // writing-businessセクション: ファーストビュー（背景なし）
+            // 何も表示しない
+        } else if (salesLetterRect.top <= windowHeight) {
+            // sales-letterセクション: インフルエンサー背景
+            salesLetterBackgroundLayer.classList.add('active');
+        }
+    }
+    
+    // スクロールイベントリスナー
+    window.addEventListener('scroll', checkBackgroundPosition);
+    
+    // 初期チェック
+    checkBackgroundPosition();
+}
+
+// DOMが読み込まれた後に統合背景制御を初期化
+document.addEventListener('DOMContentLoaded', initBackgroundSwitching);
 
 // なべけんの役割図アニメーション
 function initRoleDiagramAnimation() {
@@ -943,4 +919,168 @@ function initLearningCircleAnimation() {
     
     window.addEventListener('scroll', updateLearningGlow, { passive: true });
     updateLearningGlow();
+}
+
+// Strengths title scroll-based animation
+function initStrengthsTitleAnimation() {
+    const strengthsSection = document.querySelector('.strength-section-header');
+    const strengthsTitle = strengthsSection?.querySelector('.strength-section-title');
+    
+    if (strengthsSection && strengthsTitle) {
+        const firstLine = strengthsTitle.querySelector('.title-line:first-child');
+        const lastLine = strengthsTitle.querySelector('.title-line:last-child');
+        
+        function updateStrengthsTitlePosition() {
+            const rect = strengthsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate scroll progress (0 to 1)
+            const rawProgress = Math.max(0, Math.min(1, 
+                (windowHeight - rect.top) / (windowHeight * 1.0)
+            ));
+            
+            // Apply gentle easing for smooth but visible animation
+            const scrollProgress = Math.sqrt(rawProgress);
+            
+            // Calculate positions based on scroll progress
+            const firstLineOffset = 30 * (1 - scrollProgress);
+            const lastLineOffset = -30 * (1 - scrollProgress);
+            
+            // Apply smooth transforms without text alignment changes
+            if (firstLine) {
+                firstLine.style.transform = `translateX(${firstLineOffset}%)`;
+                firstLine.style.textAlign = 'center';
+            }
+            if (lastLine) {
+                lastLine.style.transform = `translateX(${lastLineOffset}%)`;
+                lastLine.style.textAlign = 'center';
+            }
+        }
+        
+        window.addEventListener('scroll', updateStrengthsTitlePosition, { passive: true });
+        updateStrengthsTitlePosition();
+    }
+}
+
+// Flow title scroll-based animation
+function initFlowTitleAnimation() {
+    const flowSection = document.getElementById('flow');
+    const flowTitle = flowSection?.querySelector('.flow-hero-title');
+    
+    if (flowSection && flowTitle) {
+        const firstLine = flowTitle.querySelector('.title-line:first-child');
+        const lastLine = flowTitle.querySelector('.title-line:last-child');
+        
+        function updateFlowTitlePosition() {
+            const rect = flowSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate scroll progress (0 to 1)
+            const rawProgress = Math.max(0, Math.min(1, 
+                (windowHeight - rect.top) / (windowHeight * 1.0)
+            ));
+            
+            // Apply gentle easing for smooth but visible animation
+            const scrollProgress = Math.sqrt(rawProgress);
+            
+            // Calculate positions based on scroll progress
+            const firstLineOffset = 30 * (1 - scrollProgress);
+            const lastLineOffset = -30 * (1 - scrollProgress);
+            
+            // Apply smooth transforms without text alignment changes
+            if (firstLine) {
+                firstLine.style.transform = `translateX(${firstLineOffset}%)`;
+                firstLine.style.textAlign = 'center';
+            }
+            if (lastLine) {
+                lastLine.style.transform = `translateX(${lastLineOffset}%)`;
+                lastLine.style.textAlign = 'center';
+            }
+        }
+        
+        window.addEventListener('scroll', updateFlowTitlePosition, { passive: true });
+        updateFlowTitlePosition();
+    }
+}
+
+// FAQ title scroll-based animation
+function initFaqTitleAnimation() {
+    const faqSection = document.getElementById('faq');
+    const faqTitle = faqSection?.querySelector('.faq-hero-title');
+    
+    if (faqSection && faqTitle) {
+        const firstLine = faqTitle.querySelector('.title-line:first-child');
+        const lastLine = faqTitle.querySelector('.title-line:last-child');
+        
+        function updateFaqTitlePosition() {
+            const rect = faqSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate scroll progress (0 to 1)
+            const rawProgress = Math.max(0, Math.min(1, 
+                (windowHeight - rect.top) / (windowHeight * 1.0)
+            ));
+            
+            // Apply gentle easing for smooth but visible animation
+            const scrollProgress = Math.sqrt(rawProgress);
+            
+            // Calculate positions based on scroll progress
+            const firstLineOffset = 30 * (1 - scrollProgress);
+            const lastLineOffset = -30 * (1 - scrollProgress);
+            
+            // Apply smooth transforms without text alignment changes
+            if (firstLine) {
+                firstLine.style.transform = `translateX(${firstLineOffset}%)`;
+                firstLine.style.textAlign = 'center';
+            }
+            if (lastLine) {
+                lastLine.style.transform = `translateX(${lastLineOffset}%)`;
+                lastLine.style.textAlign = 'center';
+            }
+        }
+        
+        window.addEventListener('scroll', updateFaqTitlePosition, { passive: true });
+        updateFaqTitlePosition();
+    }
+}
+
+// Contact title scroll-based animation
+function initContactTitleAnimation() {
+    const contactSection = document.getElementById('contact');
+    const contactTitle = contactSection?.querySelector('.contact-hero-title');
+    
+    if (contactSection && contactTitle) {
+        const firstLine = contactTitle.querySelector('.title-line:first-child');
+        const lastLine = contactTitle.querySelector('.title-line:last-child');
+        
+        function updateContactTitlePosition() {
+            const rect = contactSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Calculate scroll progress (0 to 1)
+            const rawProgress = Math.max(0, Math.min(1, 
+                (windowHeight - rect.top) / (windowHeight * 1.0)
+            ));
+            
+            // Apply gentle easing for smooth but visible animation
+            const scrollProgress = Math.sqrt(rawProgress);
+            
+            // Calculate positions based on scroll progress
+            const firstLineOffset = 30 * (1 - scrollProgress);
+            const lastLineOffset = -30 * (1 - scrollProgress);
+            
+            // Apply smooth transforms without text alignment changes
+            if (firstLine) {
+                firstLine.style.transform = `translateX(${firstLineOffset}%)`;
+                firstLine.style.textAlign = 'center';
+            }
+            if (lastLine) {
+                lastLine.style.transform = `translateX(${lastLineOffset}%)`;
+                lastLine.style.textAlign = 'center';
+            }
+        }
+        
+        window.addEventListener('scroll', updateContactTitlePosition, { passive: true });
+        updateContactTitlePosition();
+    }
 }
