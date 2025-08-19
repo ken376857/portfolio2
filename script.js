@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initProfileAnimations();
     initLoveTags();
     initScrollAnimations();
-    initScrollDownIndicator();
     initTocLinks();
     initHearingCircleAnimation();
     initAnalysisCircleAnimation();
@@ -591,46 +590,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Scroll Down Indicator with smart visibility control
-    function initScrollDownIndicator() {
-        const scrollIndicator = document.querySelector('.scroll-down-indicator');
-        const heroSection = document.querySelector('.hero-section');
-        
-        if (scrollIndicator && heroSection) {
-            // Click functionality
-            scrollIndicator.addEventListener('click', () => {
-                const tocSection = document.querySelector('.toc-section');
-                if (tocSection) {
-                    tocSection.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-            
-            // Smart visibility control based on hero section visibility
-            function updateScrollIndicatorVisibility() {
-                const heroRect = heroSection.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                
-                // Show indicator only when hero section is visible
-                // Hide when hero section is mostly out of view
-                const heroVisible = heroRect.bottom > windowHeight * 0.2;
-                
-                if (heroVisible) {
-                    scrollIndicator.classList.remove('hidden');
-                } else {
-                    scrollIndicator.classList.add('hidden');
-                }
-            }
-            
-            // Listen for scroll events
-            window.addEventListener('scroll', updateScrollIndicatorVisibility, { passive: true });
-            
-            // Initial check
-            updateScrollIndicatorVisibility();
-        }
-    }
     
     // TOC Links Smooth Scrolling
     function initTocLinks() {
@@ -668,7 +627,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initTocSection();
     initTocLinks();
     initLoveTags();
-    initScrollDownIndicator();
     
     // 売上カウンターアニメーション開始
     setTimeout(() => {
