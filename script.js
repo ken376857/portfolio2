@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 売上カウンターアニメーション開始
     setTimeout(() => {
         initSalesCounterAnimation();
-    }, 1000);
+    }, 300);
 });
 
 
