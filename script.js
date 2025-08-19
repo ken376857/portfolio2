@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initScrollDownIndicator();
     initTocLinks();
+    initHearingCircleAnimation();
+    initAnalysisCircleAnimation();
+    initLearningCircleAnimation();
 
     // Profile Section Animations
     function initProfileAnimations() {
@@ -830,4 +833,168 @@ function initSalesCounterAnimation() {
     setTimeout(() => {
         updateCounter();
     }, 1500);
+}
+
+// ヒアリング力の円にスクロール連動光エフェクト
+function initHearingCircleAnimation() {
+    const hearingCircle = document.querySelector('.hearing-power-section .hearing-venn-diagram .venn-circle-1');
+    const hearingSection = document.querySelector('.hearing-power-section');
+    if (!hearingCircle || !hearingSection) return;
+
+    function updateHearingGlow() {
+        const rect = hearingSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // より簡単な進行度計算：セクションの上端が画面に入ってから完全に通過するまで
+        let progress = 0;
+        
+        if (rect.top <= windowHeight && rect.bottom >= 0) {
+            // セクションがビューポート内にある場合
+            if (rect.top <= windowHeight && rect.top > windowHeight * 0.2) {
+                // セクション上部が画面下80%に入った時点から開始（より下から）
+                progress = (windowHeight - rect.top) / (windowHeight * 0.8);
+            } else if (rect.top <= windowHeight * 0.2 && rect.bottom > windowHeight * 0.2) {
+                // セクションが画面上20%付近にある時は100%
+                progress = 1;
+            } else if (rect.bottom <= windowHeight * 0.2 && rect.bottom > 0) {
+                // セクションが画面上部に向かう時は徐々に減少
+                progress = rect.bottom / (windowHeight * 0.2);
+            }
+        }
+        
+        progress = Math.max(0, Math.min(1, progress));
+        
+        // デバッグ用（後で削除）
+        console.log('Progress:', progress.toFixed(2), 'Top:', rect.top.toFixed(0), 'Bottom:', rect.bottom.toFixed(0));
+        
+        // 光の強度を段階的に計算（progress: 0-1を基準）
+        let shadowIntensity, shadowSpread, innerShadow;
+        
+        // より滑らかな線形計算
+        shadowIntensity = 0.2 + (progress * 0.7); // 0.2から0.9まで
+        shadowSpread = 5 + (progress * 85); // 5pxから90pxまで
+        
+        // 内側の光は50%以降から追加
+        if (progress >= 0.5) {
+            const innerProgress = (progress - 0.5) * 2; // 0.5-1.0を0-1にマップ
+            innerShadow = `inset 0 0 ${10 + (innerProgress * 30)}px rgba(59, 130, 246, ${innerProgress * 0.3})`;
+        } else {
+            innerShadow = '';
+        }
+        
+        // ボックスシャドウを適用
+        if (shadowSpread > 0) {
+            const outerShadow = `0 0 ${shadowSpread}px rgba(59, 130, 246, ${shadowIntensity})`;
+            const fullShadow = innerShadow ? `${outerShadow}, ${innerShadow}` : outerShadow;
+            hearingCircle.style.boxShadow = fullShadow;
+        } else {
+            hearingCircle.style.boxShadow = 'none';
+        }
+    }
+    
+    // スクロールイベントリスナー
+    window.addEventListener('scroll', updateHearingGlow, { passive: true });
+    
+    // 初期状態を設定
+    updateHearingGlow();
+}
+
+// 分析力の円にスクロール連動光エフェクト（緑色）
+function initAnalysisCircleAnimation() {
+    const analysisCircle = document.querySelector('.analysis-power-section .analysis-venn-diagram .venn-circle-2');
+    const analysisSection = document.querySelector('.analysis-power-section');
+    if (!analysisCircle || !analysisSection) return;
+
+    function updateAnalysisGlow() {
+        const rect = analysisSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        let progress = 0;
+        
+        if (rect.top <= windowHeight && rect.bottom >= 0) {
+            if (rect.top <= windowHeight && rect.top > windowHeight * 0.2) {
+                progress = (windowHeight - rect.top) / (windowHeight * 0.8);
+            } else if (rect.top <= windowHeight * 0.2 && rect.bottom > windowHeight * 0.2) {
+                progress = 1;
+            } else if (rect.bottom <= windowHeight * 0.2 && rect.bottom > 0) {
+                progress = rect.bottom / (windowHeight * 0.2);
+            }
+        }
+        
+        progress = Math.max(0, Math.min(1, progress));
+        
+        // 緑色の光エフェクト
+        let shadowIntensity, shadowSpread, innerShadow;
+        
+        shadowIntensity = 0.2 + (progress * 0.7);
+        shadowSpread = 5 + (progress * 85);
+        
+        if (progress >= 0.5) {
+            const innerProgress = (progress - 0.5) * 2;
+            innerShadow = `inset 0 0 ${10 + (innerProgress * 30)}px rgba(34, 197, 94, ${innerProgress * 0.3})`;
+        } else {
+            innerShadow = '';
+        }
+        
+        if (shadowSpread > 0) {
+            const outerShadow = `0 0 ${shadowSpread}px rgba(34, 197, 94, ${shadowIntensity})`;
+            const fullShadow = innerShadow ? `${outerShadow}, ${innerShadow}` : outerShadow;
+            analysisCircle.style.boxShadow = fullShadow;
+        } else {
+            analysisCircle.style.boxShadow = 'none';
+        }
+    }
+    
+    window.addEventListener('scroll', updateAnalysisGlow, { passive: true });
+    updateAnalysisGlow();
+}
+
+// 学習姿勢の円にスクロール連動光エフェクト（赤色）
+function initLearningCircleAnimation() {
+    const learningCircle = document.querySelector('.learning-power-section .learning-venn-diagram .venn-circle-3');
+    const learningSection = document.querySelector('.learning-power-section');
+    if (!learningCircle || !learningSection) return;
+
+    function updateLearningGlow() {
+        const rect = learningSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        let progress = 0;
+        
+        if (rect.top <= windowHeight && rect.bottom >= 0) {
+            if (rect.top <= windowHeight && rect.top > windowHeight * 0.2) {
+                progress = (windowHeight - rect.top) / (windowHeight * 0.8);
+            } else if (rect.top <= windowHeight * 0.2 && rect.bottom > windowHeight * 0.2) {
+                progress = 1;
+            } else if (rect.bottom <= windowHeight * 0.2 && rect.bottom > 0) {
+                progress = rect.bottom / (windowHeight * 0.2);
+            }
+        }
+        
+        progress = Math.max(0, Math.min(1, progress));
+        
+        // 赤色の光エフェクト
+        let shadowIntensity, shadowSpread, innerShadow;
+        
+        shadowIntensity = 0.2 + (progress * 0.7);
+        shadowSpread = 5 + (progress * 85);
+        
+        if (progress >= 0.5) {
+            const innerProgress = (progress - 0.5) * 2;
+            innerShadow = `inset 0 0 ${10 + (innerProgress * 30)}px rgba(239, 68, 68, ${innerProgress * 0.3})`;
+        } else {
+            innerShadow = '';
+        }
+        
+        if (shadowSpread > 0) {
+            const outerShadow = `0 0 ${shadowSpread}px rgba(239, 68, 68, ${shadowIntensity})`;
+            const fullShadow = innerShadow ? `${outerShadow}, ${innerShadow}` : outerShadow;
+            learningCircle.style.boxShadow = fullShadow;
+        } else {
+            learningCircle.style.boxShadow = 'none';
+        }
+    }
+    
+    window.addEventListener('scroll', updateLearningGlow, { passive: true });
+    updateLearningGlow();
 }
