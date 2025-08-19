@@ -414,7 +414,7 @@ section.container:last-child {
 }
 
 .experience-badge {
-    background-color: #2d3748;
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
     border-radius: 50%;
     width: 160px;
     height: 160px;
@@ -2127,6 +2127,11 @@ section#sales-letter .funnel-badge.primary,
     }
 }
 
+/* Strengths Details Container */
+.strengths-details {
+    padding: 0 1rem;
+}
+
 /* Hearing Power Two Column Layout */
 .hearing-power-two-column {
     display: flex;
@@ -2550,6 +2555,7 @@ section#sales-letter .funnel-badge.primary,
     
     .hearing-power-left {
         flex: none;
+        width: 100%;
     }
     
     .hearing-power-right {
@@ -2568,8 +2574,13 @@ section#sales-letter .funnel-badge.primary,
 }
 
 @media (max-width: 768px) {
+    /* Remove container padding for strength sections to prevent double padding */
+    #service.container {
+        padding: 0;
+    }
+    
     .hearing-power-two-column {
-        padding: 2rem 1rem;
+        padding: 2rem 0;
         gap: 2rem;
     }
     
@@ -2706,6 +2717,7 @@ section#sales-letter .funnel-badge.primary,
     
     .analysis-power-left {
         flex: none;
+        width: 100%;
     }
     
     .analysis-power-right {
@@ -2720,7 +2732,7 @@ section#sales-letter .funnel-badge.primary,
 
 @media (max-width: 768px) {
     .analysis-power-two-column {
-        padding: 2rem 1rem;
+        padding: 2rem 0;
         gap: 2rem;
     }
     
@@ -2829,6 +2841,7 @@ section#sales-letter .funnel-badge.primary,
     
     .learning-power-left {
         flex: none;
+        width: 100%;
     }
     
     .learning-power-right {
@@ -2843,7 +2856,7 @@ section#sales-letter .funnel-badge.primary,
 
 @media (max-width: 768px) {
     .learning-power-two-column {
-        padding: 2rem 1rem;
+        padding: 2rem 0;
         gap: 2rem;
     }
     
@@ -5270,6 +5283,10 @@ section#sales-letter .funnel-badge.primary,
 }
 
 @media (max-width: 768px) {
+    #profile {
+        padding: 2rem 1rem;
+    }
+    
     .profile-grid {
         grid-template-columns: 1fr;
     }
@@ -7016,6 +7033,12 @@ table th {
     
     #career .career-timeline::before {
         left: 75px !important; /* Move timeline closer to left */
+    }
+    
+    /* Mobile background fix - background-attachment: fixed not supported on mobile */
+    .rindo-background,
+    .hero-service-background {
+        background-attachment: scroll !important;
     }
     
     #career .career-item {
