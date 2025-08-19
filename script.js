@@ -576,18 +576,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, index * 100); // 100ms stagger between items
         });
         
-        // Animate category tag
-        const categoryTag = document.querySelector('.skills-category-tag');
-        if (categoryTag) {
-            categoryTag.style.opacity = '0';
-            categoryTag.style.transform = 'translateY(-20px)';
-            
-            setTimeout(() => {
-                categoryTag.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                categoryTag.style.opacity = '1';
-                categoryTag.style.transform = 'translateY(0)';
-            }, 200);
-        }
     }
     
     
