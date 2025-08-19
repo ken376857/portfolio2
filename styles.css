@@ -722,6 +722,30 @@ section.container:last-child {
         margin-bottom: 1rem;
         padding: 1.2rem 2rem;
         height: 85px;
+        position: relative;
+        transform: translateY(4rem);
+    }
+    
+    .experience-badge {
+        position: absolute;
+        top: -144px;
+        right: -50px;
+    }
+    
+    .role-badge {
+        transform: translateY(4rem);
+    }
+    
+    .portfolio-credit {
+        transform: translateY(4rem);
+    }
+    
+    .hero-description {
+        transform: translateY(4rem);
+    }
+    
+    .mockup-container {
+        transform: translateY(4rem) !important;
     }
     
     .role-text {
@@ -765,6 +789,8 @@ section.container:last-child {
         height: 100px;
         display: inline-block;
         margin: 0.5rem;
+        animation: none !important;
+        transform: none !important;
     }
 }
 
