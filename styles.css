@@ -2219,8 +2219,9 @@ section#sales-letter .funnel-badge.primary,
 }
 
 /* ヒアリング力のベン図の2つの円の縁を薄くする */
-.hearing-power-section .hearing-venn-diagram .venn-circle-2 {
-    opacity: 0.2;
+.hearing-power-section .hearing-venn-diagram .venn-circle-2,
+.hearing-power-section .hearing-venn-diagram .venn-circle-3 {
+    opacity: 0.2 !important;
 }
 
 /* ヒアリング力の中央の円（venn-circle-1）に青い光るエフェクト */
