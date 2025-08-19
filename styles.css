@@ -1151,12 +1151,20 @@ section#sales-letter .funnel-badge.primary,
     display: inline;
 }
 
+/* モバイル専用改行クラス */
+.mobile-only {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .funnel-title {
         white-space: normal;
     }
     .pc-only {
         display: none;
+    }
+    .mobile-only {
+        display: inline;
     }
 }
 
