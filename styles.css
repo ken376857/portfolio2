@@ -7082,8 +7082,8 @@ table th {
     }
     
     /* Mobile background fix - background-attachment: fixed not supported on mobile */
-    .rindo-background,
-    .hero-service-background {
+    .rindo-background-layer,
+    .hero-service-background::before {
         background-attachment: scroll !important;
     }
     
