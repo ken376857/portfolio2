@@ -2628,6 +2628,7 @@ section#sales-letter .funnel-badge.primary,
     .hearing-venn-diagram {
         width: 280px;
         height: 280px;
+        margin: 3rem 0;
     }
     
     .venn-circle {
@@ -2780,6 +2781,7 @@ section#sales-letter .funnel-badge.primary,
     .analysis-venn-diagram {
         width: 280px;
         height: 280px;
+        margin: 3rem 0;
     }
     
     .analysis-title {
@@ -2904,6 +2906,7 @@ section#sales-letter .funnel-badge.primary,
     .learning-venn-diagram {
         width: 280px;
         height: 280px;
+        margin: 3rem 0;
     }
     
     .learning-title {
@@ -5382,8 +5385,9 @@ section#sales-letter .funnel-badge.primary,
     left: 140px; /* Increased from 100px to create more space */
     top: 0;
     bottom: 0;
-    width: 1px;
-    background: #e5e7eb;
+    width: 3px;
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+    border-radius: 2px;
 }
 
 #career .career-item {
@@ -5400,11 +5404,12 @@ section#sales-letter .funnel-badge.primary,
     left: 140px; /* Match the line's new position */
     top: 3px; /* Adjusted from 5px for better vertical alignment */
     transform: translateX(-50%); /* Center the dot on the line */
-    width: 12px; /* Reduced from 16px */
-    height: 12px; /* Reduced from 16px */
-    background: white;
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     border-radius: 50%;
-    border: 2px solid white; /* Reduced from 3px */
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
     z-index: 2;
 }
 
