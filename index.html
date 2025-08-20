@@ -781,7 +781,9 @@
         <div class="research-left">
             <div class="research-image-section">
                 <div class="research-screenshot">
-                    <img src="https://tnbkn.com/wp-content/uploads/deep-research1-scaled.webp" alt="Deep Research結果画面のスクリーンショット" class="research-screenshot-image" onclick="openImageModal('https://tnbkn.com/wp-content/uploads/deep-research1-scaled.webp', 'Deep Research結果画面のスクリーンショット')">
+                    <button type="button" class="image-button" onclick="openImageModal('https://tnbkn.com/wp-content/uploads/deep-research1-scaled.webp', 'Deep Research結果画面のスクリーンショット')" aria-label="Deep Research結果画面のスクリーンショットを拡大表示">
+                        <img src="https://tnbkn.com/wp-content/uploads/deep-research1-scaled.webp" alt="Deep Research結果画面のスクリーンショット" class="research-screenshot-image">
+                    </button>
                 </div>
                 <button class="prompt-button rich-prompt-button" onclick="openPromptModal('quantitative')">
                     <span class="button-text">プロンプトを確認</span>
@@ -821,7 +823,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>定量調査のプロンプト</div>
-                <span class="close" onclick="closePromptModal('quantitative')">&times;</span>
+                <button type="button" class="close" onclick="closePromptModal('quantitative')" aria-label="定量調査プロンプトモーダルを閉じる">&times;</button>
             </div>
             <div class="modal-body">
                 <p>林業業界の定量調査で実際に使用したChatGPT Deep Researchのプロンプトです。</p>
@@ -888,7 +890,7 @@
     <!-- Image Modal -->
     <div id="imageModal" class="image-modal">
         <div class="image-modal-content">
-            <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+            <button type="button" class="image-modal-close" onclick="closeImageModal()" aria-label="画像モーダルを閉じる">&times;</button>
             <img id="modalImage" class="modal-image" src="" alt="">
             <div class="image-modal-caption" id="modalCaption"></div>
         </div>
@@ -898,7 +900,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>定性調査のプロンプト</div>
-                <span class="close" onclick="closePromptModal('qualitative')">&times;</span>
+                <button type="button" class="close" onclick="closePromptModal('qualitative')" aria-label="定性調査プロンプトモーダルを閉じる">&times;</button>
             </div>
             <div class="modal-body">
                 <p>林業業界の定性調査で実際に使用したChatGPT Deep Researchのプロンプトです。</p>
@@ -957,7 +959,9 @@
         <div class="research-left">
             <div class="research-image-section">
                 <div class="research-screenshot">
-                    <img src="https://tnbkn.com/wp-content/uploads/deep-research2-scaled.webp" alt="定性調査結果画面のスクリーンショット" class="research-screenshot-image" onclick="openImageModal('https://tnbkn.com/wp-content/uploads/deep-research2-scaled.webp', '定性調査結果画面のスクリーンショット')">
+                    <button type="button" class="image-button" onclick="openImageModal('https://tnbkn.com/wp-content/uploads/deep-research2-scaled.webp', '定性調査結果画面のスクリーンショット')" aria-label="定性調査結果画面のスクリーンショットを拡大表示">
+                        <img src="https://tnbkn.com/wp-content/uploads/deep-research2-scaled.webp" alt="定性調査結果画面のスクリーンショット" class="research-screenshot-image">
+                    </button>
                 </div>
                 <button class="prompt-button rich-prompt-button" onclick="openPromptModal('qualitative')">
                     <span class="button-text">プロンプトを確認</span>

@@ -1,6 +1,4 @@
 // Loading Screen Control
-// （任意）デバッグ用のアラートは外す
-// alert('test');
 
 // ロード完了時、ローディング画面の当たり判定を即無効化→その後アニメで消す
 window.addEventListener('load', () => {
@@ -795,8 +793,6 @@ function initHearingCircleAnimation() {
         
         progress = Math.max(0, Math.min(1, progress));
         
-        // デバッグ用（後で削除）
-        console.log('Progress:', progress.toFixed(2), 'Top:', rect.top.toFixed(0), 'Bottom:', rect.bottom.toFixed(0));
         
         // 光の強度を段階的に計算（progress: 0-1を基準）
         let shadowIntensity, shadowSpread, innerShadow;
