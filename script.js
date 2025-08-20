@@ -1,16 +1,23 @@
 // Loading Screen Control
-window.addEventListener('load', function() {
-    const loadingScreen = document.getElementById('loading-screen');
-    
-    // Add a minimum loading time for better UX
+// （任意）デバッグ用のアラートは外す
+// alert('test');
+
+// ロード完了時、ローディング画面の当たり判定を即無効化→その後アニメで消す
+window.addEventListener('load', () => {
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) {
+    loadingScreen.style.pointerEvents = 'none';
     setTimeout(() => {
-        loadingScreen.classList.add('slide-up');
-        
-        // Remove element completely after slide animation
-        setTimeout(() => {
-            loadingScreen.remove();
-        }, 800);
-    }, 1200); // 1.2 seconds minimum loading time
+      loadingScreen.classList.add('slide-up');
+      loadingScreen.addEventListener('animationend', () => loadingScreen.remove(), { once: true });
+    }, 1200);
+  }
+
+  // 念のため、もしモーダルが開いたままなら閉じる（誤表示のブロック対策）
+  document.querySelectorAll('.modal, .image-modal').forEach(m => {
+    if (getComputedStyle(m).display !== 'none') m.style.display = 'none';
+  });
+  document.body.style.overflow = 'auto';
 });
 
 // Profile Section Interactive Features

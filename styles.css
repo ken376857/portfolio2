@@ -26,6 +26,7 @@ img, video, iframe {
 
 
 /* RINDO 背景レイヤー */
+/* クリック遮断を防ぐ */
 .rindo-background-layer {
     position: fixed;
     top: 0;
@@ -40,10 +41,22 @@ img, video, iframe {
     opacity: 0;
     z-index: 2;
     transition: opacity 0.8s ease;
+    pointer-events: none;
 }
 
 .rindo-background-layer.active {
     opacity: 1;
+}
+
+/* --- FIX: 背景レイヤーがクリックを遮らないようにする --- */
+#rindo-background-layer,
+.rindo-background-layer {
+  pointer-events: none;
+}
+
+/* 既存のフェードインなどの見た目はそのまま */
+.rindo-background-layer.active {
+  opacity: 1;
 }
 
 .rindo-background-overlay {
@@ -57,6 +70,10 @@ img, video, iframe {
 }
 
 /* Loading Screen */
+#loading-screen { 
+    pointer-events: none; 
+}
+
 .loading-screen {
     position: fixed;
     top: 0;
@@ -7174,4 +7191,15 @@ table th {
         margin-left: 0;
         margin-right: 0;
     }
+}[id$="background-layer"], [class$="background-layer"] { pointer-events: none \!important; }
+
+/* --- FIX: 背景系の当たり判定をすべて無効化 --- */
+#loading-screen, .loading-screen,
+#rindo-background-layer, .rindo-background-layer, .rindo-background-overlay,
+#sales-letter-background-layer, .sales-letter-background-layer, .sales-letter-background-overlay,
+#seo-media-background-layer, .seo-media-background-layer, .seo-media-background-overlay {
+  pointer-events: none !important;
 }
+
+/* --- FIX: コンテンツがマイナスz-indexで背面に行かないように --- */
+.hero-service-background { z-index: 0 !important; }
