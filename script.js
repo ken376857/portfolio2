@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initStrengthsTitleAnimation();
     initFlowTitleAnimation();
     initFaqTitleAnimation();
-    initContactTitleAnimation();
+    //initContactTitleAnimation();
 
     // Profile Section Animations
     function initProfileAnimations() {
@@ -707,6 +707,7 @@ function closeImageModal() {
     }
 }
 
+/*
 // Close modal when clicking outside of it
 window.onclick = function(event) {
     const modals = document.querySelectorAll('.modal');
@@ -723,6 +724,7 @@ window.onclick = function(event) {
         closeImageModal();
     }
 }
+*/
 
 // Close image modal with Escape key
 document.addEventListener('keydown', function(event) {
