@@ -7379,7 +7379,14 @@ table th {
 /* スマホ用背景画像 */
 @media (max-width: 768px) {
     .sales-letter-background-layer {
-        background-image: url('https://tnbkn.com/wp-content/uploads/pro-freelance-sp-scaled-e1755740822434.webp');
+        background-image: url('https://tnbkn.com/wp-content/uploads/pro-freelance-sp-scaled-e1755740822434.webp') !important;
+    }
+}
+
+/* iPhone対応 */
+@media only screen and (max-device-width: 812px) {
+    .sales-letter-background-layer {
+        background-image: url('https://tnbkn.com/wp-content/uploads/pro-freelance-sp-scaled-e1755740822434.webp') !important;
     }
 }
 .sales-letter-background-layer.active {
