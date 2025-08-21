@@ -20,6 +20,18 @@ window.addEventListener('load', () => {
         loadingScreen.remove();
         // ローディング画面完全消去後にカウントアップ開始
         setTimeout(startSalesCounter, 500);
+        
+        // フローティングボタンとぼかし帯を表示
+        setTimeout(() => {
+          const floatingButton = document.querySelector('.floating-button');
+          const floatingBlur = document.querySelector('.floating-blur');
+          if (floatingButton) {
+            floatingButton.style.display = 'block';
+          }
+          if (floatingBlur) {
+            floatingBlur.style.display = 'block';
+          }
+        }, 100);
       }, { once: true });
       
       // フォールバック: アニメーションイベントが発火しない場合
@@ -27,11 +39,33 @@ window.addEventListener('load', () => {
         if (!counterStarted) {
           startSalesCounter();
         }
+        // フローティングボタンとぼかし帯のフォールバック表示
+        setTimeout(() => {
+          const floatingButton = document.querySelector('.floating-button');
+          const floatingBlur = document.querySelector('.floating-blur');
+          if (floatingButton) {
+            floatingButton.style.display = 'block';
+          }
+          if (floatingBlur) {
+            floatingBlur.style.display = 'block';
+          }
+        }, 100);
       }, 3000);
     }, 1200);
   } else {
     // ローディング画面が存在しない場合のフォールバック
     setTimeout(startSalesCounter, 1000);
+    // フローティングボタンとぼかし帯を表示
+    setTimeout(() => {
+      const floatingButton = document.querySelector('.floating-button');
+      const floatingBlur = document.querySelector('.floating-blur');
+      if (floatingButton) {
+        floatingButton.style.display = 'block';
+      }
+      if (floatingBlur) {
+        floatingBlur.style.display = 'block';
+      }
+    }, 100);
   }
 
   // 念のため、もしモーダルが開いたままなら閉じる（誤表示のブロック対策）

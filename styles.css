@@ -729,19 +729,27 @@ section.container:last-child {
     
     .mockup-container {
         transform: none;
-        height: 50vh;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        perspective: none;
     }
     
     .mockup {
         position: relative;
-        display: inline-block;
-        margin: 0.5rem;
+        display: block;
+        margin: 0;
+        width: 100% !important;
+        height: auto !important;
     }
     
     .mockup-1, .mockup-2, .mockup-3, .mockup-4, .mockup-5, .mockup-6 {
         position: relative;
         top: auto;
         right: auto;
+        left: auto;
         width: 150px;
         height: 100px;
         display: inline-block;
@@ -4472,6 +4480,104 @@ body.modal-open {
     position: relative;
 }
 
+/* 既存の .floating-button::before は削除 or 無効化 */
+.floating-blur{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;                /* 「上下少し」 */
+  background: linear-gradient(to top,
+              rgba(0,0,0,.30) 0%,
+              rgba(0,0,0,.10) 60%,
+              transparent 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 999;                 /* ぼかし帯 */
+  pointer-events: none;
+  display: none;
+}
+.floating-button{
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;                /* ボタン本体は帯より上 */
+  display: none;
+}
+
+.floating-btn {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: white;
+    text-decoration: none;
+    padding: 20px 35px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(39, 174, 96, 0.4);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    animation: float 3s ease-in-out infinite;
+}
+
+.floating-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(39, 174, 96, 0.6);
+    background: linear-gradient(135deg, #219a52, #27ae60);
+}
+
+.floating-btn i:first-child {
+    margin-right: 12px;
+    font-size: 1.4rem;
+}
+
+.floating-btn i:last-child {
+    margin-left: 12px;
+    font-size: 1.2rem;
+}
+
+.floating-btn-text {
+    color: white;
+    text-decoration: none;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .floating-blur {
+        height: 90px;
+    }
+    
+    .floating-button {
+        bottom: 15px;
+    }
+    
+    .floating-btn {
+        padding: 16px 28px;
+        font-size: 1.1rem;
+    }
+    
+    .floating-btn i:first-child {
+        margin-right: 10px;
+        font-size: 1.3rem;
+    }
+    
+    .floating-btn i:last-child {
+        margin-left: 10px;
+        font-size: 1.1rem;
+    }
+}
+
 /* Contract Flow Section */
 .contract-flow-section {
     border-radius: 20px;
@@ -5222,7 +5328,7 @@ body.modal-open {
     flex-shrink: 0;
     width: 200px;
     height: auto;
-    border-radius: 12px;
+    border-radius: 0px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     background: white;
