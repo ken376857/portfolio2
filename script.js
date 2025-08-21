@@ -3,12 +3,35 @@
 // ロード完了時、ローディング画面の当たり判定を即無効化→その後アニメで消す
 window.addEventListener('load', () => {
   const loadingScreen = document.getElementById('loading-screen');
+  let counterStarted = false;
+  
+  function startSalesCounter() {
+    if (!counterStarted) {
+      counterStarted = true;
+      initSalesCounterAnimation();
+    }
+  }
+  
   if (loadingScreen) {
     loadingScreen.style.pointerEvents = 'none';
     setTimeout(() => {
       loadingScreen.classList.add('slide-up');
-      loadingScreen.addEventListener('animationend', () => loadingScreen.remove(), { once: true });
+      loadingScreen.addEventListener('animationend', () => {
+        loadingScreen.remove();
+        // ローディング画面完全消去後にカウントアップ開始
+        setTimeout(startSalesCounter, 500);
+      }, { once: true });
+      
+      // フォールバック: アニメーションイベントが発火しない場合
+      setTimeout(() => {
+        if (!counterStarted) {
+          startSalesCounter();
+        }
+      }, 3000);
     }, 1200);
+  } else {
+    // ローディング画面が存在しない場合のフォールバック
+    setTimeout(startSalesCounter, 1000);
   }
 
   // 念のため、もしモーダルが開いたままなら閉じる（誤表示のブロック対策）
@@ -547,10 +570,13 @@ document.addEventListener('DOMContentLoaded', function() {
     initTocLinks();
     initLoveTags();
     
-    // 売上カウンターアニメーション開始
+    // 売上カウンターアニメーションはローディング画面完了後に開始
+    // フォールバック: もしloadイベントで開始されなかった場合
     setTimeout(() => {
-        initSalesCounterAnimation();
-    }, 300);
+        if (typeof initSalesCounterAnimation === 'function') {
+            initSalesCounterAnimation();
+        }
+    }, 4000);
 });
 
 
@@ -676,8 +702,16 @@ document.addEventListener('DOMContentLoaded', initRoleDiagramAnimation);
 function openPromptModal(type) {
     const modal = document.getElementById(type + 'Modal');
     if (modal) {
+        // スクロール位置を保存
+        const scrollY = window.scrollY;
         modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.classList.add('modal-open');
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+        // スクロール位置をbodyに保存
+        document.body.setAttribute('data-scroll-y', scrollY);
     }
 }
 
@@ -685,7 +719,16 @@ function closePromptModal(type) {
     const modal = document.getElementById(type + 'Modal');
     if (modal) {
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        document.body.classList.remove('modal-open');
+        
+        // スクロール位置を復元
+        const scrollY = document.body.getAttribute('data-scroll-y');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, parseInt(scrollY || '0'));
+        document.body.removeAttribute('data-scroll-y');
     }
 }
 
@@ -696,11 +739,18 @@ function openImageModal(imageSrc, altText) {
     const modalCaption = document.getElementById('modalCaption');
     
     if (modal && modalImage && modalCaption) {
+        // スクロール位置を保存
+        const scrollY = window.scrollY;
         modal.style.display = 'block';
         modalImage.src = imageSrc;
         modalImage.alt = altText;
         modalCaption.textContent = altText;
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.classList.add('modal-open');
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+        document.body.setAttribute('data-scroll-y', scrollY);
     }
 }
 
@@ -708,7 +758,16 @@ function closeImageModal() {
     const modal = document.getElementById('imageModal');
     if (modal) {
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        document.body.classList.remove('modal-open');
+        
+        // スクロール位置を復元
+        const scrollY = document.body.getAttribute('data-scroll-y');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, parseInt(scrollY || '0'));
+        document.body.removeAttribute('data-scroll-y');
     }
 }
 
