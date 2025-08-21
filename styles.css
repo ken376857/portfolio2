@@ -4083,28 +4083,29 @@ body.modal-open {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
     animation: fadeIn 0.3s ease;
+    overflow-y: auto;
 }
 
 .image-modal-content {
     position: relative;
-    margin: auto;
+    margin: 0;
     display: block;
-    width: 90%;
-    max-width: 1200px;
-    max-height: 90%;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 100%;
+    min-height: 100vh;
     text-align: center;
+    padding: 60px 120px 20px 120px;
 }
 
 .modal-image {
-    width: 100%;
+    width: calc(100% - 240px);
+    max-width: calc(100% - 240px);
     height: auto;
-    max-height: 80vh;
     object-fit: contain;
     border-radius: 10px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     animation: zoomIn 0.3s ease;
+    display: block;
+    margin: 0 auto;
 }
 
 .image-modal-caption {
@@ -4118,7 +4119,7 @@ body.modal-open {
 }
 
 .image-modal-close {
-    position: absolute;
+    position: fixed;
     top: 15px;
     right: 35px;
     color: #f1f1f1;
@@ -4169,11 +4170,14 @@ body.modal-open {
     }
     
     .image-modal-content {
-        width: 95%;
+        padding: 60px 20px 20px 20px;
     }
     
     .modal-image {
-        max-height: 75vh;
+        width: calc(100% - 40px);
+        max-width: calc(100% - 40px);
+        height: auto;
+        margin: 0 auto;
     }
     
     .image-modal-caption {
@@ -4418,6 +4422,31 @@ body.modal-open {
         overflow: hidden !important;
         text-overflow: ellipsis !important;
     }
+}
+
+/* スマホ: 横いっぱい＆縦は浅く（縦長画像でもOK） */
+@media (max-width: 768px) {
+  .research-screenshot-image {
+    width: 100% !important; 
+    height: auto !important;
+    aspect-ratio: 16 / 5; 
+    object-fit: cover;
+    object-position: center top;
+    display: block;             
+  }
+  /* 下の白グラデが被りすぎる場合は浅くする */
+  .research-screenshot::after {
+    height: 48px !important;  
+  }
+}
+
+.image-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #f8f8f8;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-style: italic;
 }
 
 /* Contract Flow Section */
