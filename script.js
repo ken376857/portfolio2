@@ -14,14 +14,17 @@ window.addEventListener('load', () => {
   
   if (loadingScreen) {
     loadingScreen.style.pointerEvents = 'none';
+    
+    // カウントアップをローディング開始と同時に即座に開始
+    startSalesCounter();
+    
     setTimeout(() => {
       loadingScreen.classList.add('slide-up');
       loadingScreen.addEventListener('animationend', () => {
         loadingScreen.remove();
-        // ローディング画面完全消去後にカウントアップ開始
-        setTimeout(startSalesCounter, 500);
+        // カウントアップは既に開始済み
         
-        // フローティングボタンとぼかし帯を表示
+        // フローティングボタンとぼかし帯を表示（カウントアップより後に）
         setTimeout(() => {
           const floatingButton = document.querySelector('.floating-button');
           const floatingBlur = document.querySelector('.floating-blur');
@@ -31,7 +34,7 @@ window.addEventListener('load', () => {
           if (floatingBlur) {
             floatingBlur.style.display = 'block';
           }
-        }, 100);
+        }, 1500);
       }, { once: true });
       
       // フォールバック: アニメーションイベントが発火しない場合
@@ -49,12 +52,12 @@ window.addEventListener('load', () => {
           if (floatingBlur) {
             floatingBlur.style.display = 'block';
           }
-        }, 100);
+        }, 1500);
       }, 3000);
     }, 1200);
   } else {
     // ローディング画面が存在しない場合のフォールバック
-    setTimeout(startSalesCounter, 1000);
+    startSalesCounter();
     // フローティングボタンとぼかし帯を表示
     setTimeout(() => {
       const floatingButton = document.querySelector('.floating-button');
@@ -65,7 +68,7 @@ window.addEventListener('load', () => {
       if (floatingBlur) {
         floatingBlur.style.display = 'block';
       }
-    }, 100);
+    }, 1500);
   }
 
   // 念のため、もしモーダルが開いたままなら閉じる（誤表示のブロック対策）
@@ -605,12 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoveTags();
     
     // 売上カウンターアニメーションはローディング画面完了後に開始
-    // フォールバック: もしloadイベントで開始されなかった場合
-    setTimeout(() => {
-        if (typeof initSalesCounterAnimation === 'function') {
-            initSalesCounterAnimation();
-        }
-    }, 4000);
+    // （loadイベントで確実に開始されるため、フォールバックは不要）
 });
 
 
@@ -832,9 +830,13 @@ document.addEventListener('keydown', function(event) {
 });
 
 // Sales Counter Animation
+let salesCounterStarted = false; // 重複実行防止フラグ
+
 function initSalesCounterAnimation() {
     const counter = document.getElementById('sales-counter');
-    if (!counter) return;
+    if (!counter || salesCounterStarted) return;
+    
+    salesCounterStarted = true; // フラグを設定
     
     const target = parseInt(counter.getAttribute('data-target'));
     const duration = 2000; // 2秒間でアニメーション
@@ -851,10 +853,8 @@ function initSalesCounterAnimation() {
         }
     }
     
-    // ページロード後少し遅れてアニメーション開始
-    setTimeout(() => {
-        updateCounter();
-    }, 1500);
+    // アニメーション即座開始
+    updateCounter();
 }
 
 // ヒアリング力の円にスクロール連動光エフェクト
@@ -1182,3 +1182,49 @@ function initContactTitleAnimation() {
         updateContactTitlePosition();
     }
 }
+
+// フローティングボタンの表示/非表示制御
+function initFloatingButtonVisibility() {
+    const floatingButton = document.querySelector('.floating-button');
+    const floatingBlur = document.querySelector('.floating-blur');
+    const contactButton = document.querySelector('.contact-button-container');
+    
+    if (!floatingButton || !contactButton) return;
+    
+    function updateFloatingButtonVisibility() {
+        const contactButtonRect = contactButton.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // お問い合わせボタンが画面に表示された場合、フローティングボタンとぼかし背景を非表示
+        if (contactButtonRect.top <= windowHeight && contactButtonRect.bottom >= 0) {
+            floatingButton.style.opacity = '0';
+            floatingButton.style.pointerEvents = 'none';
+            if (floatingBlur) {
+                floatingBlur.style.opacity = '0';
+                floatingBlur.style.pointerEvents = 'none';
+            }
+        } else {
+            floatingButton.style.opacity = '1';
+            floatingButton.style.pointerEvents = 'auto';
+            if (floatingBlur) {
+                floatingBlur.style.opacity = '1';
+                floatingBlur.style.pointerEvents = 'none'; // ぼかし背景は常にクリック無効
+            }
+        }
+    }
+    
+    // スクロールイベントリスナー
+    window.addEventListener('scroll', updateFloatingButtonVisibility, { passive: true });
+    
+    // 初期状態をチェック
+    updateFloatingButtonVisibility();
+}
+
+// DOMContentLoaded後に初期化
+document.addEventListener('DOMContentLoaded', function() {
+    // 既存の初期化の後にフローティングボタン制御を追加
+    setTimeout(() => {
+        initFloatingButtonVisibility();
+    }, 100);
+});
+
