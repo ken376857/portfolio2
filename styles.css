@@ -4449,6 +4449,29 @@ body.modal-open {
     font-style: italic;
 }
 
+/* Zoom overlay for research screenshots */
+.zoom-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.image-button {
+    position: relative;
+}
+
 /* Contract Flow Section */
 .contract-flow-section {
     border-radius: 20px;
