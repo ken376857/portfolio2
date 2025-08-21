@@ -7506,3 +7506,13 @@ table th {
 
 /* --- FIX: コンテンツがマイナスz-indexで背面に行かないように --- */
 .hero-service-background { z-index: 0 !important; }
+
+/* Heroの実績6枚の角丸を調整 */
+.hero-right .mockup {
+  border-radius: 4px !important;   /* 少し角丸に */
+  /* 画像がはみ出す場合は ↓ を使う: overflow: visible; */
+}
+
+.hero-right .mockup-image {
+  border-radius: 4px !important;   /* 少し角丸に：既存の15pxから変更 */
+}
