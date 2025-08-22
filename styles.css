@@ -7759,3 +7759,45 @@ table th {
         font-size: 16px;
     }
 }
+
+/* ===== Venn: forward（描く）＋ reverse（戻す） ===== */
+.venn-stroke-svg{
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; z-index:3; /* 円の上/テキストの下に */
+}
+/* 描画中は丸端、描き切ったら butt にして継ぎ目の点を消す */
+.venn-stroke { stroke-linecap: round; }
+.venn-stroke.is-closed { stroke-linecap: butt; }
+
+.venn-stroke{
+  fill:none; stroke:#fff; stroke-width:4; stroke-linecap:round;
+  filter:drop-shadow(0 0 18px rgba(255,255,255,.45))
+         drop-shadow(0 0 36px rgba(255,255,255,.25));
+}
+
+/* 出現時：少し遅れて→素早く描く */
+.venn-stroke.is-drawing{
+  animation:vennDraw .7s cubic-bezier(.2,.9,.25,1) forwards;
+  animation-delay:var(--venn-delay,420ms);
+}
+/* キーフレームは "--venn-total" を使う（JSでセット） */
+@keyframes vennDraw {
+  from { stroke-dashoffset: var(--venn-total, 300); }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* 通過時：描画を戻しつつ影を消す */
+.venn-stroke.is-reversing{
+  animation:vennUndraw .55s cubic-bezier(.6,0,.8,.2) forwards;
+}
+@keyframes vennUndraw {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: var(--venn-total, 300); }
+}
+
+/* "薄い円"化（非強調の見た目へ） */
+.venn-circle.is-demoted{
+  box-shadow:none !important;
+  opacity:var(--venn-demote-opacity,.2) !important; /* セクションの薄さと揃える */
+  filter:none !important;
+}
