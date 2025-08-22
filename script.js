@@ -675,17 +675,17 @@ function initBackgroundSwitching() {
         salesLetterBackgroundLayer.classList.remove('active');
         seoMediaBackgroundLayer.classList.remove('active');
         
-        if (flowRect.top <= windowHeight) {
-            // flowセクション以降: ファーストビュー（背景なし）
+        if (flowRect.top <= windowHeight * 0.7) {
+            // flowセクション以降: ファーストビュー（背景なし）（タイミングを遅く）
             // 何も表示しない
-        } else if (seoMediaRect.top <= windowHeight) {
-            // seo-mediaセクション: ファーストビュー（背景なし）
+        } else if (seoMediaRect.top <= windowHeight * 0.7) {
+            // seo-mediaセクション: なべけん背景（タイミングを遅く）
+            seoMediaBackgroundLayer.classList.add('active');
+        } else if (writingBusinessRect.top <= windowHeight * 0.5) {
+            // writing-businessセクション: ファーストビュー（背景なし）（切り替えタイミングをさらに遅く）
             // 何も表示しない
-        } else if (writingBusinessRect.top <= windowHeight) {
-            // writing-businessセクション: ファーストビュー（背景なし）
-            // 何も表示しない
-        } else if (salesLetterRect.top <= windowHeight) {
-            // sales-letterセクション: インフルエンサー背景
+        } else if (salesLetterRect.top <= windowHeight * 0.7) {
+            // sales-letterセクション: インフルエンサー背景（タイミングを遅く）
             salesLetterBackgroundLayer.classList.add('active');
         }
     }

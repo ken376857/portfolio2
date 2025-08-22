@@ -1159,6 +1159,11 @@ section#sales-letter .funnel-badge.primary,
     border-radius: 2px;
 }
 
+/* 制作概要・要件の見出しだけ縦線を無効化 */
+#sales-letter .work-section-title::before {
+    display: none;
+}
+
 .work-details-container {
     margin: 0 0 2rem 0;
 }
@@ -7410,7 +7415,7 @@ table th {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://tnbkn.com/wp-content/uploads/nabeken-2-scaled.webp');
+    background-image: url('https://tnbkn.com/wp-content/uploads/nabeken-walk-background.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -7460,6 +7465,40 @@ table th {
 #seo-media .funnel-detail-badge {
     background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important;
     color: white !important;
+}
+
+/* SEOメディアセクション - メディア実績のレイアウト */
+#seo-media .work-section-title .media-performance-note {
+    font-size: 0.7em;
+    color: #999;
+}
+
+#seo-media .media-performance-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#seo-media .media-performance-item {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+#seo-media .media-performance-text {
+    margin-top: 5px;
+}
+
+#seo-media .media-performance-text p {
+    color: white;
+    margin: 0;
+}
+
+/* 執筆・改善プロセスの説明文 */
+#seo-media .process-description {
+    color: white;
+    margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 /* ===== FINAL MOBILE OVERRIDE - Career Section ===== */
@@ -7627,7 +7666,40 @@ table th {
     transition: all 0.3s ease;
     font-weight: 600;
     font-size: 1.2rem;
-    white-space: nowrap;
+    width: 100%;
+    max-width: 600px;
+    justify-content: center;
+    min-width: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    z-index: 1;
+    pointer-events: none;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+.contact-cta-btn .contact-btn-text,
+.contact-cta-btn i {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(200%);
+    }
 }
 
 .contact-cta-btn:hover {
