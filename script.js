@@ -606,7 +606,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTocSection();
     initTocLinks();
     initLoveTags();
-    initVennDrawWithReturn();
+    initStrengthsStickyVenn();
     
     // 売上カウンターアニメーションはローディング画面完了後に開始
     // （loadイベントで確実に開始されるため、フォールバックは不要）
@@ -733,6 +733,153 @@ function initVennDrawWithReturn(){
       }
     });
   });
+}
+
+// 3つの左カラムからベン図を回収して、共通の固定カラムに重ねる
+function mountSingleStickyVenn(){
+  const details = document.querySelector('.strengths-details');
+  if (!details || document.querySelector('.strengths-sticky-wrapper')) return;
+
+  // ラッパーを用意（左=固定 / 右=説明の流し）
+  const wrapper = document.createElement('div');
+  wrapper.className = 'strengths-sticky-wrapper';
+  const left = document.createElement('div');
+  left.className = 'strengths-sticky-left';
+
+  details.parentNode.insertBefore(wrapper, details);
+  wrapper.appendChild(left);
+  wrapper.appendChild(details);
+
+  // 各見出しの左にある3つのベン図を左固定カラムへ移動
+  const pick = (k) => document.querySelector(`.${k}-power-left .${k}-venn-diagram`);
+  ['hearing','analysis','learning'].forEach(k => {
+    const el = pick(k); if (el) left.appendChild(el);
+  });
+
+  // もとの左カラムは非表示（スペースを詰める）
+  document.querySelectorAll('.hearing-power-left,.analysis-power-left,.learning-power-left')
+    .forEach(el => { el.style.display = 'none'; });
+}
+
+// ===== STRENGTHS: stickyベン図を「描く→戻す」で切替 =====
+function initStrengthsStickyVenn(){
+  mountSingleStickyVenn();
+  // 対象セクションと、各セクションで"描く円"
+  const cfgs = [
+    { section: '.hearing-power-section',  circle: '.hearing-venn-diagram  .venn-circle-1', delay: 420 },
+    { section: '.analysis-power-section', circle: '.analysis-venn-diagram .venn-circle-2', delay: 480 },
+    { section: '.learning-power-section', circle: '.learning-venn-diagram .venn-circle-3', delay: 520 },
+  ];
+
+  // 調整ノブ（←数値を変えるだけで挙動調整できます）
+  const REVERSE_TOP_THRESHOLD  = 0.20; // 現セクションtopが画面高*20%を上回ったら"戻し候補"
+  const REVERSE_NEXT_THRESHOLD = 0.65; // 次見出しのtopが画面高*65%に入ったら"戻し候補"
+  const REVERSE_HOLD_MS        = 140;  // 候補成立から実行までのホールド
+
+  // 1) 各ベン図に描画用SVGを重ね、dash初期化
+  const svgNS = 'http://www.w3.org/2000/svg';
+  document.querySelectorAll(
+    '.hearing-venn-diagram, .analysis-venn-diagram, .learning-venn-diagram'
+  ).forEach(host=>{
+    if(host.querySelector('.venn-stroke-svg')) return;
+    const svg = document.createElementNS(svgNS,'svg');
+    svg.setAttribute('class','venn-stroke-svg');
+    svg.setAttribute('viewBox','0 0 100 100');
+    svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+
+    const c = document.createElementNS(svgNS,'circle');
+    c.setAttribute('class','venn-stroke');
+    c.setAttribute('cx','50'); c.setAttribute('cy','50'); c.setAttribute('r','48');
+
+    svg.appendChild(c); host.appendChild(svg);
+
+    const len = c.getTotalLength(), EPS = 2; // 点対策で少しだけ長めに
+    c.style.strokeDasharray  = `${len+EPS}`;
+    c.style.strokeDashoffset = `${len+EPS}`;
+    c.style.setProperty('--venn-total', `${len+EPS}`);
+
+    // アニメ完了時の端処理（点が出ないように）
+    c.addEventListener('animationend', (e)=>{
+      if(e.animationName==='vennDraw')   c.classList.add('is-closed');
+      if(e.animationName==='vennUndraw') c.classList.remove('is-closed');
+    });
+  });
+
+  // 2) 再生関数
+  const playForward = (host, delay)=>{
+    const stroke = host?.querySelector('.venn-stroke');
+    if(!stroke) return;
+    stroke.classList.remove('is-reversing','is-closed');
+    void stroke.offsetWidth; // reflow
+    stroke.style.setProperty('--venn-delay', `${delay}ms`);
+    stroke.classList.add('is-drawing');     // 描く
+    host.classList.remove('is-demoted');    // 強調へ
+  };
+  const playReverse = (host)=>{
+    const stroke = host?.querySelector('.venn-stroke');
+    if(!stroke) return;
+    stroke.classList.remove('is-drawing');
+    void stroke.offsetWidth;
+    stroke.classList.add('is-reversing');   // 戻す
+    host.classList.add('is-demoted');       // 薄い円へ
+  };
+
+  // 3) セクションが見えたら「描く」・進んだら「戻す」
+  const state = new Map(); // secEl -> {drawn, reversed, reverseTimer}
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      const sec  = entry.target;
+      const cfg  = cfgs.find(c=>sec.matches(c.section));
+      const host = document.querySelector(cfg.circle);
+      const st   = state.get(sec) || {};
+      playForward(host, cfg.delay);
+      state.set(sec, { drawn:true, reversed:false, reverseTimer:null });
+    });
+  }, { threshold: 0.35 });
+
+  cfgs.forEach(c=>{
+    const sec = document.querySelector(c.section);
+    if(sec){ state.set(sec, {drawn:false,reversed:false,reverseTimer:null}); io.observe(sec); }
+  });
+
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', ()=>{
+    const vh = window.innerHeight || 800;
+    const goingDown = window.scrollY > lastY; lastY = window.scrollY;
+
+    cfgs.forEach((cfg, i)=>{
+      const sec  = document.querySelector(cfg.section);
+      const host = document.querySelector(cfg.circle);
+      if(!sec || !host) return;
+
+      const st = state.get(sec) || {};
+      const r  = sec.getBoundingClientRect();
+      const inViewport = r.top < vh && r.bottom > 0;
+      if(!st.drawn || st.reversed || !goingDown || !inViewport) return;
+
+      const nextSec = (cfgs[i+1]) ? document.querySelector(cfgs[i+1].section) : null;
+      const nextTop = nextSec ? nextSec.getBoundingClientRect().top : Infinity;
+
+      const hitByTop  = r.top  < vh * REVERSE_TOP_THRESHOLD;    // 現セクションが上に寄ってきた
+      const hitByNext = nextTop < vh * REVERSE_NEXT_THRESHOLD;  // 次見出しが入ってきた
+      const shouldReverse = hitByTop || hitByNext;
+
+      if(shouldReverse){
+        if(!st.reverseTimer){
+          st.reverseTimer = setTimeout(()=>{
+            const r2 = sec.getBoundingClientRect();
+            const nextTop2 = nextSec ? nextSec.getBoundingClientRect().top : Infinity;
+            const again = (r2.top < vh*REVERSE_TOP_THRESHOLD) || (nextTop2 < vh*REVERSE_NEXT_THRESHOLD);
+            if(again && !st.reversed){ playReverse(host); st.reversed = true; }
+            st.reverseTimer = null; state.set(sec, st);
+          }, REVERSE_HOLD_MS);
+        }
+      }else if(st.reverseTimer){
+        clearTimeout(st.reverseTimer); st.reverseTimer = null; state.set(sec, st);
+      }
+    });
+  }, { passive:true });
 }
 
 
