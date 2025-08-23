@@ -7913,9 +7913,203 @@ table th {
 
 /* Vennダイアグラム固定表示レイアウト（統合版・重複削除済み） */
 
-/* Vennダイアグラム統合CSS（全重複削除・最終版） */
+/* === 3 STRENGTHS: 新HTML構造用のレイアウト === */
+.strengths-layout{
+  display:grid;
+  grid-template-columns: 420px minmax(0,1fr);
+  gap: clamp(24px,3vw,48px);
+  align-items:start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
 
-/* 左固定ベン図、右説明の2カラムレイアウト */
+.strengths-left{
+  position: sticky !important;
+  top: clamp(48px,12vh,120px);
+  height: 420px; /* ベン図の見かけ高さ */
+}
+
+/* 左のベン図：3つの円を重ねて配置 */
+.strengths-left .venn-diagram{
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.strengths-left .venn-circle{
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 0 24px rgba(0,0,0,.08);
+}
+
+.strengths-left .venn-circle-1{
+  top: -24px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.strengths-left .venn-circle-2{
+  bottom: 10px;
+  left: 22%;
+}
+
+.strengths-left .venn-circle-3{
+  bottom: 10px;
+  right: 22%;
+}
+
+.strengths-left .venn-center-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #333;
+  z-index: 5;
+}
+
+.strengths-left .venn-center-text h3{
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 右のコンテンツエリア */
+.strengths-right{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.strengths-right .strength{
+  padding: 2rem 0;
+}
+
+.strengths-right .strength h4{
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.strengths-right .strength p{
+  line-height: 1.7;
+  color: #666;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px){
+  .strengths-layout{
+    display: block;
+  }
+  .strengths-left{
+    position: static;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+  .strengths-left .venn-diagram{
+    width: 100%;
+    max-width: 350px;
+    height: 350px;
+    margin: 0 auto;
+  }
+}
+
+/* === 3 STRENGTHS：セクション全体を2カラム／左をsticky固定 === */
+.strengths-layout{
+  display:grid;
+  grid-template-columns: 420px minmax(0,1fr);
+  gap: clamp(24px,3vw,48px);
+  align-items:start;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+  /* 親に overflow:hidden があると sticky は効かない → 基本は visible のまま */
+}
+
+.strengths-left{
+  position: sticky;
+  top: clamp(48px,12vh,120px); /* 固定位置。ヘッダー分を見ながら調整 */
+  align-self:start;
+}
+
+.venn-diagram{
+  position: relative;
+  width: 400px; height: 400px;  /* 見た目サイズに合わせて */
+  margin: 0 auto;
+}
+
+/* ベン図の3円（例：重なりを作る配置） */
+.venn-circle{
+  position:absolute; border-radius:50%;
+  width: 280px; height: 280px;
+  border: 4px solid #fff;           /* 縁線の太さを統一 */
+  box-sizing: border-box;
+}
+.venn-circle-1{ top:-24px; left:50%; transform:translateX(-50%); }
+.venn-circle-2{ bottom:10px; left:22%; }
+.venn-circle-3{ bottom:10px; right:22%; }
+
+/* 中央テキスト（ここだけに置く） */
+.venn-center-text{
+  position:absolute; inset:auto 0 0 0; /* 例：下寄せなら */
+  text-align:center; transform:translateY(20%); /* お好みで */
+}
+
+/* 右側の本文は縦積み */
+.strengths-right .strength{ margin-bottom: min(8vh, 72px); }
+
+/* モバイルは1カラムに落とす */
+@media (max-width: 768px){
+  .strengths-layout{ display:block; padding:0 12px; }
+  .strengths-left{ position: static; margin-bottom: 24px; }
+  .venn-diagram{ width: 80vw; height: 80vw; }
+  .venn-circle{ width: 56vw; height: 56vw; }
+}
+
+/* 固定レイアウト（描画アニメOFFの最小セット） */
+.strengths-sticky-wrapper{
+  display:grid;
+  grid-template-columns:420px minmax(0,1fr);
+  gap:clamp(24px,3vw,48px);
+  align-items:start;
+  max-width:1200px; margin:0 auto; padding:0 16px;
+  overflow:visible; /* 親が overflow:hidden だと sticky が効かない */
+}
+.strengths-sticky-left{
+  position:sticky !important;
+  top:clamp(48px,12vh,120px);
+  height:420px;
+}
+/* 左の固定ボックス内で3枚を重ねる（個別 sticky を無効化） */
+.strengths-sticky-left .hearing-venn-diagram,
+.strengths-sticky-left .analysis-venn-diagram,
+.strengths-sticky-left .learning-venn-diagram{
+  position:absolute !important; inset:0; margin:auto;
+}
+/* 旧スタイルの個別 sticky を打ち消し（保険） */
+.hearing-venn-diagram, .analysis-venn-diagram, .learning-venn-diagram{
+  position:static; top:auto;
+}
+@media (max-width:768px){
+  .strengths-sticky-wrapper{ display:block; }
+  .strengths-sticky-left{ position:static; height:auto; margin-bottom:16px; }
+}
+
+/* 中央テキスト重複防止：hearingだけ表示 */
+.strengths-sticky-left .analysis-venn-diagram .venn-center-text,
+.strengths-sticky-left .learning-venn-diagram .venn-center-text{ display:none !important; }
+
+/* 円のサイズと線の太さを統一 */
+:root{ --venn-size:400px; --venn-ring:4px; }
+.venn-circle-1,.venn-circle-2,.venn-circle-3{
+  width:280px !important; height:280px !important;
+  border:var(--venn-ring) solid #fff !important;
+}
+
+/* === Strengths：セクション全体2カラム化＋左をsticky固定（最小セット） === */
 .strengths-sticky-wrapper{
   display: grid;
   grid-template-columns: 420px minmax(0,1fr);
@@ -7924,17 +8118,15 @@ table th {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
-  overflow: visible; /* stickyが効くように */
+  overflow: visible; /* 親で overflow を隠すと sticky 無効化 → 必ず visible */
 }
-
-/* 左カラム固定 */
 .strengths-sticky-left{
-  position: sticky !important;
-  top: clamp(48px,12vh,120px);
-  height: 420px;
+  position: sticky;
+  top: clamp(48px,12vh,120px); /* 固定位置：好みで調整可 */
+  height: 420px;               /* ベン図の見かけ高さに合わせる */
 }
 
-/* 左カラムの3つのベン図を重ね表示 */
+/* 左固定ボックスの中で3枚のベン図を"同座標に重ねる"（個別stickyは打ち消す） */
 .strengths-sticky-left .hearing-venn-diagram,
 .strengths-sticky-left .analysis-venn-diagram,
 .strengths-sticky-left .learning-venn-diagram{
@@ -7945,37 +8137,93 @@ table th {
   height: 400px;
 }
 
-/* wrapper外の個別ベン図の古いsticky指定を無効化 */
-.hearing-venn-diagram,
-.analysis-venn-diagram,
-.learning-venn-diagram{
-  position: static;
-  top: auto;
-}
+/* 右カラム側は1カラムに統一（元の左列は非表示で詰める） */
+.strengths-sticky-wrapper .hearing-power-two-column,
+.strengths-sticky-wrapper .analysis-power-two-column,
+.strengths-sticky-wrapper .learning-power-two-column{ display:block; }
+.strengths-sticky-wrapper .hearing-power-left,
+.strengths-sticky-wrapper .analysis-power-left,
+.strengths-sticky-wrapper .learning-power-left{ display:none; }
 
-/* 中央テキストの重複防止（hearingだけ表示） */
+/* テキスト重複の抑止：中央テキストはhearingだけを表示 */
 .strengths-sticky-left .analysis-venn-diagram .venn-center-text,
 .strengths-sticky-left .learning-venn-diagram .venn-center-text{
   display: none !important;
 }
 
-/* 右カラムを2カラムから1カラムに統一 */
+/* === Strengths：恒久固定レイアウト（描画アニメOFF） === */
+.strengths-sticky-wrapper{
+  display: grid;
+  grid-template-columns: 420px minmax(0,1fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  overflow: visible; /* 祖先overflowでstickyが死ぬのを防ぐ */
+}
+.strengths-sticky-left{
+  position: sticky;
+  top: clamp(48px, 12vh, 120px);
+  height: 420px; /* ベン図の見かけ高さに合わせて調整可 */
+}
+
+/* 左固定ボックス内では3枚を同座標に重ねる（個別stickyを打ち消す） */
+.strengths-sticky-left .hearing-venn-diagram,
+.strengths-sticky-left .analysis-venn-diagram,
+.strengths-sticky-left .learning-venn-diagram{
+  position: absolute !important;
+  inset: 0;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+}
+
+/* 右側を1カラムに統一（元の左列は非表示） */
 .strengths-sticky-wrapper .hearing-power-two-column,
 .strengths-sticky-wrapper .analysis-power-two-column,
 .strengths-sticky-wrapper .learning-power-two-column{ display: block; }
-
 .strengths-sticky-wrapper .hearing-power-left,
 .strengths-sticky-wrapper .analysis-power-left,
 .strengths-sticky-wrapper .learning-power-left{ display: none; }
 
-/* モバイル対応 */
+/* テキスト重複を防止：中央テキストはhearingだけ表示 */
+.strengths-sticky-left .analysis-venn-diagram .venn-center-text,
+.strengths-sticky-left .learning-venn-diagram .venn-center-text{
+  display: none !important;
+}
+
+/* 旧：各ベン図自体をstickyにする指定が残っている場合に上書き */
+.hearing-venn-diagram, .analysis-venn-diagram, .learning-venn-diagram{
+  position: static; top: auto;
+}
+
+/* モバイルは1カラムに降ろす */
 @media (max-width: 768px){
   .strengths-sticky-wrapper{ display: block; }
   .strengths-sticky-left{ position: static; height: auto; margin-bottom: 16px; }
 }
 
-/* Vennダイアグラムstickyのための祖先要素のoverflow設定 */
+/* === Strengths：sticky が死なないように祖先の overflow を可視化 === */
 .strengths,
 .strengths *:where(.strengths-sticky-wrapper, .strengths-details, .hearing-power-two-column, .analysis-power-two-column, .learning-power-two-column){
   overflow: visible !important;
+}
+
+/* 固定レイアウト本体（既にある場合でも末尾で上書き） */
+.strengths-sticky-wrapper{
+  display:grid;
+  grid-template-columns:420px minmax(0,1fr);
+  gap:clamp(24px,3vw,48px);
+  align-items:start;
+  max-width:1200px; margin:0 auto; padding:0 16px;
+}
+.strengths-sticky-left{
+  position:sticky; top:clamp(48px,12vh,120px);
+  height:420px;
+}
+.strengths-sticky-left .hearing-venn-diagram,
+.strengths-sticky-left .analysis-venn-diagram,
+.strengths-sticky-left .learning-venn-diagram{
+  position:absolute !important; inset:0; margin:auto;
 }

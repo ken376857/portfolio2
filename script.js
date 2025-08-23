@@ -606,141 +606,19 @@ document.addEventListener('DOMContentLoaded', function() {
     initTocSection();
     initTocLinks();
     initLoveTags();
-    initStrengthsStickyVenn();
+    enableStrengthsStickyOnly(); // Vennダイアグラム固定表示を初期化
     
     // 売上カウンターアニメーションはローディング画面完了後に開始
     // （loadイベントで確実に開始されるため、フォールバックは不要）
 });
 
-// ===== Venn: 画面に入ったら描く → 通り過ぎたら戻す =====
-function initVennDrawWithReturn(){
-  const cfgs = [
-    { section: '.hearing-power-section',  circle: '.hearing-venn-diagram .venn-circle-1', delay: 420 },
-    { section: '.analysis-power-section', circle: '.analysis-venn-diagram .venn-circle-2', delay: 480 },
-    { section: '.learning-power-section', circle: '.learning-venn-diagram .venn-circle-3', delay: 520 },
-  ];
-  const svgNS = 'http://www.w3.org/2000/svg';
-  const state = new Map(); // {drawn:bool, reversed:bool}
 
-  // 旧）0.35 / 0.75 など
-  const REVERSE_TOP_THRESHOLD  = 0.18; // 現セクションの top が 画面高の18%より上に来たら戻す
-  const REVERSE_NEXT_THRESHOLD = 0.62; // 次セクションの見出しが 画面高の62%まで上がってきたら戻す
-
-  // オーバーレイSVGを重ね、dash初期化
-  cfgs.forEach(({circle})=>{
-    const host = document.querySelector(circle);
-    if(!host) return;
-    state.set(host.closest('.strength-detail-section'), { drawn:false, reversed:false });
-    if(host.querySelector('.venn-stroke-svg')) return;
-
-    const svg = document.createElementNS(svgNS,'svg');
-    svg.setAttribute('class','venn-stroke-svg');
-    svg.setAttribute('viewBox','0 0 100 100');
-    svg.setAttribute('preserveAspectRatio','xMidYMid meet');
-
-    const c = document.createElementNS(svgNS,'circle');
-    c.setAttribute('class','venn-stroke');
-    c.setAttribute('cx','50'); c.setAttribute('cy','50'); c.setAttribute('r','48');
-
-    svg.appendChild(c);
-    host.appendChild(svg);
-
-    // SVG circle 生成直後
-    const len = c.getTotalLength();
-    const EPS = 2; // 1〜3 くらい。円周より少し"長く"して初期の点も消す
-    c.style.strokeDasharray  = `${len + EPS}`;
-    c.style.strokeDashoffset = `${len + EPS}`;
-    c.style.setProperty('--venn-total', `${len + EPS}`); // CSS から参照
-  });
-
-  // 再生系
-  const playForward = (host, delay) => {
-    const stroke = host?.querySelector('.venn-stroke');
-    if (!stroke) return;
-    stroke.classList.remove('is-reversing', 'is-closed'); // ← ここ大事（丸端に戻す）
-    void stroke.offsetWidth;
-    stroke.style.setProperty('--venn-delay', `${delay}ms`);
-    stroke.classList.add('is-drawing');
-  };
-  const playReverse = (host) => {
-    const stroke = host?.querySelector('.venn-stroke');
-    if (!stroke) return;
-    stroke.classList.remove('is-drawing');
-    void stroke.offsetWidth;
-    stroke.classList.add('is-reversing');
-  };
-
-  // 可視になったら一度（or 再入場時）描く
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting) return;
-      const sec  = entry.target;
-      const cfg  = cfgs.find(c=>sec.matches(c.section));
-      const host = document.querySelector(cfg.circle);
-      const st   = state.get(sec) || {drawn:false,reversed:false};
-      playForward(host, cfg.delay);
-      state.set(sec, { drawn:true, reversed:false });
-    });
-  }, { threshold: 0.35 });
-  cfgs.forEach(c=>{ const sec=document.querySelector(c.section); if(sec) io.observe(sec); });
-
-  // 通り過ぎたら（下方向スクロール時に）戻す
-  let lastY = window.scrollY;
-  function onScroll(){
-    const vh = window.innerHeight || 800;
-    const goingDown = window.scrollY > lastY;
-    lastY = window.scrollY;
-
-    cfgs.forEach(cfg=>{
-      const sec  = document.querySelector(cfg.section);
-      const host = document.querySelector(cfg.circle);
-      if(!sec || !host) return;
-      const st = state.get(sec) || {drawn:false,reversed:false};
-
-      const r = sec.getBoundingClientRect();
-
-      // 新：セクションがまだ見えている間に戻す
-      const inViewport = r.top < vh && r.bottom > 0;
-      if (!st.drawn || st.reversed || !goingDown || !inViewport) return;
-
-      const idx     = cfgs.indexOf(cfg);
-      const nextCfg = (idx >= 0 && cfgs[idx + 1]) ? cfgs[idx + 1] : null;
-      const nextSec = nextCfg ? document.querySelector(nextCfg.section) : null;
-      const nextTop = nextSec ? nextSec.getBoundingClientRect().top : Infinity;
-
-      // どちらかが成立したら戻す
-      const hitByTop  = r.top  < vh * REVERSE_TOP_THRESHOLD;   // 現セクションが十分上へ寄った
-      const hitByNext = nextTop < vh * REVERSE_NEXT_THRESHOLD; // 次見出しが視界に入ってきた
-
-      if (hitByTop || hitByNext) {
-        playReverse(host);            // 線を戻す + .is-demoted で薄い円＆影なしへ
-        st.reversed = true;
-        state.set(sec, st);
-      }
-    });
-  }
-  window.addEventListener('scroll', onScroll, { passive:true });
-
-  // アニメ終了時に端の形を切替
-  document.querySelectorAll('.venn-stroke').forEach(stroke => {
-    stroke.addEventListener('animationend', (e) => {
-      if (e.animationName === 'vennDraw') {
-        // 描き切ったら butt にして継ぎ目の点を消す
-        stroke.classList.add('is-closed');
-      } else if (e.animationName === 'vennUndraw') {
-        // 戻し終わったら次回描画に向けて丸端へ
-        stroke.classList.remove('is-closed');
-      }
-    });
-  });
-}
-
-// 3つの左カラムからベン図を回収して、共通の固定カラムに重ねる
+// ===== STRENGTHS: Vennダイアグラム統合管理 =====
 function mountSingleStickyVenn(){
   const details = document.querySelector('.strengths-details');
   if (!details || document.querySelector('.strengths-sticky-wrapper')) return;
 
-  // ラッパーを用意（左=固定 / 右=説明の流し）
+  // ラッパー: 左=固定ベン図 / 右=説明
   const wrapper = document.createElement('div');
   wrapper.className = 'strengths-sticky-wrapper';
   const left = document.createElement('div');
@@ -750,137 +628,126 @@ function mountSingleStickyVenn(){
   wrapper.appendChild(left);
   wrapper.appendChild(details);
 
-  // 各見出しの左にある3つのベン図を左固定カラムへ移動
-  const pick = (k) => document.querySelector(`.${k}-power-left .${k}-venn-diagram`);
-  ['hearing','analysis','learning'].forEach(k => {
-    const el = pick(k); if (el) left.appendChild(el);
-  });
+  // 3つのベン図を左の固定カラムに移動
+  ['.hearing-venn-diagram', '.analysis-venn-diagram', '.learning-venn-diagram']
+    .forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) left.appendChild(el);
+    });
 
-  // もとの左カラムは非表示（スペースを詰める）
-  document.querySelectorAll('.hearing-power-left,.analysis-power-left,.learning-power-left')
-    .forEach(el => { el.style.display = 'none'; });
+  // 右カラムの空になった左列を非表示
+  document.querySelectorAll('.hearing-power-left, .analysis-power-left, .learning-power-left')
+    .forEach(el => el.style.display = 'none');
+
+  // 右カラムの2カラムを1カラム表示に
+  document.querySelectorAll('.hearing-power-two-column, .analysis-power-two-column, .learning-power-two-column')
+    .forEach(el => el.style.display = 'block');
 }
 
-// ===== STRENGTHS: stickyベン図を「描く→戻す」で切替 =====
 function initStrengthsStickyVenn(){
   mountSingleStickyVenn();
-  // 対象セクションと、各セクションで"描く円"
+
   const cfgs = [
     { section: '.hearing-power-section',  circle: '.hearing-venn-diagram  .venn-circle-1', delay: 420 },
     { section: '.analysis-power-section', circle: '.analysis-venn-diagram .venn-circle-2', delay: 480 },
     { section: '.learning-power-section', circle: '.learning-venn-diagram .venn-circle-3', delay: 520 },
   ];
 
-  // 調整ノブ（←数値を変えるだけで挙動調整できます）
-  const REVERSE_TOP_THRESHOLD  = 0.20; // 現セクションtopが画面高*20%を上回ったら"戻し候補"
-  const REVERSE_NEXT_THRESHOLD = 0.65; // 次見出しのtopが画面高*65%に入ったら"戻し候補"
-  const REVERSE_HOLD_MS        = 140;  // 候補成立から実行までのホールド
+  const REVERSE_TOP_THRESHOLD  = 0.20;
+  const REVERSE_NEXT_THRESHOLD = 0.65;
+  const REVERSE_HOLD_MS        = 140;
 
-  // 1) 各ベン図に描画用SVGを重ね、dash初期化
+  // SVGストローク描画アニメーションのセットアップ
   const svgNS = 'http://www.w3.org/2000/svg';
-  document.querySelectorAll(
-    '.hearing-venn-diagram, .analysis-venn-diagram, .learning-venn-diagram'
-  ).forEach(host=>{
+  document.querySelectorAll('.hearing-venn-diagram, .analysis-venn-diagram, .learning-venn-diagram').forEach(host=>{
     if(host.querySelector('.venn-stroke-svg')) return;
     const svg = document.createElementNS(svgNS,'svg');
-    svg.setAttribute('class','venn-stroke-svg');
+    svg.classList.add('venn-stroke-svg');
     svg.setAttribute('viewBox','0 0 100 100');
     svg.setAttribute('preserveAspectRatio','xMidYMid meet');
-
     const c = document.createElementNS(svgNS,'circle');
-    c.setAttribute('class','venn-stroke');
-    c.setAttribute('cx','50'); c.setAttribute('cy','50'); c.setAttribute('r','48');
-
+    c.setAttribute('class','venn-stroke'); c.setAttribute('cx','50'); c.setAttribute('cy','50'); c.setAttribute('r','48');
     svg.appendChild(c); host.appendChild(svg);
-
-    const len = c.getTotalLength(), EPS = 2; // 点対策で少しだけ長めに
-    c.style.strokeDasharray  = `${len+EPS}`;
-    c.style.strokeDashoffset = `${len+EPS}`;
-    c.style.setProperty('--venn-total', `${len+EPS}`);
-
-    // アニメ完了時の端処理（点が出ないように）
-    c.addEventListener('animationend', (e)=>{
-      if(e.animationName==='vennDraw')   c.classList.add('is-closed');
-      if(e.animationName==='vennUndraw') c.classList.remove('is-closed');
+    const len = c.getTotalLength(), EPS=2; c.style.strokeDasharray = `${len+EPS}`; c.style.strokeDashoffset = `${len+EPS}`; c.style.setProperty('--venn-total', `${len+EPS}`);
+    c.addEventListener('animationend', e => {
+      if (e.animationName === 'vennDraw')   c.classList.add('is-closed');
+      if (e.animationName === 'vennUndraw') c.classList.remove('is-closed');
     });
   });
 
-  // 2) 再生関数
-  const playForward = (host, delay)=>{
-    const stroke = host?.querySelector('.venn-stroke');
-    if(!stroke) return;
-    stroke.classList.remove('is-reversing','is-closed');
-    void stroke.offsetWidth; // reflow
+  // アニメーション制御
+  const playForward = (host, delay) => {
+    const stroke = host?.querySelector('.venn-stroke'); if(!stroke) return;
+    stroke.classList.remove('is-reversing','is-closed'); void stroke.offsetWidth;
     stroke.style.setProperty('--venn-delay', `${delay}ms`);
-    stroke.classList.add('is-drawing');     // 描く
-    host.classList.remove('is-demoted');    // 強調へ
+    stroke.classList.add('is-drawing'); host.classList.remove('is-demoted');
   };
-  const playReverse = (host)=>{
-    const stroke = host?.querySelector('.venn-stroke');
-    if(!stroke) return;
-    stroke.classList.remove('is-drawing');
-    void stroke.offsetWidth;
-    stroke.classList.add('is-reversing');   // 戻す
-    host.classList.add('is-demoted');       // 薄い円へ
+  const playReverse = (host) => {
+    const stroke = host?.querySelector('.venn-stroke'); if(!stroke) return;
+    stroke.classList.remove('is-drawing'); void stroke.offsetWidth;
+    stroke.classList.add('is-reversing'); host.classList.add('is-demoted');
   };
 
-  // 3) セクションが見えたら「描く」・進んだら「戻す」
-  const state = new Map(); // secEl -> {drawn, reversed, reverseTimer}
+  // 画面に入ったら描画開始
+  const state = new Map();
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
       if(!entry.isIntersecting) return;
-      const sec  = entry.target;
-      const cfg  = cfgs.find(c=>sec.matches(c.section));
-      const host = document.querySelector(cfg.circle);
-      const st   = state.get(sec) || {};
-      playForward(host, cfg.delay);
-      state.set(sec, { drawn:true, reversed:false, reverseTimer:null });
+      const cfg = cfgs.find(c=>entry.target.matches(c.section));
+      playForward(document.querySelector(cfg.circle), cfg.delay);
+      state.set(entry.target, { drawn:true, reversed:false, t:null });
     });
   }, { threshold: 0.35 });
+  cfgs.forEach(c => { const sec=document.querySelector(c.section); if(sec){ state.set(sec,{drawn:false,reversed:false,t:null}); io.observe(sec);} });
 
-  cfgs.forEach(c=>{
-    const sec = document.querySelector(c.section);
-    if(sec){ state.set(sec, {drawn:false,reversed:false,reverseTimer:null}); io.observe(sec); }
-  });
-
+  // スクロール時の戻し処理
   let lastY = window.scrollY;
-  window.addEventListener('scroll', ()=>{
+  function onScroll(){
     const vh = window.innerHeight || 800;
     const goingDown = window.scrollY > lastY; lastY = window.scrollY;
 
-    cfgs.forEach((cfg, i)=>{
+    cfgs.forEach((cfg,i)=>{
       const sec  = document.querySelector(cfg.section);
       const host = document.querySelector(cfg.circle);
       if(!sec || !host) return;
-
       const st = state.get(sec) || {};
       const r  = sec.getBoundingClientRect();
       const inViewport = r.top < vh && r.bottom > 0;
       if(!st.drawn || st.reversed || !goingDown || !inViewport) return;
 
-      const nextSec = (cfgs[i+1]) ? document.querySelector(cfgs[i+1].section) : null;
+      const nextSec = cfgs[i+1] ? document.querySelector(cfgs[i+1].section) : null;
       const nextTop = nextSec ? nextSec.getBoundingClientRect().top : Infinity;
 
-      const hitByTop  = r.top  < vh * REVERSE_TOP_THRESHOLD;    // 現セクションが上に寄ってきた
-      const hitByNext = nextTop < vh * REVERSE_NEXT_THRESHOLD;  // 次見出しが入ってきた
-      const shouldReverse = hitByTop || hitByNext;
+      const hitByTop  = r.top  < vh * REVERSE_TOP_THRESHOLD;
+      const hitByNext = nextTop < vh * REVERSE_NEXT_THRESHOLD;
 
-      if(shouldReverse){
-        if(!st.reverseTimer){
-          st.reverseTimer = setTimeout(()=>{
-            const r2 = sec.getBoundingClientRect();
-            const nextTop2 = nextSec ? nextSec.getBoundingClientRect().top : Infinity;
-            const again = (r2.top < vh*REVERSE_TOP_THRESHOLD) || (nextTop2 < vh*REVERSE_NEXT_THRESHOLD);
-            if(again && !st.reversed){ playReverse(host); st.reversed = true; }
-            st.reverseTimer = null; state.set(sec, st);
-          }, REVERSE_HOLD_MS);
-        }
-      }else if(st.reverseTimer){
-        clearTimeout(st.reverseTimer); st.reverseTimer = null; state.set(sec, st);
+      clearTimeout(st.t);
+      if (hitByTop || hitByNext) {
+        st.t = setTimeout(()=>{ playReverse(host); state.set(sec,{...st,reversed:true}); }, REVERSE_HOLD_MS);
       }
     });
-  }, { passive:true });
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
 }
+
+
+// Vennダイアグラム初期化（固定表示のみ）
+function enableStrengthsStickyOnly(){
+  mountSingleStickyVenn();
+  // 左の固定カラム内で3枚を重ね配置（個別stickyを無効化）
+  const left = document.querySelector('.strengths-sticky-left');
+  if (left) {
+    left.querySelectorAll('.hearing-venn-diagram, .analysis-venn-diagram, .learning-venn-diagram')
+      .forEach(el => {
+        el.style.position = 'absolute';
+        el.style.inset = '0';
+        el.style.margin = 'auto';
+      });
+  }
+}
+
+// Vennダイアグラム初期化を他の初期化と統合
+// (DOMContentLoaded内のinitProfileAnimations等と一緒に実行される)
 
 
 // RINDO ファネルセクション背景制御
