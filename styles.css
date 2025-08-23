@@ -7979,3 +7979,47 @@ table th {
 .strengths *:where(.strengths-sticky-wrapper, .strengths-details, .hearing-power-two-column, .analysis-power-two-column, .learning-power-two-column){
   overflow: visible !important;
 }
+
+/* === 3 STRENGTHS 固定表示：最小セット（上書き用） === */
+.strengths-sticky-wrapper{
+  display:grid;
+  grid-template-columns:420px minmax(0,1fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items:start;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+  overflow:visible;                 /* 親 overflow が hidden だと sticky 無効 */
+}
+.strengths-sticky-left{
+  position: sticky !important;
+  top: clamp(48px, 12vh, 120px);    /* 追尾する位置（ヘッダー分を見ながら調整） */
+  height: 420px;                    /* 左ボックスの見かけ高さ */
+}
+
+/* 左の固定ボックスに3枚を重ねる（個別 sticky 指定を殺す） */
+.strengths-sticky-left .hearing-venn-diagram,
+.strengths-sticky-left .analysis-venn-diagram,
+.strengths-sticky-left .learning-venn-diagram{
+  position: absolute !important;
+  inset: 0;
+  margin: auto;
+}
+
+/* wrapper 外の古い sticky 指定が残っている場合は打ち消し */
+.hearing-venn-diagram,
+.analysis-venn-diagram,
+.learning-venn-diagram{ position: static; top:auto; }
+
+/* セクション内の祖先で overflow hidden を無効化（sticky を通す） */
+.strengths,
+.strengths *:where(.strengths-sticky-wrapper, .strengths-details,
+  .hearing-power-two-column, .analysis-power-two-column, .learning-power-two-column){
+  overflow: visible !important;
+}
+
+/* モバイルは sticky を外す */
+@media (max-width: 768px){
+  .strengths-sticky-wrapper{ display:block; }
+  .strengths-sticky-left{ position:static; height:auto; margin-bottom:16px; }
+}
