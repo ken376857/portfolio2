@@ -606,145 +606,17 @@ document.addEventListener('DOMContentLoaded', function() {
     initTocSection();
     initTocLinks();
     initLoveTags();
-    enableStrengthsStickyOnly(); // Vennダイアグラム固定表示を初期化
+    // Vennダイアグラム初期化は末尾で実行
     
     // 売上カウンターアニメーションはローディング画面完了後に開始
     // （loadイベントで確実に開始されるため、フォールバックは不要）
 });
 
 
-// ===== STRENGTHS: Vennダイアグラム統合管理 =====
-function mountSingleStickyVenn(){
-  const details = document.querySelector('.strengths-details');
-  if (!details || document.querySelector('.strengths-sticky-wrapper')) return;
-
-  // ラッパー: 左=固定ベン図 / 右=説明
-  const wrapper = document.createElement('div');
-  wrapper.className = 'strengths-sticky-wrapper';
-  const left = document.createElement('div');
-  left.className = 'strengths-sticky-left';
-
-  details.parentNode.insertBefore(wrapper, details);
-  wrapper.appendChild(left);
-  wrapper.appendChild(details);
-
-  // 3つのベン図を左の固定カラムに移動
-  ['.hearing-venn-diagram', '.analysis-venn-diagram', '.learning-venn-diagram']
-    .forEach(sel => {
-      const el = document.querySelector(sel);
-      if (el) left.appendChild(el);
-    });
-
-  // 右カラムの空になった左列を非表示
-  document.querySelectorAll('.hearing-power-left, .analysis-power-left, .learning-power-left')
-    .forEach(el => el.style.display = 'none');
-
-  // 右カラムの2カラムを1カラム表示に
-  document.querySelectorAll('.hearing-power-two-column, .analysis-power-two-column, .learning-power-two-column')
-    .forEach(el => el.style.display = 'block');
-}
-
-function initStrengthsStickyVenn(){
-  mountSingleStickyVenn();
-
-  const cfgs = [
-    { section: '.hearing-power-section',  circle: '.hearing-venn-diagram  .venn-circle-1', delay: 420 },
-    { section: '.analysis-power-section', circle: '.analysis-venn-diagram .venn-circle-2', delay: 480 },
-    { section: '.learning-power-section', circle: '.learning-venn-diagram .venn-circle-3', delay: 520 },
-  ];
-
-  const REVERSE_TOP_THRESHOLD  = 0.20;
-  const REVERSE_NEXT_THRESHOLD = 0.65;
-  const REVERSE_HOLD_MS        = 140;
-
-  // SVGストローク描画アニメーションのセットアップ
-  const svgNS = 'http://www.w3.org/2000/svg';
-  document.querySelectorAll('.hearing-venn-diagram, .analysis-venn-diagram, .learning-venn-diagram').forEach(host=>{
-    if(host.querySelector('.venn-stroke-svg')) return;
-    const svg = document.createElementNS(svgNS,'svg');
-    svg.classList.add('venn-stroke-svg');
-    svg.setAttribute('viewBox','0 0 100 100');
-    svg.setAttribute('preserveAspectRatio','xMidYMid meet');
-    const c = document.createElementNS(svgNS,'circle');
-    c.setAttribute('class','venn-stroke'); c.setAttribute('cx','50'); c.setAttribute('cy','50'); c.setAttribute('r','48');
-    svg.appendChild(c); host.appendChild(svg);
-    const len = c.getTotalLength(), EPS=2; c.style.strokeDasharray = `${len+EPS}`; c.style.strokeDashoffset = `${len+EPS}`; c.style.setProperty('--venn-total', `${len+EPS}`);
-    c.addEventListener('animationend', e => {
-      if (e.animationName === 'vennDraw')   c.classList.add('is-closed');
-      if (e.animationName === 'vennUndraw') c.classList.remove('is-closed');
-    });
-  });
-
-  // アニメーション制御
-  const playForward = (host, delay) => {
-    const stroke = host?.querySelector('.venn-stroke'); if(!stroke) return;
-    stroke.classList.remove('is-reversing','is-closed'); void stroke.offsetWidth;
-    stroke.style.setProperty('--venn-delay', `${delay}ms`);
-    stroke.classList.add('is-drawing'); host.classList.remove('is-demoted');
-  };
-  const playReverse = (host) => {
-    const stroke = host?.querySelector('.venn-stroke'); if(!stroke) return;
-    stroke.classList.remove('is-drawing'); void stroke.offsetWidth;
-    stroke.classList.add('is-reversing'); host.classList.add('is-demoted');
-  };
-
-  // 画面に入ったら描画開始
-  const state = new Map();
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting) return;
-      const cfg = cfgs.find(c=>entry.target.matches(c.section));
-      playForward(document.querySelector(cfg.circle), cfg.delay);
-      state.set(entry.target, { drawn:true, reversed:false, t:null });
-    });
-  }, { threshold: 0.35 });
-  cfgs.forEach(c => { const sec=document.querySelector(c.section); if(sec){ state.set(sec,{drawn:false,reversed:false,t:null}); io.observe(sec);} });
-
-  // スクロール時の戻し処理
-  let lastY = window.scrollY;
-  function onScroll(){
-    const vh = window.innerHeight || 800;
-    const goingDown = window.scrollY > lastY; lastY = window.scrollY;
-
-    cfgs.forEach((cfg,i)=>{
-      const sec  = document.querySelector(cfg.section);
-      const host = document.querySelector(cfg.circle);
-      if(!sec || !host) return;
-      const st = state.get(sec) || {};
-      const r  = sec.getBoundingClientRect();
-      const inViewport = r.top < vh && r.bottom > 0;
-      if(!st.drawn || st.reversed || !goingDown || !inViewport) return;
-
-      const nextSec = cfgs[i+1] ? document.querySelector(cfgs[i+1].section) : null;
-      const nextTop = nextSec ? nextSec.getBoundingClientRect().top : Infinity;
-
-      const hitByTop  = r.top  < vh * REVERSE_TOP_THRESHOLD;
-      const hitByNext = nextTop < vh * REVERSE_NEXT_THRESHOLD;
-
-      clearTimeout(st.t);
-      if (hitByTop || hitByNext) {
-        st.t = setTimeout(()=>{ playReverse(host); state.set(sec,{...st,reversed:true}); }, REVERSE_HOLD_MS);
-      }
-    });
-  }
-  window.addEventListener('scroll', onScroll, { passive:true });
-}
+// Vennダイアグラム統合管理（重複削除済み・末尾に最終形あり）
 
 
-// Vennダイアグラム初期化（固定表示のみ）
-function enableStrengthsStickyOnly(){
-  mountSingleStickyVenn();
-  // 左の固定カラム内で3枚を重ね配置（個別stickyを無効化）
-  const left = document.querySelector('.strengths-sticky-left');
-  if (left) {
-    left.querySelectorAll('.hearing-venn-diagram, .analysis-venn-diagram, .learning-venn-diagram')
-      .forEach(el => {
-        el.style.position = 'absolute';
-        el.style.inset = '0';
-        el.style.margin = 'auto';
-      });
-  }
-}
+
 
 // Vennダイアグラム初期化を他の初期化と統合
 // (DOMContentLoaded内のinitProfileAnimations等と一緒に実行される)
@@ -1365,4 +1237,26 @@ document.addEventListener('DOMContentLoaded', function() {
         initFloatingButtonVisibility();
     }, 100);
 });
+
+// ===== Vennダイアグラム最終形（末尾配置） =====
+function mountSingleStickyVenn(){
+  const details = document.querySelector('.strengths-details');
+  if (!details || document.querySelector('.strengths-sticky-wrapper')) return;
+
+  const section = details.closest('.strengths') || details.closest('section') || details.parentNode;
+  const wrapper = document.createElement('div'); wrapper.className = 'strengths-sticky-wrapper';
+  const left    = document.createElement('div'); left.className    = 'strengths-sticky-left';
+
+  section.insertBefore(wrapper, details);
+  wrapper.appendChild(left);
+  wrapper.appendChild(details);
+
+  ['.hearing-venn-diagram','.analysis-venn-diagram','.learning-venn-diagram'].forEach(sel=>{
+    const node = document.querySelector(sel); if (node) left.appendChild(node);
+  });
+  document.querySelectorAll('.hearing-power-left,.analysis-power-left,.learning-power-left')
+    .forEach(el => el.style.display = 'none');
+}
+
+document.addEventListener('DOMContentLoaded', () => { mountSingleStickyVenn(); });
 
