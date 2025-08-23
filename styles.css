@@ -8023,3 +8023,8 @@ table th {
   .strengths-sticky-wrapper{ display:block; }
   .strengths-sticky-left{ position:static; height:auto; margin-bottom:16px; }
 }
+
+/* 右側の各説明ブロックに十分な縦の間隔を与えて高さを作る */
+.strengths-details > *{
+  margin-bottom: min(10vh, 96px);
+}
