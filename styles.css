@@ -8028,3 +8028,19 @@ table th {
 .strengths-details > *{
   margin-bottom: min(10vh, 96px);
 }
+
+/* === Strengths: sticky が不安定な環境でも必ず追尾させる fixed フォールバック === */
+.strengths-sticky-wrapper{ position: relative; } /* 終端固定の基準にする */
+
+.strengths-sticky-left.is-fixed{
+  position: fixed !important;
+  top: var(--fix-top, 15vh) !important;     /* 追尾位置（好みで） */
+  left: var(--fix-left, 0px) !important;    /* JSで算出して流し込み */
+  width: var(--fix-width, 420px);
+  z-index: 5;
+}
+
+.strengths-sticky-left.is-end{
+  position: absolute !important;            /* セクション終端で置き戻し */
+  top: auto; bottom: 0; left: 0;
+}

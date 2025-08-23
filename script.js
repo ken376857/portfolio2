@@ -1260,3 +1260,53 @@ function mountSingleStickyVenn(){
 
 document.addEventListener('DOMContentLoaded', () => { mountSingleStickyVenn(); });
 
+/* === Strengths: sticky が効かない環境向け fixed フォールバック === */
+(function(){
+  const wrapper = document.querySelector('.strengths-sticky-wrapper');
+  const leftBox = document.querySelector('.strengths-sticky-left');
+  if (!wrapper || !leftBox) return;
+
+  let topPx = Math.round(window.innerHeight * 0.12); // ≒ 12vh（CSSと合わせる）
+  let startY = 0, endY = 0, leftPx = 0, widthPx = 0;
+
+  function compute() {
+    // 追尾トップ・幅・左座標を再計算
+    topPx = Math.round(window.innerHeight * 0.12);
+    leftBox.style.setProperty('--fix-top', `${topPx}px`);
+
+    const wcs = getComputedStyle(wrapper);
+    const padLeft = parseFloat(wcs.paddingLeft || 0);
+    const wRect = wrapper.getBoundingClientRect();
+    leftPx = Math.round(wRect.left + padLeft);
+    widthPx = leftBox.getBoundingClientRect().width; // 現状の見かけ幅
+
+    leftBox.style.setProperty('--fix-left', `${leftPx}px`);
+    leftBox.style.setProperty('--fix-width', `${widthPx}px`);
+
+    // スクロール範囲（セクション内だけ fixed にする）
+    const docTop = window.scrollY + wRect.top;
+    const wHeight = wrapper.getBoundingClientRect().height;
+    const lHeight = leftBox.getBoundingClientRect().height;
+    startY = Math.max(0, docTop - topPx);
+    endY   = docTop + wHeight - lHeight - topPx;
+  }
+
+  function onScroll() {
+    const y = window.scrollY;
+    if (y < startY) {
+      leftBox.classList.remove('is-fixed','is-end'); // 通常（上側）
+    } else if (y >= startY && y < endY) {
+      leftBox.classList.add('is-fixed');             // 追尾ゾーン
+      leftBox.classList.remove('is-end');
+    } else {
+      leftBox.classList.remove('is-fixed');          // 終端で下に固定
+      leftBox.classList.add('is-end');
+    }
+  }
+
+  // 初期化
+  compute(); onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', () => { leftBox.classList.remove('is-fixed','is-end'); compute(); onScroll(); });
+})();
+
