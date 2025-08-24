@@ -1310,3 +1310,84 @@ document.addEventListener('DOMContentLoaded', () => { mountSingleStickyVenn(); }
   window.addEventListener('resize', () => { leftBox.classList.remove('is-fixed','is-end'); compute(); onScroll(); });
 })();
 
+/* ===== Maslow：スクロール連動ピラミッド表示 ===== */
+(function(){
+  const container = document.querySelector('.maslow-scroll-container');
+  if (!container) {
+    console.warn('Maslow container not found');
+    return;
+  }
+
+  const sections = Array.from(container.querySelectorAll('.maslow-section'));
+  const segments = Array.from(container.querySelectorAll('.maslow-seg'));
+
+  // デバッグ情報
+  console.log('Maslow pyramid initialized:', {
+    sections: sections.length,
+    segments: segments.length
+  });
+
+  function updateActiveSection() {
+    const scrollTop = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    
+    let activeIndex = -1;
+    let maxVisibility = 0;
+
+    sections.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + scrollTop;
+      const sectionHeight = rect.height;
+      
+      // セクションの可視性を計算
+      const viewportTop = scrollTop;
+      const viewportBottom = scrollTop + windowHeight;
+      
+      const visibleTop = Math.max(sectionTop, viewportTop);
+      const visibleBottom = Math.min(sectionTop + sectionHeight, viewportBottom);
+      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+      const visibility = visibleHeight / windowHeight;
+      
+      if (visibility > maxVisibility && visibility > 0.2) {
+        maxVisibility = visibility;
+        activeIndex = index;
+      }
+    });
+
+    // アクティブなセクションとピラミッドセグメントを更新
+    sections.forEach((section, index) => {
+      section.classList.toggle('active', index === activeIndex);
+    });
+    
+    segments.forEach((segment) => {
+      const level = parseInt(segment.dataset.level);
+      if (!isNaN(level)) {
+        const isActive = level === (activeIndex + 1);
+        segment.classList.toggle('active', isActive);
+      }
+    });
+  }
+
+  // スクロールイベントをthrottleで最適化
+  let ticking = false;
+  function handleScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateActiveSection();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('resize', updateActiveSection);
+  
+  // 初期化（DOMが完全に読み込まれた後に実行）
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateActiveSection);
+  } else {
+    updateActiveSection();
+  }
+})();
+

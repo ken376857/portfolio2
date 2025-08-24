@@ -7568,8 +7568,310 @@ table th {
   /* 画像がはみ出す場合は ↓ を使う: overflow: visible; */
 }
 
+/* ===== SEO Media Persona Styles (Blue Theme) ===== */
+
+/* ===== SEO Media Persona専用のスタイル - 水色ベース ===== */
+
+/* SEO Media ペルソナセクションのタグを水色に */
+.seo-media-persona-section .persona-section-tag.seo-media-tag {
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important;
+    color: white !important;
+}
+
+/* SEO Media ペルソナのラベルを水色に */
+.seo-media-persona-section .persona-attr-label.seo-media-label {
+    color: #1d86fc !important;
+    font-weight: 600;
+}
+
+/* SEO Media セクション内のペルソナプロフィールの境界線を水色に */
+.seo-media-persona-section .persona-profile {
+    border-bottom: 2px solid #1d86fc !important;
+}
+
+/* SEO Media セクション内のペルソナ属性行の境界線を水色に */
+.seo-media-persona-section .persona-attr-row {
+    border-bottom: 1px solid rgba(29, 134, 252, 0.2) !important;
+}
+
+/* SEO Media ペルソナセクションのサブタイトルテキストを白色に */
+body.rindo-text-white #works #seo-media .seo-media-persona-section .persona-subtitle-text,
+body.sales-letter-text-white #works #seo-media .seo-media-persona-section .persona-subtitle-text,
+body.seo-media-text-white #works #seo-media .seo-media-persona-section .persona-subtitle-text,
+#seo-media .seo-media-persona-section .persona-subtitle-text {
+    color: #ffffff !important;
+}
+
+/* ===== SEO Media Analysis Section H5 Headings ===== */
+
+/* SEO Media 分析セクションのh5見出しスタイル */
+#seo-media .analysis-subtitle {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 2.5rem 0 1.5rem 0 !important;
+    padding: 0.8rem 1.5rem !important;
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important;
+    border-radius: 8px !important;
+    position: relative !important;
+    box-shadow: 0 4px 15px rgba(29, 134, 252, 0.3) !important;
+    border: none !important;
+    display: inline-block !important;
+    min-width: 250px !important;
+}
+
+/* ホバー効果 */
+#seo-media .analysis-subtitle:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(29, 134, 252, 0.4) !important;
+    transition: all 0.3s ease !important;
+}
+
 .hero-right .mockup-image {
   border-radius: 4px !important;   /* 少し角丸に：既存の15pxから変更 */
+}
+
+/* ===== Maslow (outline-only pyramid + 2カラム) ===== */
+:root{
+  --maslow-stroke:#fff;                 /* 明るい背景では #111 に */
+  --maslow-stroke-muted:rgba(255,255,255,.55);
+  --maslow-stroke-width:2.2;
+}
+
+/* 説明文（見出しの直下） */
+.maslow-lead{
+  margin: .75rem 0 1.25rem;
+  color:#fff;                           /* ページが暗背景前提 */
+  opacity:.9;
+  line-height:1.7;
+}
+
+/* マズロー分析のスクロール連動レイアウト */
+.maslow-scroll-container {
+  display: grid;
+  grid-template-columns: minmax(260px, 520px) 1fr;
+  gap: clamp(1.2rem, 4vw, 2.8rem);
+  align-items: flex-start;
+  min-height: 100vh; /* 十分な高さを確保してスティッキー要素が機能するように */
+}
+
+/* 左側の固定ピラミッド */
+.maslow-pyramid-fixed {
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  z-index: 10;
+  align-self: start; /* 親コンテナの制約を回避 */
+}
+
+/* 右側のスクロール可能コンテンツ */
+.maslow-content-scrollable {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* 各マズロー段階のセクション */
+.maslow-section {
+  min-height: 60vh;
+  padding: 2rem 0;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.maslow-section.active {
+  opacity: 1;
+}
+
+.maslow-section p:first-child {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.maslow-pyramid{ width:100%; aspect-ratio:1/1; }
+.maslow-svg{ width:100%; height:100%; overflow:visible; }
+
+/* ピラミッドセグメント - 統合された定義 */
+.maslow-seg,
+.maslow-outline,
+.maslow-divider{
+  fill:none;
+  stroke:var(--maslow-stroke);
+  stroke-width:var(--maslow-stroke-width);
+  vector-effect:non-scaling-stroke;
+}
+
+.maslow-seg {
+  opacity: 0.4;
+  transition: all 0.3s ease;
+  stroke-dasharray:300;
+  stroke-dashoffset:300;
+  animation:maslowDraw 1s ease forwards;
+}
+
+.maslow-seg.active {
+  opacity: 1;
+  stroke-width: calc(var(--maslow-stroke-width) + 1.2);
+  filter: drop-shadow(0 0 8px rgba(255,255,255,.45));
+}
+
+.maslow-outline{ stroke-width:calc(var(--maslow-stroke-width) + .8); }
+.maslow-divider{ stroke:var(--maslow-stroke-muted); }
+
+/* 線描画アニメーションのディレイ */
+.maslow-seg:nth-of-type(1){animation-delay:.05s;}
+.maslow-seg:nth-of-type(2){animation-delay:.15s;}
+.maslow-seg:nth-of-type(3){animation-delay:.25s;}
+.maslow-seg:nth-of-type(4){animation-delay:.35s;}
+.maslow-seg:nth-of-type(5){animation-delay:.45s;}
+@keyframes maslowDraw{ to{ stroke-dashoffset:0; } }
+
+/* 既存 .analysis-section の軽いカード化（読みやすさ向上） */
+.maslow-analysis .analysis-section{
+  border-left:2px solid var(--maslow-stroke-muted);
+  background:rgba(255,255,255,.04);
+  border-radius:.6rem;
+  padding:.9rem 1.1rem;
+  transition:background .25s ease, border-color .25s ease;
+}
+.maslow-analysis .analysis-section:hover,
+.maslow-analysis .analysis-section.is-active{
+  border-color:var(--maslow-stroke);
+  background:rgba(255,255,255,.07);
+}
+
+/* 削除: 重複した .is-active クラス定義を削除 - .active で統一 */
+
+/* モバイル：縦積みレイアウト */
+@media (max-width: 820px) {
+  .maslow-scroll-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .maslow-pyramid-fixed {
+    position: static;
+    order: -1;
+    margin-bottom: 1rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .maslow-section {
+    min-height: auto;
+    padding: 1rem 0;
+  }
+}
+
+/* SEOセクション用のH5見出しスタイル（水色ベース版component-title） */
+#seo-media .seo-component-title,
+body.rindo-text-white #works .seo-component-title {
+    color: #ffffff !important;
+    margin-top: 3rem !important;
+}
+
+#seo-media .seo-component-title::before,
+body.rindo-text-white #works .seo-component-title::before {
+    background: #1d86fc !important;
+}
+
+/* SEOセクション用のH6見出しスタイル（水色ベース版component-subtitle） */
+body.rindo-text-white #works .seo-component-subtitle {
+    color: #ffffff !important;
+}
+
+body.rindo-text-white #works .seo-component-subtitle::before {
+    color: #1d86fc !important;
+}
+
+/* ===== SEO Media Analysis Content White Text Styling ===== */
+
+/* 5W1H分析以降のメインテキストコンテンツを白文字に */
+#seo-media .analysis-section p,
+#seo-media .analysis-section li,
+#seo-media .deep-dive-example p,
+#seo-media .maslow-lead,
+#seo-media .needs-summary p,
+#seo-media .needs-summary li {
+    color: #ffffff !important;
+}
+
+/* Maslow分析セクション内のテキストを白文字に */
+#seo-media .maslow-analysis .analysis-section p {
+    color: #ffffff !important;
+}
+
+/* 収益化戦略、ライバル分析、記事構成、執筆内容セクションのテキストを白文字に */
+#seo-media .revenue-strategy p,
+#seo-media .strategy-section p,
+#seo-media .strategy-description p,
+#seo-media .article-structure p,
+#seo-media .structure-list .structure-item,
+#seo-media .structure-explanation p,
+#seo-media .content-explanation p,
+#seo-media .explanation-section p,
+#seo-media .pasona-breakdown p,
+#seo-media .pasona-item p,
+#seo-media .pasona-item li,
+#seo-media .persona-right p,
+#seo-media .persona-right li {
+    color: #ffffff !important;
+}
+
+/* リスト項目の箇条書きマーカーも白色に */
+#seo-media .analysis-section li::before,
+#seo-media .needs-summary li::before,
+#seo-media .pasona-item li::before,
+#seo-media .persona-right li::before {
+    color: #ffffff !important;
+}
+
+/* ただし、背景を持つ要素は除外（既存のスタイルを維持） */
+#seo-media .funnel-badge,
+#seo-media .funnel-detail-badge,
+#seo-media .step-label,
+#seo-media .persona-section-tag,
+#seo-media .persona-attr-label {
+    /* 既存のスタイルを維持するため、明示的に除外 */
+}
+
+/* 5W1H分析バッジのスタイル */
+.analysis-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0 1rem 0;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd);
+    box-shadow: 0 2px 8px rgba(29, 134, 252, 0.3);
+    border: none;
+}
+
+.analysis-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(29, 134, 252, 0.4);
+    transition: all 0.2s ease;
+}
+
+/* 5W1H分析の2カラム構成 */
+.analysis-5w1h-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    margin-top: 1.5rem;
+}
+
+/* モバイルでは1カラムに戻す */
+@media (max-width: 768px) {
+    .analysis-5w1h-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 }
 
 /* フッターセクション */
