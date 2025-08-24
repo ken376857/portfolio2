@@ -839,7 +839,7 @@
         <div class="research-left">
             <div class="research-image-section">
                 <div class="research-screenshot">
-                    <button type="button" class="image-button" onclick="openImageModal('https://tnbkn.com/wp-content/uploads/deep-research1-scaled.webp', 'Deep Research結果画面のスクリーンショット')" aria-label="Deep Research結果画面のスクリーンショットを拡大表示">
+                    <button type="button" class="image-button" onclick="window.open('https://chatgpt.com/s/dr_68aafcedcec481918872fe36604d2f29', '_blank')" aria-label="Deep Research結果画面のスクリーンショットを拡大表示">
                         <img src="https://tnbkn.com/wp-content/uploads/deep-research1-scaled.webp" alt="Deep Research結果画面のスクリーンショット" class="research-screenshot-image">
                         <div class="zoom-overlay">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -1021,7 +1021,7 @@
         <div class="research-left">
             <div class="research-image-section">
                 <div class="research-screenshot">
-                    <button type="button" class="image-button" onclick="openImageModal('https://tnbkn.com/wp-content/uploads/deep-research2-scaled.webp', '定性調査結果画面のスクリーンショット')" aria-label="定性調査結果画面のスクリーンショットを拡大表示">
+                    <button type="button" class="image-button" onclick="window.open('https://chatgpt.com/s/dr_68aa95618ea081918aed3cc6262329e8', '_blank')" aria-label="定性調査結果画面のスクリーンショットを拡大表示">
                         <img src="https://tnbkn.com/wp-content/uploads/deep-research2-scaled.webp" alt="定性調査結果画面のスクリーンショット" class="research-screenshot-image">
                         <div class="zoom-overlay">
                             <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -1995,33 +1995,396 @@
         </div>
     </div>
     <div class="work-details-container">
-        <h4 class="work-section-title">ペルソナ設定</h4>
+        <h4 class="work-section-title">ニーズの分析</h4>
         <div class="work-overview-details">
-            <!-- ペルソナ設定のコンテンツを後で追加 -->
+            <h5 class="component-title seo-component-title">5W1H分析</h5>
+            <div class="analysis-5w1h-grid">
+                <div class="analysis-section">
+                    <span class="analysis-badge when-badge">When：いつ検索したか</span>
+                    <ul>
+                        <li>求人サイトでミラエールの求人を見たとき</li>
+                        <li>就活/転職エージェントから紹介されたとき</li>
+                        <li>ミラエールの悪い口コミをSNSで見かけたとき</li>
+                        <li>ミラエールの内定通知をもらったとき</li>
+                    </ul>
+                </div>
+                <div class="analysis-section">
+                    <span class="analysis-badge where-badge">Where：どこで検索したか</span>
+                    <ul>
+                        <li>移動中の電車内</li>
+                        <li>平日の仕事終わりに自分の部屋</li>
+                        <li>就活仲間とお話をしていたカフェ</li>
+                    </ul>
+                </div>
+                <div class="analysis-section">
+                    <span class="analysis-badge who-badge">Who：誰が検索したか</span>
+                    <ul>
+                        <li>事務職希望の女子大生</li>
+                        <li>接客販売のアルバイト経験しかない20代前半の女性社会人</li>
+                        <li>パソコンを使った仕事をしておらず手に職をつけたいと焦る20代後半の女性</li>
+                    </ul>
+                </div>
+                <div class="analysis-section">
+                    <span class="analysis-badge why-badge">Why：なぜ検索したか</span>
+                    <ul>
+                        <li>雇用形態が曖昧に感じたから</li>
+                        <li>福利厚生に不安を感じたから</li>
+                        <li>正社員でなく「正社員型無期雇用派遣」と知って不安になったから</li>
+                        <li>同級生が大手企業に次々と内定していく中、自分だけ違う選択肢を取ることに不安を感じたから</li>
+                    </ul>
+                </div>
+                <div class="analysis-section">
+                    <span class="analysis-badge what-badge">What：何を知りたいか</span>
+                    <ul>
+                        <li>配属先の実態を知りたい</li>
+                        <li>給与体系や昇給制度の詳細が知りたい</li>
+                        <li>実際に働いた人の口コミが気になる</li>
+                    </ul>
+                </div>
+                <div class="analysis-section">
+                    <span class="analysis-badge how-badge">How：どのように解決するか</span>
+                    <ul>
+                        <li>実際の声（口コミ）で他の求人と比較したい</li>
+                        <li>解説サイトを元に知識がある人の意見を取り入れたい</li>
+                        <li>他社のサービスとの比較で良し悪しを明確にしたい</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h5 class="component-title seo-component-title">マズローの欲求5段階分析</h5>
+
+            <!-- ★ 追加：説明文（必要に応じて文言調整） -->
+            <p class="maslow-lead">
+              マズローの理論に基づき、読者の顕在／潜在ニーズを5階層で整理します。
+              スクロールすると、左のピラミッドの対応する段が強調されます。
+            </p>
+
+            <!-- スクロールトリガー用のコンテナ -->
+            <div class="maslow-scroll-wrapper">
+              <!-- 固定表示されるコンテンツ -->
+              <div class="maslow-scroll-container">
+                <!-- 左側：固定ピラミッド -->
+                <div class="maslow-pyramid-fixed" aria-hidden="true">
+                  <svg viewBox="0 0 100 100" class="maslow-svg" role="img">
+                    <!-- fill="none" を**属性**でも指定して黒塗りフォールバックを防止 -->
+                    <polygon class="maslow-seg" data-level="1" points="18,75.6 82,75.6 90,92 10,92" fill="none" stroke-linejoin="round"></polygon>
+                    <polygon class="maslow-seg" data-level="2" points="26,59.2 74,59.2 82,75.6 18,75.6" fill="none" stroke-linejoin="round"></polygon>
+                    <polygon class="maslow-seg" data-level="3" points="34,42.8 66,42.8 74,59.2 26,59.2" fill="none" stroke-linejoin="round"></polygon>
+                    <polygon class="maslow-seg" data-level="4" points="42,26.4 58,26.4 66,42.8 34,42.8" fill="none" stroke-linejoin="round"></polygon>
+                    <polygon class="maslow-seg" data-level="5" points="50,10 58,26.4 42,26.4" fill="none" stroke-linejoin="round"></polygon>
+
+                    <!-- 外枠と仕切り線 -->
+                    <polyline class="maslow-outline" points="50,10 10,92 90,92 50,10" fill="none"></polyline>
+                    <line class="maslow-divider" x1="18" y1="75.6" x2="82" y2="75.6"></line>
+                    <line class="maslow-divider" x1="26" y1="59.2" x2="74" y2="59.2"></line>
+                    <line class="maslow-divider" x1="34" y1="42.8" x2="66" y2="42.8"></line>
+                    <line class="maslow-divider" x1="42" y1="26.4" x2="58" y2="26.4"></line>
+                  </svg>
+                </div>
+
+                <!-- 右側：スクロール連動コンテンツ -->
+                <div class="maslow-content-scrollable">
+                <!-- 各欲求の説明セクション（スクロールトリガー用） -->
+                <div class="maslow-section" data-level="1">
+                    <p><strong>生理的欲求</strong></p>
+                    <p>一人暮らしでも最低限の安定した生活がしたい</p>
+                    <div class="deep-dive-example">
+                        <p><em>＜深掘りプロセスの例＞</em></p>
+                        <p>What：給与体系や昇給制度の詳細が知りたい<br>
+なぜ詳細を知りたい？→生活費と貯金を両立したい→なぜ？→奨学金の返済がある→どれくらい？→月2万円→なぜ昇給が重要？→年々の支出増加を想定→昇給しなかったらどうなる？→家賃や食費に回すお金が足りなくなり、友人との外食や交際費を削るしかなくなる→なぜそれが嫌？→人付き合いが減り、孤立したように感じるから（生理的欲求+社会的欲求）</p>
+                    </div>
+                </div>
+                <div class="maslow-section" data-level="2">
+                    <p><strong>安全の欲求</strong></p>
+                    <ul>
+                        <li>生活の基盤を安定させたい</li>
+                        <li>仕事内容の理想とのギャップで退職したくない</li>
+                        <li>給与支払いなどのトラブルに遭いたくない</li>
+                    </ul>
+                    <div class="deep-dive-example">
+                        <p><em>＜深掘りプロセスの例＞</em></p>
+                        <p>How：実際の声（口コミ）で他の求人と比較したい<br>
+なぜ比較？→条件面だけで判断すると失敗するから→なぜ失敗？→過去に業務内容が違って後悔→どうなった？→入社2ヶ月で退職→なぜ避けたい？→今度こそ長く働きたいから→なぜ長く働きたい？→転職で不利になるから→不利になるとどうなる？→年収が下がる→なぜ年収が下がったらいや？→生活がままならなくなる（安全の欲求）</p>
+                    </div>
+                </div>
+                <div class="maslow-section" data-level="3">
+                    <p><strong>社会的欲求</strong></p>
+                    <p>仲良く働ける環境が良い</p>
+                    <div class="deep-dive-example">
+                        <p><em>＜深掘りプロセスの例＞</em></p>
+                        <p>When：ミラエールの悪い口コミをSNSで見かけた<br>
+なぜその口コミが気になった？→希望職に就けなかった人の体験→なぜ他人の体験？→自分も事務職希望→なぜ不安？→営業配属になったと書かれていた→なぜ営業が嫌？→コミュニケーションが苦手で失敗経験があるから→なぜ失敗したくない？→組織で馴染めなくなるから→なぜ馴染めなくなるのが嫌？→仲良く働きたいから（社会的欲求）</p>
+                    </div>
+                </div>
+                <div class="maslow-section" data-level="4">
+                    <p><strong>承認欲求</strong></p>
+                    <p>大手や有名な企業で働きたい</p>
+                    <div class="deep-dive-example">
+                        <p><em>＜深掘りプロセスの例＞</em></p>
+                        <p>Why：同級生が大手企業に次々と内定していく中、自分だけ違う選択肢を取ることに不安を感じたから<br>
+なぜ不安？→大手と比べて知名度が低い→なぜ気になる？→親や友人に説明しにくい→なぜ説明が必要？→「なんでそこにしたの？」と聞かれる→なぜ気にする？→周囲から見下されたくない→なぜ見下されるのが嫌？→自分も立派な会社に行ったと胸を張りたいから（承認欲求）</p>
+                    </div>
+                </div>
+                <div class="maslow-section" data-level="5">
+                    <p><strong>自己実現の欲求</strong></p>
+                    <p>なし</p>
+                </div>
+                </div>
+              </div>
+              
+              <!-- ★追加：スクロール距離と切替トリガー -->
+              <div class="maslow-scroll-triggers" aria-hidden="true">
+                <div class="maslow-trigger"></div> <!-- level 1 -->
+                <div class="maslow-trigger"></div> <!-- level 2 -->
+                <div class="maslow-trigger"></div> <!-- level 3 -->
+                <div class="maslow-trigger"></div> <!-- level 4 -->
+                <div class="maslow-trigger"></div> <!-- level 5 -->
+              </div>
+            </div>
+            
+            <h5 class="component-title seo-component-title">顕在ニーズと潜在ニーズの整理</h5>
+            <div class="needs-summary">
+                <div class="needs-section-wrapper">
+                    <div class="needs-badge">顕在ニーズ（今すぐに知りたいこと）</div>
+                    <div class="needs-content">
+                        <ul>
+                            <li>ミラエールの配属先の実態を知りたい</li>
+                            <li>ミラエールの給与体系や昇給制度の詳細が知りたい</li>
+                            <li>ミラエールで実際に働いた人の口コミが気になる</li>
+                            <li>ミラエールの雇用形態の仕組みを具体的に知りたい</li>
+                            <li>ミラエールの福利厚生の内容や条件を確認したい</li>
+                            <li>「正社員型無期雇用派遣」とは何か具体的に理解したい</li>
+                            <li>他社のサービスとの違いを把握して選びたい</li>
+                            <li>ミラエールに向いている人と向いていない人を知りたい</li>
+                            <li>配属先がどう決まるのか具体的なフローを確認したい</li>
+                            <li>内定後にどのようなサポートがあるのか知りたい</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="needs-section-wrapper">
+                    <div class="needs-badge latent-needs">潜在ニーズ（心の奥底で知りたいと思っていること）</div>
+                    <div class="needs-content">
+                        <ul>
+                            <li>ミスマッチによる短期離職を避けたい（過去に希望と異なる部署に配属され、数ヶ月で退職した経験があり、履歴書に傷がつくことを恐れているから）</li>
+                            <li>安定した職場で安心して働きたい（過去に福利厚生や待遇の不備で生活が苦しくなった経験があり、今後は長期的な視野で職場を選びたいと思うようになったから）</li>
+                            <li>自分に合った職種で長く働きたい（研修後に営業職へ強制配属され、人間関係と業務内容で精神的ストレスを感じて退職した経験があるから）</li>
+                            <li>生活費を確保できる収入がほしい（一人暮らしの家賃や生活費をまかなうには最低でも月20万円が必要で、昇給のない会社では将来に不安を感じるから）</li>
+                            <li>自分の市場価値を高めたい（未経験での事務職挑戦にあたり、将来的なキャリア形成に繋がるスキルが得られるかが重要だと感じているから）</li>
+                            <li>信頼できる情報で判断したい（過去に求人情報だけを鵜呑みにして後悔した経験があり、第三者の口コミや解説を必ず確認するようになったから）</li>
+                            <li>自分と似た境遇の人の体験談を参考にしたい（パソコン未経験のまま就職した友人が苦労していた姿を見て、自分も現場のリアルを知ってから判断したいと思うようになったから）</li>
+                            <li>応募前に配属内容を明確に知っておきたい（勤務地や業務内容が曖昧なまま内定を出された企業で、入社後のギャップに苦しんだ経験があるから）</li>
+                            <li>手に職をつけて将来の不安を減らしたい（接客業しか経験がなく、年齢を重ねるごとに転職が厳しくなると実感しており、事務スキルを身につけたいから）</li>
+                            <li>周囲から評価されるキャリアを築きたい（大学の同級生が大手企業に就職していく中で、自分も納得のいく仕事に就いていると胸を張りたいと思っているから）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="work-details-container">
+        <div class="persona-section seo-media-persona-section">
+            <div class="persona-header">
+                <h4 class="work-section-title">ペルソナ設定</h4>
+                <p class="persona-subtitle-text">ニーズ分析をした結果から、ペルソナ像を設定しました。</p>
+            </div>
+            <div class="persona-container">
+                <div class="persona-left">
+                    <div class="persona-left-container">
+                        <div class="persona-profile">
+                            <div class="persona-avatar">
+                                <img src="https://tnbkn.com/wp-content/uploads/hanako-yamada-scaled.webp" alt="ペルソナ画像" class="persona-image">
+                            </div>
+                            <div class="persona-basic-info">
+                                <div class="persona-name">山田 花子</div>
+                                <p class="persona-age">26歳 女性</p>
+                            </div>
+                        </div>
+                        <div class="persona-basic-section">
+                            <div class="persona-section-tag basic-tag seo-media-tag">基本属性</div>
+                            <div class="persona-attributes">
+                                <div class="persona-attr-row">
+                                    <span class="persona-attr-label seo-media-label">職種</span>
+                                    <span class="persona-attr-value">接客業</span>
+                                </div>
+                                <div class="persona-attr-row">
+                                    <span class="persona-attr-label seo-media-label">居住地</span>
+                                    <span class="persona-attr-value">東京在住</span>
+                                </div>
+                                <div class="persona-attr-row">
+                                    <span class="persona-attr-label seo-media-label">家族構成</span>
+                                    <span class="persona-attr-value">実家暮らし</span>
+                                </div>
+                                <div class="persona-attr-row">
+                                    <span class="persona-attr-label seo-media-label">年収</span>
+                                    <span class="persona-attr-value">270万円</span>
+                                </div>
+                                <div class="persona-attr-row">
+                                    <span class="persona-attr-label seo-media-label">趣味</span>
+                                    <span class="persona-attr-value">インスタやTikTokでコスメ系の投稿などをよく見ている、休日は友人とカフェに行ったり買い物に出かけたりしている</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="persona-right">
+                    <div class="persona-usage-section">
+                        <div class="persona-section-tag usage-tag seo-media-tag">検索シーン</div>
+                        <ul class="persona-detail-list">
+                            <li>転職を考えていて「事務職 未経験 正社員」と調べたら、ミラエールの求人だとわかり、ミラエールの評判を検索してチェックしている。</li>
+                        </ul>
+                    </div>
+                    <div class="persona-problems-section">
+                        <div class="persona-section-tag problems-tag seo-media-tag">課題・悩みなど</div>
+                        <ul class="persona-detail-list">
+                            <li>販売は好きだけれども、給料が低いこと・スキルが身につかないことに不満がある</li>
+                            <li>PCは簡単な作業しかできず、Excelも高校で触っていらい使用しておらず苦手意識がある</li>
+                        </ul>
+                    </div>
+                    <div class="persona-needs-section">
+                        <div class="persona-section-tag needs-tag seo-media-tag">ニーズ</div>
+                        <ul class="persona-detail-list">
+                            <li>未経験から事務職で働きたい</li>
+                            <li>できれば大手で働いて実績を作りたい</li>
+                            <li>残業は少なめでプライベートも充実させたい</li>
+                        </ul>
+                    </div>
+                    <div class="persona-behavior-section">
+                        <div class="persona-section-tag behavior-tag seo-media-tag">行動特性</div>
+                        <ul class="persona-detail-list">
+                            <li>インスタやTikTokでコスメ系の投稿などをよく見ている</li>
+                            <li>休日は友人とカフェに行ったり買い物に出かけたりしている</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="work-details-container">
+        <h4 class="work-section-title">収益化戦略</h4>
+        <div class="work-overview-details">
+            <div class="revenue-strategy">
+                <div class="strategy-section">
+                    <p><strong>収益化方法：</strong>アフィリエイト広告</p>
+                    <p><strong>収益化案件：</strong>マイナビキャリレーション（他社案件）</p>
+                </div>
+                
+                <div class="strategy-description">
+                    <p>ミラエールのアフィリエイト広告も提携済みだが、広告単価が低いことが課題であった。</p>
+                    <p>さらに、サービス内容としても他社は賞与が年2回のところ、ミラエールは年1回などの劣位性を感じていた。</p>
+                    <p>そのため、単価が高いマイナビキャリレーションを紹介してクロスセルをすることで成約件数最大化を実現する戦略を考案。</p>
+                    <p>なお、マイナビキャリレーションは担当者様へのインタビューを実施済みで、サービス内容の充実度は確認済み。</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="work-details-container">
         <h4 class="work-section-title">ライバル分析</h4>
         <div class="work-overview-details">
-            <!-- ライバル分析のコンテンツを後で追加 -->
+            <p>※詳細な分析内容は戦略上非公開とさせていただいております。</p>
         </div>
     </div>
     <div class="work-details-container">
         <h4 class="work-section-title">記事構成</h4>
         <div class="work-overview-details">
-            <!-- 記事構成のコンテンツを後で追加 -->
+            <div class="article-structure">
+                <div class="structure-list">
+                    <div class="structure-item">
+                        <strong>H2：ミラエールがやばい理由</strong>
+                    </div>
+                    <div class="structure-item">
+                        <strong>H2：ミラエールのおすすめ理由</strong>
+                    </div>
+                    <div class="structure-item">
+                        <strong>H2：ミラエールと他社の違い</strong>
+                    </div>
+                    <div class="structure-item">
+                        <strong>H2：ミラエールが向いてない人・向いている人</strong>
+                    </div>
+                    <div class="structure-item">
+                        <strong>H2：ミラエールの評判のやばい口コミ</strong>
+                    </div>
+                    <div class="structure-item">
+                        <strong>H2：ミラエールの評判のよかった口コミ</strong>
+                    </div>
+                    <div class="structure-item">
+                        <strong>H2：ミラエールを辞めた後のキャリアとは</strong>
+                    </div>
+                    <div class="structure-item">
+                        <strong>H2：よくある質問</strong>
+                    </div>
+                    <div class="structure-item">
+                        <strong>H2：まとめ</strong>
+                    </div>
+                </div>
+                
+                <div class="structure-explanation">
+                    <p>まずは読者の顕在ニーズ（今すぐに知りたいこと）である「やばいかどうかの実態」を解説。なお、損失回避の法則（人が利益を得ることよりも損失を避けることを重視する心理傾向）を考えると、メリットよりもデメリットを先に配置することで、読者のニーズに応えて満足度が高い記事になる。</p>
+                    
+                    <p>続いて、「やばい理由」と対比になるように「おすすめの理由」を直後の見出しで紹介して、第三者の立場からメリットとデメリットを紹介。</p>
+                    
+                    <p>ここまで読んだ読者は、少なくとも「ミラエールに興味があるものの、応募あるいは内定承諾しても良いのか」と考えています。その悩みを解消するために、早期に他社と同様のサービスとの比較の見出しを設置して解説。</p>
+                    
+                    <p>この先を読む読者は「他社と比較した上でミラエールに興味があるが、応募する or 内定承諾するかどうか悩む読者」であると想像できます。そのため、向いていない人・向いている人を通じて、自分が向いているかどうか判断できるように見出しを設置。</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="work-details-container">
         <h4 class="work-section-title">執筆内容の解説</h4>
         <div class="work-overview-details">
-            <!-- 執筆内容の解説のコンテンツを後で追加 -->
+            <div class="content-explanation">
+                <h5 class="component-title seo-component-title">リード文</h5>
+                <div class="explanation-section">
+                    <p>リード文は、本文を読んでもらうために非常に重要なパートで、「セールスライティング」をしないと本文を読んでもらえません。</p>
+                    <p>また、リード文さえ読んでもらえれば、「すべりだい効果（読者が最後まで興味を持って読み進めてしまう心理効果）」で読了率が上がります。つまり、広告の閲覧数が上がり成約率が上がる可能性が高くなるということ。</p>
+                    <p>そのため、このパートではPASONAの法則を活用して、セールスライティングを駆使したリード文を執筆しています。</p>
+                </div>
+                
+                <div class="pasona-breakdown">
+                    <div class="pasona-item">
+                        <h6 class="component-subtitle seo-component-subtitle">Problem：悩みの代弁</h6>
+                        <ul>
+                            <li>ミラエールのやばい理由が知りたい</li>
+                            <li>一人暮らしできる給料か気になる</li>
+                            <li>配属先が決まらないとどうなるか知りたい</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pasona-item">
+                        <h6 class="component-subtitle seo-component-subtitle">Affinity：悩みへの共感</h6>
+                        <p>未経験OKは魅力だけど、給料が低かったり口コミがやばかったりで不安になるのではないでしょうか。</p>
+                        <p>事務職の経験が積めても、生活ができなくなってしまっては意味がないですよね。</p>
+                    </div>
+                    
+                    <div class="pasona-item">
+                        <h6 class="component-subtitle seo-component-subtitle">Solution：解決策・結論の提示</h6>
+                        <p>結論、ミラエールは実績No.1でやばいサービスではありません。</p>
+                    </div>
+                    
+                    <div class="pasona-item">
+                        <h6 class="component-subtitle seo-component-subtitle">Narrow down：絞り込み・注意喚起</h6>
+                        <p>ただし、あなたの希望条件によっては「ミラエールはやばい」と感じてしまうため注意が必要です。</p>
+                    </div>
+                    
+                    <div class="pasona-item">
+                        <h6 class="component-subtitle seo-component-subtitle">Action：行動促進</h6>
+                        <p>元スタッフサービス（ミラエール運営会社）社員が実態を紹介するので、デメリットも読んで合っているか確認しましょう。</p>
+                    </div>
+                </div>
+                
+                <h5 class="component-title seo-component-title">リード文下のクロスセルパート</h5>
+                <div class="explanation-section">
+                    <p>読者はミラエールという具体的なサービスを知っているほどなので、就業意思が非常に高い特徴があります。</p>
+                    <p>そのため、ボーナス支給の回数が多く・サービス内容が充実しているサービスを訴求することで、リード文でも成約する可能性が高いです。</p>
+                    <p>事実に即したミラエールの注意点を説明した上で、マイナビキャリレーションなら解決できることを紹介してクロスセル戦略を実施。</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="work-details-container">
         <h4 class="work-section-title">リライト（Google Search Console分析）</h4>
         <div class="work-overview-details">
-            <!-- リライト（Google Search Console分析）のコンテンツを後で追加 -->
+            <p>※詳細な分析データは戦略上非公開とさせていただいております。</p>
         </div>
     </div>
     <div class="work-details-container">

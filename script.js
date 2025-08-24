@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProfileAnimations();
     initLoveTags();
     initScrollAnimations();
+    initMaslow();
     initTocLinks();
     // initHearingCircleAnimation();
     // initAnalysisCircleAnimation();
@@ -1312,48 +1313,34 @@ document.addEventListener('DOMContentLoaded', () => { mountSingleStickyVenn(); }
 
 /* ===== Maslow：スクロール連動ピラミッド表示 ===== */
 (function(){
-  const container = document.querySelector('.maslow-scroll-container');
-  if (!container) {
-    console.warn('Maslow container not found');
+  const wrapper = document.querySelector('.maslow-scroll-wrapper');
+  if (!wrapper) {
+    console.warn('Maslow wrapper not found');
     return;
   }
 
-  const sections = Array.from(container.querySelectorAll('.maslow-section'));
-  const segments = Array.from(container.querySelectorAll('.maslow-seg'));
-
-  // デバッグ情報
-  console.log('Maslow pyramid initialized:', {
-    sections: sections.length,
-    segments: segments.length
-  });
+  const sections = Array.from(wrapper.querySelectorAll('.maslow-section'));
+  const segments = Array.from(wrapper.querySelectorAll('.maslow-seg'));
+  const triggers = Array.from(wrapper.querySelectorAll('.maslow-trigger'));
+  
+  console.log('Maslow pyramid initialized:', { sections: sections.length, segments: segments.length, triggers: triggers.length });
 
   function updateActiveSection() {
-    const scrollTop = window.pageYOffset;
     const windowHeight = window.innerHeight;
+    let activeIndex = 0;
     
-    let activeIndex = -1;
-    let maxVisibility = 0;
-
-    sections.forEach((section, index) => {
-      const rect = section.getBoundingClientRect();
-      const sectionTop = rect.top + scrollTop;
-      const sectionHeight = rect.height;
+    // 各トリガー要素の位置を確認して、最も適切なアクティブインデックスを決定
+    triggers.forEach((trigger, index) => {
+      const rect = trigger.getBoundingClientRect();
+      const triggerTop = rect.top;
+      const triggerBottom = rect.bottom;
       
-      // セクションの可視性を計算
-      const viewportTop = scrollTop;
-      const viewportBottom = scrollTop + windowHeight;
-      
-      const visibleTop = Math.max(sectionTop, viewportTop);
-      const visibleBottom = Math.min(sectionTop + sectionHeight, viewportBottom);
-      const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-      const visibility = visibleHeight / windowHeight;
-      
-      if (visibility > maxVisibility && visibility > 0.2) {
-        maxVisibility = visibility;
+      // トリガーが画面の中央あたりにある場合
+      if (triggerTop < windowHeight * 0.6 && triggerBottom > windowHeight * 0.4) {
         activeIndex = index;
       }
     });
-
+    
     // アクティブなセクションとピラミッドセグメントを更新
     sections.forEach((section, index) => {
       section.classList.toggle('active', index === activeIndex);
@@ -1380,14 +1367,20 @@ document.addEventListener('DOMContentLoaded', () => { mountSingleStickyVenn(); }
     }
   }
 
-  window.addEventListener('scroll', handleScroll);
-  window.addEventListener('resize', updateActiveSection);
+  // 初回反映
+  updateActiveSection();
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll);
   
-  // 初期化（DOMが完全に読み込まれた後に実行）
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateActiveSection);
-  } else {
-    updateActiveSection();
+  // 初期化 - 最初のセクションをアクティブに
+  if (sections.length > 0) {
+    sections[0].classList.add('active');
   }
+  if (segments.length > 0) {
+    segments[0].classList.add('active');
+  }
+  
+  // スクロール連動の計算も初期化
+  setTimeout(updateActiveSection, 100);
 })();
 

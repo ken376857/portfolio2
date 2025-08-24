@@ -1143,7 +1143,7 @@ section#sales-letter .funnel-badge.primary,
     font-weight: 700;
     line-height: 1.3;
     margin: 0 0 2rem 0;
-    color: #ffffff;
+    color: #ffffff !important;
     position: relative;
     padding-left: 1.5rem;
 }
@@ -1152,10 +1152,11 @@ section#sales-letter .funnel-badge.primary,
     content: '';
     position: absolute;
     left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
     border-radius: 2px;
 }
 
@@ -4053,20 +4054,12 @@ section#sales-letter .funnel-badge.primary,
     width: 100%;
     height: 530px;
     border-radius: 10px;
-    transition: transform 0.3s ease;
     display: block;
     object-fit: cover;
     object-position: top;
 }
 
-.image-button:focus .research-screenshot-image {
-    transform: scale(1.02);
-}
 
-.image-button:focus {
-    outline: 2px solid #007bff;
-    outline-offset: 2px;
-}
 
 .research-screenshot::after {
     content: '';
@@ -7468,6 +7461,54 @@ table th {
 }
 
 /* SEOメディアセクション - メディア実績のレイアウト */
+#seo-media .work-section-title {
+    color: #ffffff !important;
+}
+
+#seo-media .work-section-title::before {
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important;
+}
+
+/* RINDO背景時のSEOセクション見出し強制白色 */
+body.rindo-text-white #seo-media .work-section-title {
+    color: #ffffff !important;
+}
+
+/* 「執筆内容の解説」見出し専用：最強セレクタで強制適用 */
+#seo-media .work-details-container .work-section-title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* RINDO背景時も含めて強制適用 */
+body.rindo-text-white #seo-media .work-details-container .work-section-title,
+html body #seo-media .work-details-container h4.work-section-title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* デザイン（::before要素）も強制適用：12px四角＋水色グラデーション */
+#seo-media .work-details-container .work-section-title::before,
+html body #seo-media .work-details-container h4.work-section-title::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 12px !important;
+    height: 12px !important;
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important;
+    border-radius: 2px !important;
+}
+
+/* 汎用h4ルール（line 5917）を上書き：最強セレクタで絶対的に白色強制 */
+section#seo-media .work-details-container h4.work-section-title,
+body section#seo-media .work-details-container h4.work-section-title,
+html body section#seo-media .work-details-container h4.work-section-title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
 #seo-media .work-section-title .media-performance-note {
     font-size: 0.7em;
     color: #999;
@@ -7647,41 +7688,67 @@ body.seo-media-text-white #works #seo-media .seo-media-persona-section .persona-
 }
 
 /* マズロー分析のスクロール連動レイアウト */
+.maslow-scroll-wrapper {
+  position: relative;
+}
+
 .maslow-scroll-container {
-  display: grid;
-  grid-template-columns: minmax(260px, 520px) 1fr;
+  position: sticky;
+  top: 10vh;
+  height: 80vh;
+  display: flex;
+  align-items: center;
   gap: clamp(1.2rem, 4vw, 2.8rem);
-  align-items: flex-start;
-  min-height: 100vh; /* 十分な高さを確保してスティッキー要素が機能するように */
+  z-index: 10;
+}
+
+/* スクロールトリガー用の空のセクション */
+.maslow-scroll-triggers {
+  height: 200vh; /* 適度なスクロール距離を確保 */
+}
+
+.maslow-trigger {
+  height: 40vh;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* 左側の固定ピラミッド */
 .maslow-pyramid-fixed {
-  position: sticky;
-  top: 100px;
-  width: 100%;
+  flex: 0 0 auto;
+  width: 400px;
+  max-width: 45vw;
   aspect-ratio: 1/1;
-  z-index: 10;
-  align-self: start; /* 親コンテナの制約を回避 */
 }
 
 /* 右側のスクロール可能コンテンツ */
 .maslow-content-scrollable {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  flex: 1;
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
 }
 
 /* 各マズロー段階のセクション */
 .maslow-section {
-  min-height: 60vh;
-  padding: 2rem 0;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  pointer-events: none;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .maslow-section.active {
   opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .maslow-section p:first-child {
@@ -7747,22 +7814,33 @@ body.seo-media-text-white #works #seo-media .seo-media-persona-section .persona-
 /* モバイル：縦積みレイアウト */
 @media (max-width: 820px) {
   .maslow-scroll-container {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    height: auto;
+    position: static;
     gap: 1.5rem;
+    padding: 2rem 0;
   }
   
   .maslow-pyramid-fixed {
-    position: static;
-    order: -1;
-    margin-bottom: 1rem;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 300px;
+    max-width: 80vw;
+  }
+  
+  .maslow-content-scrollable {
+    height: auto;
   }
   
   .maslow-section {
-    min-height: auto;
-    padding: 1rem 0;
+    position: static;
+    height: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    margin-bottom: 2rem;
+  }
+  
+  .maslow-scroll-triggers {
+    display: none; /* モバイルではスクロール連動を無効化 */
   }
 }
 
@@ -7783,7 +7861,8 @@ body.rindo-text-white #works .seo-component-subtitle {
     color: #ffffff !important;
 }
 
-body.rindo-text-white #works .seo-component-subtitle::before {
+body.rindo-text-white #works .seo-component-subtitle::before,
+#seo-media .component-subtitle::before {
     color: #1d86fc !important;
 }
 
@@ -7799,9 +7878,74 @@ body.rindo-text-white #works .seo-component-subtitle::before {
     color: #ffffff !important;
 }
 
+/* 顕在ニーズの白背景内のテキストは除外 */
+#seo-media .needs-content li {
+    color: #333333 !important;
+}
+
 /* Maslow分析セクション内のテキストを白文字に */
-#seo-media .maslow-analysis .analysis-section p {
+#seo-media .maslow-analysis .analysis-section p,
+#seo-media .maslow-section p,
+#seo-media .maslow-section strong,
+#seo-media .maslow-section li,
+#seo-media .maslow-section em {
     color: #ffffff !important;
+}
+
+/* ニーズセクション用のスタイル */
+.needs-section-wrapper {
+    position: relative;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+}
+
+.needs-badge {
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(29, 134, 252, 0.3);
+}
+
+.needs-badge.latent-needs {
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd);
+    box-shadow: 0 2px 8px rgba(29, 134, 252, 0.3);
+}
+
+.needs-content {
+    background: white;
+    border-radius: 12px;
+    padding: 32px 20px 20px;
+    margin-top: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.needs-content ul {
+    margin: 0;
+    padding-left: 20px;
+    columns: 2;
+    column-gap: 2rem;
+}
+
+.needs-content li {
+    color: #333333 !important;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    break-inside: avoid;
+    border-bottom: 1px dashed #cccccc;
+    padding-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+    .needs-content ul {
+        columns: 1;
+    }
 }
 
 /* 収益化戦略、ライバル分析、記事構成、執筆内容セクションのテキストを白文字に */
@@ -8345,4 +8489,144 @@ body.rindo-text-white #works .seo-component-subtitle::before {
 .strengths-sticky-left.is-end{
   position: absolute !important;            /* セクション終端で置き戻し */
   top: auto; bottom: 0; left: 0;
+}
+/* クリック不可にする（スクロールのみ） */
+.maslow-pyramid-overlay { pointer-events: none; }
+.maslow-pyramid-overlay > li {
+  cursor: default;
+  /* 既存で指定していた hover の明度変更を無効化 */
+  transition: opacity .2s ease;
+}
+.maslow-pyramid-overlay > li:hover { filter: none; }
+
+/* フォールバックリストもクリック不可の見た目に */
+.maslow-pyramid-fallback li {
+  cursor: default;
+  /* 既存の hover 演出を無効化 */
+  transition: opacity .2s ease;
+}
+.maslow-pyramid-fallback li:hover { transform: none; }
+
+/* アクティブ層のハイライトは維持（必要なら調整） */
+.maslow-pyramid-overlay > li.is-active::after {
+  content: "";
+  position: absolute; inset: 10% 6%;
+  border: 2px solid rgba(255,255,255,.9);
+  box-shadow: 0 0 0 4px rgba(255,255,255,.15);
+  border-radius: 6px;
+}
+.maslow-pyramid-fallback li.is-active {
+  box-shadow: 0 0 0 3px rgba(255,255,255,.9) inset, 0 8px 24px rgba(0,0,0,.2);
+}
+
+/* Maslow：スライド要素の可視制御は "右カラム領域内" に限定する */
+.maslow-content-scrollable .maslow-section {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .6s ease;
+  pointer-events: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.maslow-content-scrollable .maslow-section.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* 新しいマズローセクションのスタイル */
+.maslow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.maslow-left {
+  position: sticky;
+  top: 20vh;
+}
+
+.maslow-pyramid {
+  width: 100%;
+  max-width: 400px;
+}
+
+.maslow-pyramid-img {
+  width: 100%;
+  height: auto;
+}
+
+.maslow-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.maslow-level {
+  min-height: 50vh;
+  padding: 1rem 0;
+}
+
+.maslow-level h4 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.maslow-pyramid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.maslow-pyramid-fallback {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .maslow-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .maslow-left {
+    position: static;
+    order: 1;
+  }
+  
+  .maslow-right {
+    order: 2;
+  }
+}
+
+/* 🔥 「執筆内容の解説」見出し最終強制ルール：汎用h4ルール(line 5917)を完全上書き */
+html body section#seo-media div.work-details-container h4.work-section-title[class~="work-section-title"] {
+    color: rgb(255, 255, 255) !important;
+    font-weight: 700 !important;
+}
+
+html body section#seo-media div.work-details-container h4.work-section-title[class~="work-section-title"]::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 12px !important;
+    height: 12px !important;
+    background: linear-gradient(135deg, rgb(29, 134, 252), rgb(74, 156, 253)) !important;
+    border-radius: 2px !important;
 }
