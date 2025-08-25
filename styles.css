@@ -8051,6 +8051,53 @@ body.rindo-text-white #works .seo-component-subtitle::before,
     box-shadow: none;
 }
 
+/* SNSグリッドリストのスタイル */
+.sns-grid-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.sns-grid-list li {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 0;
+    align-items: center;
+    padding: 0.3rem 0;
+    color: #ffffff;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.sns-grid-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0.5rem;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.sns-name {
+    text-align: left;
+    min-width: 120px;
+}
+
+.sns-colon {
+    width: auto;
+}
+
+.sns-count {
+    margin-left: 0.2rem;
+}
+
+/* 書籍項目は通常のリストアイテムスタイル */
+.sns-grid-list .book-item {
+    display: block !important;
+    grid-template-columns: none !important;
+    padding-left: 2rem;
+}
+
+
 /* チェックマークリストのスタイル */
 .checkmark-list {
     list-style: none;
