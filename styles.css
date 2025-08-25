@@ -947,7 +947,7 @@ section.container:last-child {
 .works-hero-title {
     font-size: clamp(4rem, 8vw, 8rem);
     font-weight: 800;
-    color: #333333;
+    color: #ffffff;
     text-align: center;
     margin: 4rem 0 6rem 0;
     transition: color 0.8s ease;
@@ -8055,7 +8055,138 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 }
 
 .checkmark-list li:last-child {
-    border-bottom: none;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+/* 2カラムチェックマークリスト */
+.checkmark-list.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .checkmark-list.two-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+/* 他のリストにも同じ破線デザインを適用 */
+.requirements-column-left li,
+.requirements-column-right li,
+.persona-detail-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    line-height: 1.4;
+}
+
+/* 実績ロゴセクション */
+.works-logo-section {
+    margin: 2rem 0 4rem 0;
+}
+
+.works-logo-title {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 実績ロゴマーキーアニメーション */
+.works-logo-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 2rem 0;
+}
+
+.works-logo-track {
+    display: inline-flex;
+    animation: marquee 30s linear infinite;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.works-logo {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+    filter: none;
+    opacity: 1;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 100;
+}
+
+.works-logo:hover {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* テキストベースの実績リスト */
+.works-text-list {
+    margin-bottom: 2rem;
+}
+
+.works-text-item {
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.works-text-item:before {
+    content: "•";
+    color: #ffffff;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
+}
+
+.works-text-item:last-child {
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .works-logo {
+        height: 90px;
+    }
+    
+    .works-logo-track {
+        gap: 1rem;
+    }
+    
+    .works-logo-marquee {
+        margin: 1.5rem 0 3rem 0;
+        padding: 1.5rem 0;
+    }
+    
+    .works-text-item {
+        font-size: 0.9rem;
+        padding: 0.6rem 0;
+        padding-left: 1.2rem;
+    }
 }
 
 /* ベン図ハイライト効果の強制適用 - 競合を防ぐ */
