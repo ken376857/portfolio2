@@ -7687,75 +7687,73 @@ body.seo-media-text-white #works #seo-media .seo-media-persona-section .persona-
   line-height:1.7;
 }
 
-/* マズロー分析のスクロール連動レイアウト */
-.maslow-scroll-wrapper {
-  position: relative;
+/* =========================
+   Maslow Steps: クリーンな実装
+   ========================= */
+
+.maslow-steps {
+  display: grid;
+  gap: 18vh; /* セクション間の移動距離 */
+  scroll-snap-type: y proximity; /* ほどよく段に止まる */
 }
 
-.maslow-scroll-container {
+.maslow-step {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  align-items: start;
+  min-height: 140vh; /* 1段あたりの滞在尺 */
+  scroll-snap-align: start;
+}
+
+/* 2カラムとも画面内にピン留め */
+.maslow-step .col-left,
+.maslow-step .col-right {
   position: sticky;
-  top: 10vh;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  gap: clamp(1.2rem, 4vw, 2.8rem);
-  z-index: 10;
+  top: clamp(64px, 12vh, 120px); /* ヘッダー分だけ余白 */
 }
 
-/* スクロールトリガー用の空のセクション */
-.maslow-scroll-triggers {
-  height: 200vh; /* 適度なスクロール距離を確保 */
+/* 親要素の制約を解除（overflow問題対策） */
+#seo-media,
+#seo-media .work-overview-details {
+  overflow: visible !important;
 }
 
-.maslow-trigger {
-  height: 40vh;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* 左側の固定ピラミッド */
-.maslow-pyramid-fixed {
-  flex: 0 0 auto;
-  width: 400px;
-  max-width: 45vw;
-  aspect-ratio: 1/1;
-}
-
-/* 右側のスクロール可能コンテンツ */
-.maslow-content-scrollable {
-  flex: 1;
-  position: relative;
-  height: 60vh;
-  overflow: hidden;
-}
-
-/* 各マズロー段階のセクション */
-.maslow-section {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* 左：ピラミッドの見栄え */
+.pyr {
+  display: block;
   width: 100%;
-  height: 100%;
-  padding: 2rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
+  height: auto;
+  user-select: none;
   pointer-events: none;
-  overflow-y: auto;
-  box-sizing: border-box;
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.25));
 }
 
-.maslow-section.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+/* 右：カード風 */
+.col-right {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(4px);
+  border-radius: 16px;
+  padding: clamp(16px, 2.4vw, 28px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  max-width: 56ch;
 }
 
-.maslow-section p:first-child {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+/* モバイル：sticky解除で縦積み */
+@media (max-width: 768px) {
+  .maslow-step {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .maslow-step .col-left,
+  .maslow-step .col-right {
+    position: static;
+  }
+  .maslow-steps {
+    gap: 48px;
+  }
 }
+
+/* 古いmaslow-section削除済み */
 
 .maslow-pyramid{ width:100%; aspect-ratio:1/1; }
 .maslow-svg{ width:100%; height:100%; overflow:visible; }
@@ -7811,8 +7809,26 @@ body.seo-media-text-white #works #seo-media .seo-media-persona-section .persona-
 
 /* 削除: 重複した .is-active クラス定義を削除 - .active で統一 */
 
+/* デスクトップ：横並びレイアウトを強制 */
+@media (min-width: 769px) {
+  .maslow-scroll-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: clamp(1.2rem, 4vw, 2.8rem) !important;
+  }
+  
+  .maslow-pyramid-fixed {
+    position: sticky !important;
+    top: 15vh !important;
+    flex: 0 0 auto !important;
+    width: 400px !important;
+    max-width: 45vw !important;
+  }
+}
+
 /* モバイル：縦積みレイアウト */
-@media (max-width: 820px) {
+@media (max-width: 768px) {
   .maslow-scroll-container {
     flex-direction: column;
     height: auto;
@@ -7822,6 +7838,7 @@ body.seo-media-text-white #works #seo-media .seo-media-persona-section .persona-
   }
   
   .maslow-pyramid-fixed {
+    position: static !important;
     width: 300px;
     max-width: 80vw;
   }
@@ -7830,13 +7847,7 @@ body.seo-media-text-white #works #seo-media .seo-media-persona-section .persona-
     height: auto;
   }
   
-  .maslow-section {
-    position: static;
-    height: auto;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    margin-bottom: 2rem;
+  /* 古いmaslow-section削除済み */
   }
   
   .maslow-scroll-triggers {
@@ -7884,13 +7895,7 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 }
 
 /* Maslow分析セクション内のテキストを白文字に */
-#seo-media .maslow-analysis .analysis-section p,
-#seo-media .maslow-section p,
-#seo-media .maslow-section strong,
-#seo-media .maslow-section li,
-#seo-media .maslow-section em {
-    color: #ffffff !important;
-}
+/* 古いmaslow-section関連削除済み */
 
 /* ニーズセクション用のスタイル */
 .needs-section-wrapper {
@@ -7980,6 +7985,34 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 #seo-media .persona-section-tag,
 #seo-media .persona-attr-label {
     /* 既存のスタイルを維持するため、明示的に除外 */
+}
+
+/* 趣味バッジのスタイル */
+.hobby-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0 0.5rem 0;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ffffff !important;
+    background: transparent;
+    border: 2px solid #ffffff;
+    box-shadow: none;
+}
+
+/* チェックマークリストのスタイル */
+.checkmark-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.checkmark-list li {
+    padding: 0.5rem 0;
+    color: #1a1a1a;
+    font-size: 0.95rem;
+    line-height: 1.4;
 }
 
 /* 5W1H分析バッジのスタイル */
@@ -8519,65 +8552,11 @@ body.rindo-text-white #works .seo-component-subtitle::before,
   box-shadow: 0 0 0 3px rgba(255,255,255,.9) inset, 0 8px 24px rgba(0,0,0,.2);
 }
 
-/* Maslow：スライド要素の可視制御は "右カラム領域内" に限定する */
-.maslow-content-scrollable .maslow-section {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  padding: 2rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all .6s ease;
-  pointer-events: none;
-  overflow-y: auto;
-  box-sizing: border-box;
-}
+/* 古いMaslow設定は削除済み */
 
-.maslow-content-scrollable .maslow-section.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
+/* 古いmaslow-grid設定削除 */
 
-/* 新しいマズローセクションのスタイル */
-.maslow-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-.maslow-left {
-  position: sticky;
-  top: 20vh;
-}
-
-.maslow-pyramid {
-  width: 100%;
-  max-width: 400px;
-}
-
-.maslow-pyramid-img {
-  width: 100%;
-  height: auto;
-}
-
-.maslow-right {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.maslow-level {
-  min-height: 50vh;
-  padding: 1rem 0;
-}
-
-.maslow-level h4 {
-  color: #ffffff;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
+/* 古いmaslow-left, maslow-pyramid, maslow-right設定も削除 */
 
 .maslow-pyramid-overlay {
   position: absolute;
@@ -8625,8 +8604,184 @@ html body section#seo-media div.work-details-container h4.work-section-title[cla
     left: 0px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    width: 12px !important;
-    height: 12px !important;
+    width: 4px !important;
+    height: 100% !important;
     background: linear-gradient(135deg, rgb(29, 134, 252), rgb(74, 156, 253)) !important;
     border-radius: 2px !important;
+}
+
+/* SEOメディアセクションの全ての見出しに縦線を強制適用 */
+#seo-media .work-section-title {
+    position: relative !important;
+    padding-left: 1.5rem !important;
+}
+
+#seo-media .work-section-title::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 4px !important;
+    height: 100% !important;
+    background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important;
+    border-radius: 2px !important;
+}
+
+/* ===== MASLOW シンプル版：5つのコンテナを順次配置 ===== */
+
+/* SEO Mediaセクション内のマズローエリアを全幅化 */
+#seo-media .work-details-container {
+    max-width: none;
+    width: 100%;
+    padding: 0;
+}
+
+/* maslow-stepsをシンプルな縦並びに */
+.maslow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0 0 3rem 0;
+    width: 100%;
+    max-width: none;
+    padding: 0 2rem;
+}
+
+/* 各ステップを横並び2カラムレイアウト */
+.maslow-step {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 0.5rem 0;
+    width: 100%;
+}
+
+/* 左カラム（ピラミッド）*/
+.maslow-step .col-left {
+    flex: 0 0 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 右カラム（説明テキスト）- ぼかし背景 */
+.maslow-step .col-right {
+    flex: 1;
+    padding: 1.5rem;
+    margin-left: 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* マズロー右カラムのテキストを白文字に */
+.maslow-step .col-right h4,
+.maslow-step .col-right p,
+.maslow-step .col-right li,
+.maslow-step .col-right ul {
+    color: #ffffff !important;
+}
+
+/* 深掘り例を角丸白背景に */
+.maslow-step .col-right .deep-dive-example {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 深掘り例ボックス内のテキストを確実に黒文字に */
+#seo-media .maslow-step .col-right .deep-dive-example p,
+.maslow-step .col-right .deep-dive-example p,
+html body #seo-media .maslow-step .col-right .deep-dive-example p {
+    color: #1a1a1a !important;
+    margin: 0;
+    line-height: 1.6;
+    font-size: 0.9rem !important;
+}
+
+/* 深掘り例ボックス内の全要素を黒文字に */
+#seo-media .maslow-step .col-right .deep-dive-example,
+#seo-media .maslow-step .col-right .deep-dive-example * {
+    color: #1a1a1a !important;
+}
+
+/* SEOセクション内のH4見出しと分析タイトルを白文字に強制 */
+#seo-media h4,
+#seo-media .component-title,
+#seo-media .analysis-subtitle,
+html body section#seo-media h4,
+html body section#seo-media .component-title,
+section#seo-media .component-title {
+    color: #ffffff !important;
+}
+
+/* マズロー分析見出しの上部余白を追加 */
+#seo-media .seo-component-title,
+#seo-media .component-title.seo-component-title,
+#seo-media h5.seo-component-title {
+    margin-top: 4rem !important;
+}
+
+/* ピラミッドサイズ調整 */
+.maslow-step .pyr {
+    width: 400px;
+    height: 400px;
+}
+
+/* ピラミッド内のテキストラベル */
+.maslow-label {
+    fill: #ffffff;
+    font-size: 3.2px;
+    font-weight: 600;
+    font-family: 'Noto Sans JP', sans-serif;
+    opacity: 0.8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+/* アクティブラベルの強調 */
+.maslow-label-active {
+    fill: #1d86fc;
+    opacity: 1;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .maslow-steps {
+        padding: 0 1rem;
+    }
+    
+    .maslow-step {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0;
+    }
+    
+    .maslow-step .col-left {
+        flex: none;
+    }
+    
+    .maslow-step .col-right {
+        margin-left: 0;
+        padding: 1rem;
+    }
+    
+    .maslow-step .pyr {
+        width: 300px;
+        height: 300px;
+    }
+    
+    /* モバイル版でのラベルサイズ調整 */
+    .maslow-label {
+        font-size: 2.8px;
+    }
 }
