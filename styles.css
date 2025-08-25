@@ -1585,14 +1585,14 @@ section#sales-letter .funnel-badge.primary,
 .requirements-column-left li,
 .requirements-column-right li {
     position: relative;
-    padding: 0.3rem 0 0.3rem 1.2rem;
+    padding: 0.3rem 0 0.3rem 2rem;
 }
 
 .requirements-column-left li::before,
 .requirements-column-right li::before {
     content: '•';
     position: absolute;
-    left: 0;
+    left: 0.5rem;
     color: #4A90E2;
     font-weight: bold;
     font-size: 1rem;
@@ -4043,7 +4043,7 @@ section#sales-letter .funnel-badge.primary,
 .persona-detail-list li::before {
     content: "•";
     position: absolute;
-    left: 0;
+    left: 0.5rem;
     color: #28a745;
     font-weight: bold;
     font-size: 1.3rem;
@@ -7608,6 +7608,7 @@ html body section#seo-media .work-details-container h4.work-section-title {
     
     /* Mobile background fix - background-attachment: fixed not supported on mobile */
     .rindo-background-layer,
+    .seo-media-background-layer,
     .hero-service-background::before {
         background-attachment: scroll !important;
     }
@@ -7627,6 +7628,13 @@ html body section#seo-media .work-details-container h4.work-section-title {
     .learning-power-right {
         margin-left: 0;
         margin-right: 0;
+        text-align: left;
+    }
+    
+    .hearing-power-two-column,
+    .analysis-power-two-column,
+    .learning-power-two-column {
+        text-align: left;
     }
 }[id$="background-layer"], [class$="background-layer"] { pointer-events: none \!important; }
 
@@ -8077,8 +8085,10 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 .requirements-column-right li,
 .persona-detail-list li {
     padding: 0.5rem 0;
+    padding-left: 2rem;
     border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
     line-height: 1.4;
+    position: relative;
 }
 
 /* 実績ロゴセクション */
