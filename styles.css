@@ -2142,7 +2142,7 @@ section#sales-letter .funnel-badge.primary,
     gap: 4rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     position: relative;
     z-index: 1000;
 }
@@ -2157,11 +2157,14 @@ section#sales-letter .funnel-badge.primary,
 .hearing-power-right {
     flex: 1;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     margin-left: 2rem;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 20px rgba(59, 130, 246, 0.3);
+    color: #ffffff;
 }
 
 .hearing-venn-diagram {
@@ -2197,8 +2200,9 @@ section#sales-letter .funnel-badge.primary,
         0 0 20px rgba(59, 130, 246, 0.6), 
         0 0 40px rgba(59, 130, 246, 0.3),
         inset 0 0 20px rgba(59, 130, 246, 0.3),
-        inset 0 0 40px rgba(59, 130, 246, 0.1);
+        inset 0 0 40px rgba(59, 130, 246, 0.1) !important;
     opacity: 1 !important;
+    filter: none !important;
 }
 
 
@@ -2226,8 +2230,9 @@ section#sales-letter .funnel-badge.primary,
         0 0 20px rgba(34, 197, 94, 0.6), 
         0 0 40px rgba(34, 197, 94, 0.3),
         inset 0 0 20px rgba(34, 197, 94, 0.3),
-        inset 0 0 40px rgba(34, 197, 94, 0.1);
+        inset 0 0 40px rgba(34, 197, 94, 0.1) !important;
     opacity: 1 !important;
+    filter: none !important;
 }
 
 
@@ -2255,8 +2260,9 @@ section#sales-letter .funnel-badge.primary,
         0 0 20px rgba(239, 68, 68, 0.6), 
         0 0 40px rgba(239, 68, 68, 0.3),
         inset 0 0 20px rgba(239, 68, 68, 0.3),
-        inset 0 0 40px rgba(239, 68, 68, 0.1);
+        inset 0 0 40px rgba(239, 68, 68, 0.1) !important;
     opacity: 1 !important;
+    filter: none !important;
 }
 
 
@@ -2285,7 +2291,7 @@ section#sales-letter .funnel-badge.primary,
     display: flex;
     align-items: center;
     gap: 3rem;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
 }
 
 .analysis-power-left {
@@ -2297,11 +2303,14 @@ section#sales-letter .funnel-badge.primary,
 .analysis-power-right {
     flex: 1;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     margin-left: 2rem;
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 40px rgba(34, 197, 94, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 20px rgba(34, 197, 94, 0.3);
+    color: #ffffff;
 }
 
 /* 学び続ける姿勢セクションの2カラムレイアウト */
@@ -2309,7 +2318,7 @@ section#sales-letter .funnel-badge.primary,
     display: flex;
     align-items: center;
     gap: 3rem;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
 }
 
 .learning-power-left {
@@ -2321,19 +2330,22 @@ section#sales-letter .funnel-badge.primary,
 .learning-power-right {
     flex: 1;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     margin-left: 2rem;
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 20px rgba(239, 68, 68, 0.3);
+    color: #ffffff;
 }
 
-/* ベン図の円描画アニメーション - 初期状態 */
-.hearing-power-section .venn-circle,
+/* ベン図の円描画アニメーション - 初期状態を無効化してハイライト効果を表示 */
+/*.hearing-power-section .venn-circle,
 .analysis-power-section .venn-circle,
 .learning-power-section .venn-circle {
     opacity: 0;
-}
+}*/
 
 
 
@@ -2468,17 +2480,26 @@ section#sales-letter .funnel-badge.primary,
 }
 
 .hearing-tools-box {
-    background: #f8fafc;
-    border: 2px solid #e2e8f0;
-    border-radius: 15px;
-    padding: 2rem;
-    margin: 2rem 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin-top: 2rem;
+    margin-bottom: 0;
 }
 
 .hearing-tools-header {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #2c3e50;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    display: inline-block;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     margin-bottom: 1.5rem;
 }
 
@@ -2520,14 +2541,18 @@ section#sales-letter .funnel-badge.primary,
 }
 
 .achievement-tag {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-    padding: 0.5rem 1.2rem;
+    background: transparent;
+    border: 2px solid #ffffff;
     border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    padding: 0.8rem 1.5rem;
     display: inline-block;
-    margin-bottom: 1rem;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    margin-bottom: 1.5rem;
 }
 
 .achievement-content p {
@@ -2677,17 +2702,26 @@ section#sales-letter .funnel-badge.primary,
 }
 
 .analysis-tools-box {
-    background: #f8fafc;
-    border: 2px solid #e2e8f0;
-    border-radius: 15px;
-    padding: 2rem;
-    margin: 2rem 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin-top: 2rem;
+    margin-bottom: 0;
 }
 
 .analysis-tools-header {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #2c3e50;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    display: inline-block;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     margin-bottom: 1.5rem;
 }
 
@@ -2812,6 +2846,10 @@ section#sales-letter .funnel-badge.primary,
 
 .learning-achievements {
     margin-top: 2rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
 }
 
 .learning-achievements-list {
@@ -2835,7 +2873,7 @@ section#sales-letter .funnel-badge.primary,
 }
 
 .learning-description p {
-    color: #2c3e50;
+    color: #ffffff;
     line-height: 1.6;
     margin-bottom: 1rem;
 }
@@ -8010,9 +8048,46 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 
 .checkmark-list li {
     padding: 0.5rem 0;
-    color: #1a1a1a;
+    color: #ffffff;
     font-size: 0.95rem;
     line-height: 1.4;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.checkmark-list li:last-child {
+    border-bottom: none;
+}
+
+/* ベン図ハイライト効果の強制適用 - 競合を防ぐ */
+.hearing-power-section .venn-circle-1,
+.analysis-power-section .venn-circle-2,
+.learning-power-section .venn-circle-3 {
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+.hearing-power-section .venn-circle-1 {
+    box-shadow: 
+        0 0 20px rgba(59, 130, 246, 0.6), 
+        0 0 40px rgba(59, 130, 246, 0.3),
+        inset 0 0 20px rgba(59, 130, 246, 0.3),
+        inset 0 0 40px rgba(59, 130, 246, 0.1) !important;
+}
+
+.analysis-power-section .venn-circle-2 {
+    box-shadow: 
+        0 0 20px rgba(34, 197, 94, 0.6), 
+        0 0 40px rgba(34, 197, 94, 0.3),
+        inset 0 0 20px rgba(34, 197, 94, 0.3),
+        inset 0 0 40px rgba(34, 197, 94, 0.1) !important;
+}
+
+.learning-power-section .venn-circle-3 {
+    box-shadow: 
+        0 0 20px rgba(239, 68, 68, 0.6), 
+        0 0 40px rgba(239, 68, 68, 0.3),
+        inset 0 0 20px rgba(239, 68, 68, 0.3),
+        inset 0 0 40px rgba(239, 68, 68, 0.1) !important;
 }
 
 /* 5W1H分析バッジのスタイル */
@@ -8240,305 +8315,11 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 }
 
 
-/* === Strengths：固定1枚のベン図＋線描画アニメのコア === */
-.strengths-sticky-wrapper{
-  display:grid; grid-template-columns:420px 1fr; gap:3rem;
-  align-items:start; max-width:1200px; margin:0 auto; padding:3rem 1rem;
-  overflow:visible; /* 親でoverflow隠すとstickyが効かないため */
-}
-.strengths-sticky-left{
-  position:sticky; top:20vh; height:60vh; min-height:420px;
-  --venn-demote-opacity:.22; /* 戻し中に薄く見せる濃さ。お好みで */
-}
-@media (max-width:1024px){
-  .strengths-sticky-wrapper{ grid-template-columns:1fr; }
-  .strengths-sticky-left{ position:relative; top:auto; height:auto; min-height:360px; }
-}
+/* === Strengths：シンプルな表示（アニメーション・固定表示削除） === */
 
-/* ラッパ内のベン図3枚は同じ座標に重ねる */
-.strengths-sticky-left .hearing-venn-diagram,
-.strengths-sticky-left .analysis-venn-diagram,
-.strengths-sticky-left .learning-venn-diagram{
-  position:absolute !important; inset:0; margin:auto; width:400px; height:400px;
-}
+/* === 3 STRENGTHS シンプル表示（アニメーション・固定表示なし） === */
 
-/* ベースの白縁（既存のdiv円） */
-.strengths-sticky-left .venn-circle{
-  width:260px; height:260px; border-radius:50%; border:4px solid transparent;
-  box-shadow:0 0 0 12px rgba(255,255,255,1), 0 0 24px rgba(0,0,0,.08);
-  position:absolute; transition:filter .4s ease, opacity .4s ease;
-}
-.strengths-sticky-left .venn-circle-1{ top:-24px; left:50%; transform:translate(-50%,0); }
-.strengths-sticky-left .venn-circle-2{ bottom:10px; left:22%; }
-.strengths-sticky-left .venn-circle-3{ bottom:10px; right:22%; }
 
-/* 線のオーバーレイ（SVG） */
-.venn-stroke-svg{ position:absolute; inset:0; z-index:4; pointer-events:none; }
-.venn-stroke{
-  fill:none; stroke:#fff; stroke-width:12; stroke-linecap:round;
-  filter:drop-shadow(0 0 18px rgba(0,0,0,.15));
-  stroke-dasharray:0 9999; stroke-dashoffset:0; opacity:0;
-}
-/* 描く */
-.venn-stroke.is-drawing{ opacity:1; animation:vennDraw .9s cubic-bezier(.17,.67,.29,1) forwards; }
-.venn-stroke.is-drawing.fast{ animation-duration:.6s; }
-/* 戻す */
-.venn-stroke.is-reversing{ opacity:1; animation:vennUndraw .9s cubic-bezier(.17,.67,.29,1) forwards; }
-/* 戻し中はベース円を薄く＆影オフ */
-.venn-circle.is-demoted{ opacity:var(--venn-demote-opacity,.2) !important; box-shadow:none !important; }
-
-/* キーフレーム */
-@keyframes vennDraw{ from{ stroke-dasharray:0 9999; } to{ stroke-dasharray:1660 9999; } }
-@keyframes vennUndraw{ from{ stroke-dasharray:1660 9999; } to{ stroke-dasharray:0 9999; } }
-
-/* === FIX: 3 STRENGTHS — 左に1つのベン図を固定し、見た目を統一 === */
-:root{
-  --venn-size: 400px;      /* 外枠サイズ */
-  --venn-ring: 4px;        /* 縁の太さ（スクショの太さに合わせて 4px） */
-}
-
-/* 左=固定 / 右=説明 の2カラム */
-.strengths-sticky-wrapper{
-  display:grid;
-  grid-template-columns: 420px minmax(0,1fr);
-  gap: clamp(24px,3vw,48px);
-  align-items:start;
-}
-.strengths-sticky-left{
-  position: sticky !important;
-  top: clamp(48px,12vh,120px);
-  height: 420px; /* ベン図見かけ高さ */
-}
-
-/* 左の固定ボックスに3つのベン図を重ねる（位置のズレ防止） */
-.strengths-sticky-left .hearing-venn-diagram,
-.strengths-sticky-left .analysis-venn-diagram,
-.strengths-sticky-left .learning-venn-diagram{
-  position: absolute !important;
-  inset: 0;
-  margin: auto;
-  width: var(--venn-size) !important;
-  height: var(--venn-size) !important;
-}
-
-/* 円のサイズ／太さを統一（崩れ対策） */
-.venn-circle{ box-sizing:border-box; }
-.venn-circle-1,
-.venn-circle-2,
-.venn-circle-3{
-  width: 280px !important;
-  height: 280px !important;
-  border: var(--venn-ring) solid #fff !important;
-}
-
-/* オーバーレイ線（描画アニメ）。なければ下記が有効になる */
-.venn-stroke-svg{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:4; }
-.venn-stroke{
-  fill:none; stroke:#fff; stroke-width:4; stroke-linecap:round;
-  filter:drop-shadow(0 0 18px rgba(255,255,255,.45)) drop-shadow(0 0 36px rgba(255,255,255,.25));
-}
-.venn-stroke.is-drawing{ animation:vennDraw .7s cubic-bezier(.2,.9,.25,1) forwards; animation-delay:var(--venn-delay,420ms); }
-.venn-stroke.is-reversing{ animation:vennUndraw .65s cubic-bezier(.6,0,.8,.2) forwards; }
-.venn-stroke.is-closed{ stroke-linecap: butt; }
-@keyframes vennDraw{ from{ stroke-dashoffset:var(--venn-total,300) } to{ stroke-dashoffset:0 } }
-@keyframes vennUndraw{ from{ stroke-dashoffset:0 } 60%{ filter:none } to{ stroke-dashoffset:var(--venn-total,300); filter:none } }
-
-/* 戻した後は薄い円（影なし） */
-.venn-circle.is-demoted{ box-shadow:none !important; opacity:.2 !important; filter:none !important; }
-
-/* 右側の2カラムを1カラム化 */
-.strengths-sticky-wrapper .hearing-power-two-column,
-.strengths-sticky-wrapper .analysis-power-two-column,
-.strengths-sticky-wrapper .learning-power-two-column{ display:block; }
-
-.strengths-sticky-wrapper .hearing-power-left,
-.strengths-sticky-wrapper .analysis-power-left,
-.strengths-sticky-wrapper .learning-power-left{ display:none; }
-
-@media (max-width: 768px){
-  .strengths-sticky-wrapper{ display:block; }
-  .strengths-sticky-left{ position:static; height:auto; margin-bottom:16px; }
-}
-
-/* === 固定表示だけ（描画アニメOFF）用の最小セット === */
-.strengths-sticky-wrapper{
-  display:grid;
-  grid-template-columns:420px minmax(0,1fr);
-  gap:clamp(24px,3vw,48px);
-  align-items:start;
-  max-width:1200px; margin:0 auto; padding:0 16px;
-  overflow:visible; /* stickyが効くように */
-}
-.strengths-sticky-left{
-  position:sticky !important;
-  top:clamp(48px,12vh,120px);
-  height:420px;
-}
-
-/* 左の固定カラムでは3枚を重ねる（個別stickyを打ち消す） */
-.strengths-sticky-left .hearing-venn-diagram,
-.strengths-sticky-left .analysis-venn-diagram,
-.strengths-sticky-left .learning-venn-diagram{
-  position:absolute !important;
-  inset:0; margin:auto;
-}
-
-/* 旧：各ベン図をそれぞれstickyにする指定が残っているので上書きで無効化 */
-.hearing-venn-diagram,
-.analysis-venn-diagram,
-.learning-venn-diagram{
-  position:static; top:auto; /* wrapper外の場所では通常配置に */
-}
-
-/* Vennダイアグラム固定表示レイアウト（統合版・重複削除済み） */
-
-/* Vennダイアグラム統合CSS（全重複削除・最終版） */
-
-/* 左固定ベン図、右説明の2カラムレイアウト */
-.strengths-sticky-wrapper{
-  display: grid;
-  grid-template-columns: 420px minmax(0,1fr);
-  gap: clamp(24px,3vw,48px);
-  align-items: start;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-  overflow: visible; /* stickyが効くように */
-}
-
-/* 左カラム固定 */
-.strengths-sticky-left{
-  position: sticky !important;
-  top: clamp(48px,12vh,120px);
-  height: 420px;
-}
-
-/* 左カラムの3つのベン図を重ね表示 */
-.strengths-sticky-left .hearing-venn-diagram,
-.strengths-sticky-left .analysis-venn-diagram,
-.strengths-sticky-left .learning-venn-diagram{
-  position: absolute !important;
-  inset: 0;
-  margin: auto;
-  width: 400px;
-  height: 400px;
-}
-
-/* wrapper外の個別ベン図の古いsticky指定を無効化 */
-.hearing-venn-diagram,
-.analysis-venn-diagram,
-.learning-venn-diagram{
-  position: static;
-  top: auto;
-}
-
-/* 中央テキストの重複防止（hearingだけ表示） */
-.strengths-sticky-left .analysis-venn-diagram .venn-center-text,
-.strengths-sticky-left .learning-venn-diagram .venn-center-text{
-  display: none !important;
-}
-
-/* 右カラムを2カラムから1カラムに統一 */
-.strengths-sticky-wrapper .hearing-power-two-column,
-.strengths-sticky-wrapper .analysis-power-two-column,
-.strengths-sticky-wrapper .learning-power-two-column{ display: block; }
-
-.strengths-sticky-wrapper .hearing-power-left,
-.strengths-sticky-wrapper .analysis-power-left,
-.strengths-sticky-wrapper .learning-power-left{ display: none; }
-
-/* モバイル対応 */
-@media (max-width: 768px){
-  .strengths-sticky-wrapper{ display: block; }
-  .strengths-sticky-left{ position: static; height: auto; margin-bottom: 16px; }
-}
-
-/* Vennダイアグラムstickyのための祖先要素のoverflow設定 */
-.strengths,
-.strengths *:where(.strengths-sticky-wrapper, .strengths-details, .hearing-power-two-column, .analysis-power-two-column, .learning-power-two-column){
-  overflow: visible !important;
-}
-
-/* === 3 STRENGTHS 固定表示：最小セット（上書き用） === */
-.strengths-sticky-wrapper{
-  display:grid;
-  grid-template-columns:420px minmax(0,1fr);
-  gap: clamp(24px, 3vw, 48px);
-  align-items:start;
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 16px;
-  overflow:visible;                 /* 親 overflow が hidden だと sticky 無効 */
-}
-.strengths-sticky-left{
-  position: sticky !important;
-  top: clamp(48px, 12vh, 120px);    /* 追尾する位置（ヘッダー分を見ながら調整） */
-  height: 420px;                    /* 左ボックスの見かけ高さ */
-}
-
-/* 左の固定ボックスに3枚を重ねる（個別 sticky 指定を殺す） */
-.strengths-sticky-left .hearing-venn-diagram,
-.strengths-sticky-left .analysis-venn-diagram,
-.strengths-sticky-left .learning-venn-diagram{
-  position: absolute !important;
-  inset: 0;
-  margin: auto;
-}
-
-/* wrapper 外の古い sticky 指定が残っている場合は打ち消し */
-.hearing-venn-diagram,
-.analysis-venn-diagram,
-.learning-venn-diagram{ position: static; top:auto; }
-
-/* セクション内の祖先で overflow hidden を無効化（sticky を通す） */
-.strengths,
-.strengths *:where(.strengths-sticky-wrapper, .strengths-details,
-  .hearing-power-two-column, .analysis-power-two-column, .learning-power-two-column){
-  overflow: visible !important;
-}
-
-/* モバイルは sticky を外す */
-@media (max-width: 768px){
-  .strengths-sticky-wrapper{ display:block; }
-  .strengths-sticky-left{ position:static; height:auto; margin-bottom:16px; }
-}
-
-/* 右側の各説明ブロックに十分な縦の間隔を与えて高さを作る */
-.strengths-details > *{
-  margin-bottom: min(10vh, 96px);
-}
-
-/* === Strengths: sticky が不安定な環境でも必ず追尾させる fixed フォールバック === */
-.strengths-sticky-wrapper{ position: relative; } /* 終端固定の基準にする */
-
-.strengths-sticky-left.is-fixed{
-  position: fixed !important;
-  top: var(--fix-top, 15vh) !important;     /* 追尾位置（好みで） */
-  left: var(--fix-left, 0px) !important;    /* JSで算出して流し込み */
-  width: var(--fix-width, 420px);
-  z-index: 5;
-}
-
-.strengths-sticky-left.is-end{
-  position: absolute !important;            /* セクション終端で置き戻し */
-  top: auto; bottom: 0; left: 0;
-}
-/* クリック不可にする（スクロールのみ） */
-.maslow-pyramid-overlay { pointer-events: none; }
-.maslow-pyramid-overlay > li {
-  cursor: default;
-  /* 既存で指定していた hover の明度変更を無効化 */
-  transition: opacity .2s ease;
-}
-.maslow-pyramid-overlay > li:hover { filter: none; }
-
-/* フォールバックリストもクリック不可の見た目に */
-.maslow-pyramid-fallback li {
-  cursor: default;
-  /* 既存の hover 演出を無効化 */
-  transition: opacity .2s ease;
-}
-.maslow-pyramid-fallback li:hover { transform: none; }
 
 /* アクティブ層のハイライトは維持（必要なら調整） */
 .maslow-pyramid-overlay > li.is-active::after {

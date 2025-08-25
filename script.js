@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initProfileAnimations();
     initLoveTags();
     initScrollAnimations();
-    initMaslow();
     initTocLinks();
+    // initMaslow(); // シンプル版ではJS不要
     // initHearingCircleAnimation();
     // initAnalysisCircleAnimation();
     // initLearningCircleAnimation();
@@ -218,23 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const elementsToAnimate = document.querySelectorAll('.skill-category, .achievement-card, .handwritten-name, #profile, #skills, .toc-section, .career-item');
         elementsToAnimate.forEach(el => observer.observe(el));
         
-        // ヒアリング力セクションのアニメーション監視
-        const hearingPowerSection = document.querySelector('.hearing-power-section');
-        if (hearingPowerSection) {
-            observer.observe(hearingPowerSection);
-        }
-        
-        // 分析力セクションのアニメーション監視
-        const analysisPowerSection = document.querySelector('.analysis-power-section');
-        if (analysisPowerSection) {
-            observer.observe(analysisPowerSection);
-        }
-        
-        // 学び続ける姿勢セクションのアニメーション監視
-        const learningPowerSection = document.querySelector('.learning-power-section');
-        if (learningPowerSection) {
-            observer.observe(learningPowerSection);
-        }
         
         // Skills section specific observer for staggered animations
         const skillsObserver = new IntersectionObserver((entries) => {
@@ -868,167 +851,8 @@ function initSalesCounterAnimation() {
     updateCounter();
 }
 
-// ヒアリング力の円にスクロール連動光エフェクト
-function initHearingCircleAnimation() {
-    const hearingCircle = document.querySelector('.hearing-power-section .hearing-venn-diagram .venn-circle-1');
-    const hearingSection = document.querySelector('.hearing-power-section');
-    if (!hearingCircle || !hearingSection) return;
 
-    function updateHearingGlow() {
-        const rect = hearingSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // より簡単な進行度計算：セクションの上端が画面に入ってから完全に通過するまで
-        let progress = 0;
-        
-        if (rect.top <= windowHeight && rect.bottom >= 0) {
-            // セクションがビューポート内にある場合
-            if (rect.top <= windowHeight && rect.top > windowHeight * 0.2) {
-                // セクション上部が画面下80%に入った時点から開始（より下から）
-                progress = (windowHeight - rect.top) / (windowHeight * 0.8);
-            } else if (rect.top <= windowHeight * 0.2 && rect.bottom > windowHeight * 0.2) {
-                // セクションが画面上20%付近にある時は100%
-                progress = 1;
-            } else if (rect.bottom <= windowHeight * 0.2 && rect.bottom > 0) {
-                // セクションが画面上部に向かう時は徐々に減少
-                progress = rect.bottom / (windowHeight * 0.2);
-            }
-        }
-        
-        progress = Math.max(0, Math.min(1, progress));
-        
-        
-        // 光の強度を段階的に計算（progress: 0-1を基準）
-        let shadowIntensity, shadowSpread, innerShadow;
-        
-        // より滑らかな線形計算
-        shadowIntensity = 0.2 + (progress * 0.7); // 0.2から0.9まで
-        shadowSpread = 5 + (progress * 85); // 5pxから90pxまで
-        
-        // 内側の光は50%以降から追加
-        if (progress >= 0.5) {
-            const innerProgress = (progress - 0.5) * 2; // 0.5-1.0を0-1にマップ
-            innerShadow = `inset 0 0 ${10 + (innerProgress * 30)}px rgba(59, 130, 246, ${innerProgress * 0.3})`;
-        } else {
-            innerShadow = '';
-        }
-        
-        // ボックスシャドウを適用
-        if (shadowSpread > 0) {
-            const outerShadow = `0 0 ${shadowSpread}px rgba(59, 130, 246, ${shadowIntensity})`;
-            const fullShadow = innerShadow ? `${outerShadow}, ${innerShadow}` : outerShadow;
-            hearingCircle.style.boxShadow = fullShadow;
-        } else {
-            hearingCircle.style.boxShadow = 'none';
-        }
-    }
-    
-    // スクロールイベントリスナー
-    window.addEventListener('scroll', updateHearingGlow, { passive: true });
-    
-    // 初期状態を設定
-    updateHearingGlow();
-}
 
-// 分析力の円にスクロール連動光エフェクト（緑色）
-function initAnalysisCircleAnimation() {
-    const analysisCircle = document.querySelector('.analysis-power-section .analysis-venn-diagram .venn-circle-2');
-    const analysisSection = document.querySelector('.analysis-power-section');
-    if (!analysisCircle || !analysisSection) return;
-
-    function updateAnalysisGlow() {
-        const rect = analysisSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        let progress = 0;
-        
-        if (rect.top <= windowHeight && rect.bottom >= 0) {
-            if (rect.top <= windowHeight && rect.top > windowHeight * 0.2) {
-                progress = (windowHeight - rect.top) / (windowHeight * 0.8);
-            } else if (rect.top <= windowHeight * 0.2 && rect.bottom > windowHeight * 0.2) {
-                progress = 1;
-            } else if (rect.bottom <= windowHeight * 0.2 && rect.bottom > 0) {
-                progress = rect.bottom / (windowHeight * 0.2);
-            }
-        }
-        
-        progress = Math.max(0, Math.min(1, progress));
-        
-        // 緑色の光エフェクト
-        let shadowIntensity, shadowSpread, innerShadow;
-        
-        shadowIntensity = 0.2 + (progress * 0.7);
-        shadowSpread = 5 + (progress * 85);
-        
-        if (progress >= 0.5) {
-            const innerProgress = (progress - 0.5) * 2;
-            innerShadow = `inset 0 0 ${10 + (innerProgress * 30)}px rgba(34, 197, 94, ${innerProgress * 0.3})`;
-        } else {
-            innerShadow = '';
-        }
-        
-        if (shadowSpread > 0) {
-            const outerShadow = `0 0 ${shadowSpread}px rgba(34, 197, 94, ${shadowIntensity})`;
-            const fullShadow = innerShadow ? `${outerShadow}, ${innerShadow}` : outerShadow;
-            analysisCircle.style.boxShadow = fullShadow;
-        } else {
-            analysisCircle.style.boxShadow = 'none';
-        }
-    }
-    
-    window.addEventListener('scroll', updateAnalysisGlow, { passive: true });
-    updateAnalysisGlow();
-}
-
-// 学習姿勢の円にスクロール連動光エフェクト（赤色）
-function initLearningCircleAnimation() {
-    const learningCircle = document.querySelector('.learning-power-section .learning-venn-diagram .venn-circle-3');
-    const learningSection = document.querySelector('.learning-power-section');
-    if (!learningCircle || !learningSection) return;
-
-    function updateLearningGlow() {
-        const rect = learningSection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        let progress = 0;
-        
-        if (rect.top <= windowHeight && rect.bottom >= 0) {
-            if (rect.top <= windowHeight && rect.top > windowHeight * 0.2) {
-                progress = (windowHeight - rect.top) / (windowHeight * 0.8);
-            } else if (rect.top <= windowHeight * 0.2 && rect.bottom > windowHeight * 0.2) {
-                progress = 1;
-            } else if (rect.bottom <= windowHeight * 0.2 && rect.bottom > 0) {
-                progress = rect.bottom / (windowHeight * 0.2);
-            }
-        }
-        
-        progress = Math.max(0, Math.min(1, progress));
-        
-        // 赤色の光エフェクト
-        let shadowIntensity, shadowSpread, innerShadow;
-        
-        shadowIntensity = 0.2 + (progress * 0.7);
-        shadowSpread = 5 + (progress * 85);
-        
-        if (progress >= 0.5) {
-            const innerProgress = (progress - 0.5) * 2;
-            innerShadow = `inset 0 0 ${10 + (innerProgress * 30)}px rgba(239, 68, 68, ${innerProgress * 0.3})`;
-        } else {
-            innerShadow = '';
-        }
-        
-        if (shadowSpread > 0) {
-            const outerShadow = `0 0 ${shadowSpread}px rgba(239, 68, 68, ${shadowIntensity})`;
-            const fullShadow = innerShadow ? `${outerShadow}, ${innerShadow}` : outerShadow;
-            learningCircle.style.boxShadow = fullShadow;
-        } else {
-            learningCircle.style.boxShadow = 'none';
-        }
-    }
-    
-    window.addEventListener('scroll', updateLearningGlow, { passive: true });
-    updateLearningGlow();
-}
 
 // Strengths title scroll-based animation
 function initStrengthsTitleAnimation() {
@@ -1239,148 +1063,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 });
 
-// ===== Vennダイアグラム最終形（末尾配置） =====
-function mountSingleStickyVenn(){
-  const details = document.querySelector('.strengths-details');
-  if (!details || document.querySelector('.strengths-sticky-wrapper')) return;
+// ===== Vennダイアグラム シンプル表示（固定・アニメーション削除済み） =====
 
-  const section = details.closest('.strengths') || details.closest('section') || details.parentNode;
-  const wrapper = document.createElement('div'); wrapper.className = 'strengths-sticky-wrapper';
-  const left    = document.createElement('div'); left.className    = 'strengths-sticky-left';
-
-  section.insertBefore(wrapper, details);
-  wrapper.appendChild(left);
-  wrapper.appendChild(details);
-
-  ['.hearing-venn-diagram','.analysis-venn-diagram','.learning-venn-diagram'].forEach(sel=>{
-    const node = document.querySelector(sel); if (node) left.appendChild(node);
-  });
-  document.querySelectorAll('.hearing-power-left,.analysis-power-left,.learning-power-left')
-    .forEach(el => el.style.display = 'none');
-}
-
-document.addEventListener('DOMContentLoaded', () => { mountSingleStickyVenn(); });
-
-/* === Strengths: sticky が効かない環境向け fixed フォールバック === */
-(function(){
-  const wrapper = document.querySelector('.strengths-sticky-wrapper');
-  const leftBox = document.querySelector('.strengths-sticky-left');
-  if (!wrapper || !leftBox) return;
-
-  let topPx = Math.round(window.innerHeight * 0.12); // ≒ 12vh（CSSと合わせる）
-  let startY = 0, endY = 0, leftPx = 0, widthPx = 0;
-
-  function compute() {
-    // 追尾トップ・幅・左座標を再計算
-    topPx = Math.round(window.innerHeight * 0.12);
-    leftBox.style.setProperty('--fix-top', `${topPx}px`);
-
-    const wcs = getComputedStyle(wrapper);
-    const padLeft = parseFloat(wcs.paddingLeft || 0);
-    const wRect = wrapper.getBoundingClientRect();
-    leftPx = Math.round(wRect.left + padLeft);
-    widthPx = leftBox.getBoundingClientRect().width; // 現状の見かけ幅
-
-    leftBox.style.setProperty('--fix-left', `${leftPx}px`);
-    leftBox.style.setProperty('--fix-width', `${widthPx}px`);
-
-    // スクロール範囲（セクション内だけ fixed にする）
-    const docTop = window.scrollY + wRect.top;
-    const wHeight = wrapper.getBoundingClientRect().height;
-    const lHeight = leftBox.getBoundingClientRect().height;
-    startY = Math.max(0, docTop - topPx);
-    endY   = docTop + wHeight - lHeight - topPx;
-  }
-
-  function onScroll() {
-    const y = window.scrollY;
-    if (y < startY) {
-      leftBox.classList.remove('is-fixed','is-end'); // 通常（上側）
-    } else if (y >= startY && y < endY) {
-      leftBox.classList.add('is-fixed');             // 追尾ゾーン
-      leftBox.classList.remove('is-end');
-    } else {
-      leftBox.classList.remove('is-fixed');          // 終端で下に固定
-      leftBox.classList.add('is-end');
-    }
-  }
-
-  // 初期化
-  compute(); onScroll();
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', () => { leftBox.classList.remove('is-fixed','is-end'); compute(); onScroll(); });
-})();
-
-/* ===== Maslow：スクロール連動ピラミッド表示 ===== */
-(function(){
-  const wrapper = document.querySelector('.maslow-scroll-wrapper');
-  if (!wrapper) {
-    console.warn('Maslow wrapper not found');
+/* ===== Maslow Steps: スクロール観測でピラミッド更新 ===== */
+function initMaslow() {
+  const steps = document.querySelectorAll('.maslow-step');
+  if (steps.length === 0) {
+    console.warn('Maslow steps not found');
     return;
   }
 
-  const sections = Array.from(wrapper.querySelectorAll('.maslow-section'));
-  const segments = Array.from(wrapper.querySelectorAll('.maslow-seg'));
-  const triggers = Array.from(wrapper.querySelectorAll('.maslow-trigger'));
-  
-  console.log('Maslow pyramid initialized:', { sections: sections.length, segments: segments.length, triggers: triggers.length });
+  console.log('Maslow steps initialized:', steps.length);
 
-  function updateActiveSection() {
+  function updateActiveStep() {
     const windowHeight = window.innerHeight;
     let activeIndex = 0;
-    
-    // 各トリガー要素の位置を確認して、最も適切なアクティブインデックスを決定
-    triggers.forEach((trigger, index) => {
-      const rect = trigger.getBoundingClientRect();
-      const triggerTop = rect.top;
-      const triggerBottom = rect.bottom;
+
+    // 各ステップの位置を確認して、最も視界内にあるものを特定
+    steps.forEach((step, index) => {
+      const rect = step.getBoundingClientRect();
+      const stepTop = rect.top;
+      const stepBottom = rect.bottom;
       
-      // トリガーが画面の中央あたりにある場合
-      if (triggerTop < windowHeight * 0.6 && triggerBottom > windowHeight * 0.4) {
+      // ステップが画面の中央付近にある場合をアクティブとする
+      if (stepTop < windowHeight * 0.5 && stepBottom > windowHeight * 0.5) {
         activeIndex = index;
       }
     });
-    
-    // アクティブなセクションとピラミッドセグメントを更新
-    sections.forEach((section, index) => {
-      section.classList.toggle('active', index === activeIndex);
-    });
-    
-    segments.forEach((segment) => {
-      const level = parseInt(segment.dataset.level);
-      if (!isNaN(level)) {
-        const isActive = level === (activeIndex + 1);
+
+    // 全てのピラミッドセグメントを更新
+    steps.forEach((step, stepIndex) => {
+      const segments = step.querySelectorAll('.maslow-seg');
+      segments.forEach((segment, segIndex) => {
+        // 各ステップで対応する段のみアクティブ
+        const isActive = stepIndex === activeIndex && segIndex === activeIndex;
         segment.classList.toggle('active', isActive);
-      }
+      });
     });
   }
 
-  // スクロールイベントをthrottleで最適化
+  // スクロールイベントでthrottle
   let ticking = false;
   function handleScroll() {
     if (!ticking) {
       requestAnimationFrame(() => {
-        updateActiveSection();
+        updateActiveStep();
         ticking = false;
       });
       ticking = true;
     }
   }
 
-  // 初回反映
-  updateActiveSection();
+  // 初期状態：最初のステップをアクティブ
+  updateActiveStep();
+  
+  // イベントリスナー登録
   window.addEventListener('scroll', handleScroll, { passive: true });
-  window.addEventListener('resize', handleScroll);
-  
-  // 初期化 - 最初のセクションをアクティブに
-  if (sections.length > 0) {
-    sections[0].classList.add('active');
-  }
-  if (segments.length > 0) {
-    segments[0].classList.add('active');
-  }
-  
-  // スクロール連動の計算も初期化
-  setTimeout(updateActiveSection, 100);
-})();
+  window.addEventListener('resize', updateActiveStep);
+}
 
