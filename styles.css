@@ -5477,6 +5477,9 @@ body.modal-open {
     }
     
     /* Fix Profile title center alignment on mobile */
+    .profile-name {
+        font-size: 2.2rem !important; /* Reduce font size to prevent line breaks */
+    }
     
     .toc-content {
         padding: 0.5rem 1rem;
