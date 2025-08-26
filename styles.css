@@ -5637,11 +5637,11 @@ body.modal-open {
     }
     
     .profile-image-container {
-        display: none;
+        display: none !important;
     }
     
     .profile-bottom-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 2rem;
         margin-top: 2rem;
     }
@@ -7462,6 +7462,16 @@ table th {
 @media only screen and (max-device-width: 812px) {
     .sales-letter-background-layer {
         background-image: url('https://tnbkn.com/wp-content/uploads/pro-freelance-sp-scaled-e1755740822434.webp') !important;
+    }
+    
+    .profile-image-container {
+        display: none !important;
+    }
+    
+    .profile-bottom-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+        margin-top: 2rem;
     }
 }
 .sales-letter-background-layer.active {
