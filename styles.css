@@ -8178,7 +8178,15 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 
 /* 実績ロゴセクション */
 .works-logo-section {
-    margin: 2rem 0 4rem 0;
+    margin: 2rem 0 0 0;
+}
+
+.works-logo-section:first-of-type {
+    margin-top: 2rem;
+}
+
+.works-logo-section:last-of-type {
+    margin-bottom: 4rem;
 }
 
 .works-logo-title {
@@ -8188,6 +8196,22 @@ body.rindo-text-white #works .seo-component-subtitle::before,
     text-align: left;
     margin-bottom: 0;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .works-logo-title {
+        font-size: 1.1rem;
+        white-space: nowrap;
+    }
+    
+    .works-logo-section {
+        margin: 1rem 0 0 0;
+    }
+    
+    .works-logo-section:first-of-type {
+        margin-top: 1rem;
+    }
 }
 
 /* 実績ロゴマーキーアニメーション */
@@ -8205,18 +8229,35 @@ body.rindo-text-white #works .seo-component-subtitle::before,
     display: inline-flex;
     animation: marquee 30s linear infinite;
     gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.works-logo-item {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
 }
 
 .works-logo {
-    height: 120px;
-    width: auto;
+    height: 160px;
+    width: 280px;
     object-fit: contain;
     filter: none;
     opacity: 1;
     transition: all 0.3s ease;
     position: relative;
     z-index: 100;
+    max-width: 280px;
+    max-height: 160px;
+}
+
+.works-logo-caption {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: 500;
 }
 
 .works-logo:hover {
@@ -8265,16 +8306,19 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     .works-logo {
-        height: 90px;
+        height: 120px;
+        width: 180px;
+        max-width: 180px;
+        max-height: 120px;
     }
     
     .works-logo-track {
-        gap: 1rem;
+        gap: 0.5rem;
     }
     
     .works-logo-marquee {
-        margin: 1.5rem 0 3rem 0;
-        padding: 1.5rem 0;
+        margin: 0 0 1rem 0;
+        padding: 0.5rem 0;
     }
     
     .works-text-item {
