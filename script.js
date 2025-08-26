@@ -622,7 +622,7 @@ function initRindoBackground() {
         const windowHeight = window.innerHeight;
         
         // RINDOセクションの開始から次のセクション（sales-letter）の開始より少し早めまで
-        const isInRange = rindoRect.top < windowHeight && salesLetterRect.top > 400;
+        const isInRange = rindoRect.top < windowHeight * 0.7 && salesLetterRect.top > 400;
         
         if (isInRange) {
             backgroundLayer.classList.add('active');

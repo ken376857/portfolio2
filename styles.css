@@ -1039,8 +1039,8 @@ body.rindo-text-white #works .research-highlight {
 .funnel-work-card {
     background: none;
     border-radius: 20px;
-    padding: 4rem 0;
-    margin: 4rem 0;
+    padding: 4rem 0 0 0;
+    margin: 4rem 0 0 0;
     color: #333333;
     box-shadow: none;
 }
@@ -1167,6 +1167,18 @@ section#sales-letter .funnel-badge.primary,
 
 .work-details-container {
     margin: 0 0 2rem 0;
+}
+
+#rindo-funnel-section + .work-details-container {
+    margin-top: 0;
+}
+
+#works .work-card-container {
+    margin-bottom: 0;
+}
+
+#works .work-card-container + .work-details-container {
+    margin-top: 0;
 }
 
 .funnel-description {
