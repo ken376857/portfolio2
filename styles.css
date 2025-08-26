@@ -5629,7 +5629,11 @@ body.modal-open {
 
 @media (max-width: 768px) {
     #profile {
-        padding: 2rem 1rem;
+        padding: 2rem 0;
+    }
+    
+    #profile.container {
+        padding: 2rem 1.5rem;
     }
     
     .profile-grid {
@@ -5645,6 +5649,50 @@ body.modal-open {
         grid-template-columns: 1fr !important;
         gap: 2rem;
         margin-top: 2rem;
+    }
+    
+    /* NABEKEN'S PROFILE見出し中央寄せ修正 */
+    .profile-hero-title {
+        text-align: center !important;
+        margin: 2rem 0 4rem 0 !important;
+        padding: 0 1rem !important;
+        font-size: clamp(3.2rem, 7vw, 5rem) !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .profile-hero-title .title-line:first-child {
+        transform: translateY(-10px) !important;
+        text-align: center !important;
+        animation: slideInFromTop 1s ease-out 0.2s both !important;
+    }
+    
+    .profile-hero-title .title-line:last-child {
+        transform: translateY(10px) !important;
+        text-align: center !important;
+        animation: slideInFromBottom 1s ease-out 0.4s both !important;
+    }
+    
+    @keyframes slideInFromTop {
+        from {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideInFromBottom {
+        from {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 }
 
@@ -7503,6 +7551,14 @@ table th {
 
 /* iPhone全モデル対応 - 最強設定 */
 @media only screen and (max-width: 480px) {
+    #profile {
+        padding: 1.5rem 0 !important;
+    }
+    
+    #profile.container {
+        padding: 1.5rem 1rem !important;
+    }
+    
     .profile-grid {
         display: block !important;
         grid-template-columns: none !important;
@@ -7521,6 +7577,29 @@ table th {
         grid-template-columns: 1fr !important;
         gap: 2rem !important;
         margin-top: 2rem !important;
+    }
+    
+    /* NABEKEN'S PROFILE見出し完全修正 */
+    .profile-hero-title {
+        text-align: center !important;
+        margin: 1.5rem 0 3rem 0 !important;
+        padding: 0 0.5rem !important;
+        font-size: clamp(2.8rem, 6vw, 4.2rem) !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .profile-hero-title .title-line:first-child {
+        text-align: center !important;
+        width: 100% !important;
+        animation: slideInFromTop 1s ease-out 0.2s both !important;
+    }
+    
+    .profile-hero-title .title-line:last-child {
+        text-align: center !important;
+        width: 100% !important;
+        animation: slideInFromBottom 1s ease-out 0.4s both !important;
     }
 }
 
@@ -7574,6 +7653,14 @@ table th {
 
 /* 最終兵器 - body要素レベルでの強制適用 */
 @media (max-width: 768px) {
+    body #profile {
+        padding: 2rem 0 !important;
+    }
+    
+    body #profile.container {
+        padding: 2rem 1rem !important;
+    }
+    
     body #profile .profile-grid {
         display: block !important;
         grid-template-columns: none !important;
@@ -7594,6 +7681,33 @@ table th {
         grid-template-columns: 1fr !important;
         gap: 2rem !important;
         margin-top: 2rem !important;
+    }
+    
+    /* 最強レベル見出し修正 */
+    body #profile .profile-hero-title {
+        text-align: center !important;
+        margin: 2rem auto 4rem auto !important;
+        padding: 0 1rem !important;
+        font-size: clamp(3rem, 6.5vw, 4.5rem) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    body #profile .profile-hero-title .title-line:first-child {
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+        animation: slideInFromTop 1s ease-out 0.2s both !important;
+    }
+    
+    body #profile .profile-hero-title .title-line:last-child {
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+        animation: slideInFromBottom 1s ease-out 0.4s both !important;
     }
 }
 .sales-letter-background-layer.active {
