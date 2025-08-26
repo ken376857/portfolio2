@@ -5633,7 +5633,8 @@ body.modal-open {
     }
     
     .profile-grid {
-        display: block;
+        display: block !important;
+        grid-template-columns: none !important;
     }
     
     .profile-image-container {
@@ -7465,7 +7466,8 @@ table th {
     }
     
     .profile-grid {
-        display: block;
+        display: block !important;
+        grid-template-columns: none !important;
     }
     
     .profile-image-container {
@@ -7476,6 +7478,26 @@ table th {
         grid-template-columns: 1fr !important;
         gap: 2rem;
         margin-top: 2rem;
+    }
+}
+
+/* iOS Safari対応 */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 768px) {
+    .profile-grid {
+        display: block !important;
+        grid-template-columns: none !important;
+        gap: 0 !important;
+    }
+    
+    .profile-image-container {
+        display: none !important;
+    }
+    
+    .profile-bottom-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        margin-top: 2rem !important;
     }
 }
 .sales-letter-background-layer.active {
