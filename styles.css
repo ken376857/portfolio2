@@ -5633,7 +5633,7 @@ body.modal-open {
     }
     
     .profile-grid {
-        grid-template-columns: 1fr;
+        display: block;
     }
     
     .profile-image-container {
@@ -7462,6 +7462,10 @@ table th {
 @media only screen and (max-device-width: 812px) {
     .sales-letter-background-layer {
         background-image: url('https://tnbkn.com/wp-content/uploads/pro-freelance-sp-scaled-e1755740822434.webp') !important;
+    }
+    
+    .profile-grid {
+        display: block;
     }
     
     .profile-image-container {
