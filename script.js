@@ -477,6 +477,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     
+    
     // Add CSS for scroll animations
     const scrollAnimationStyle = document.createElement('style');
     scrollAnimationStyle.textContent = `

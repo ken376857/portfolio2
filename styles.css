@@ -5528,7 +5528,7 @@ body.modal-open {
 .profile-grid {
     display: grid;
     grid-template-columns: 1fr 40%; /* Text on the left, image on the right */
-    align-items: center;
+    align-items: start;
     gap: 4rem;
 }
 
@@ -5581,22 +5581,38 @@ body.modal-open {
     font-family: 'Yosugara', 'Klee One', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
     font-size: 3.5rem;
     color: #ffffff;
-    opacity: 0;
-    transition: opacity 0.8s ease 0.5s;
+    opacity: 1;
     pointer-events: none;
     z-index: 2;
     white-space: nowrap;
     letter-spacing: 0.1em;
 }
 
-.handwritten-name.animate-in {
-    opacity: 1;
-}
-
 .profile-image {
     max-width: 100%;
     border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.profile-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 0.5rem;
+}
+
+.sns-section {
+    text-align: left;
+}
+
+.hobby-section {
+    text-align: left;
+}
+
+.hobby-section ul li {
+    color: #ffffff;
+    padding: 0.3rem 0;
+}
 }
 
 @media (max-width: 768px) {
@@ -5610,6 +5626,12 @@ body.modal-open {
     
     .profile-image-container {
         display: none;
+    }
+    
+    .profile-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
     }
 }
 
