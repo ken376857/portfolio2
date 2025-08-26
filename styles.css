@@ -5490,7 +5490,7 @@ body.modal-open {
     
     /* Fix Profile title center alignment on mobile */
     .profile-name {
-        font-size: 2.2rem !important; /* Reduce font size to prevent line breaks */
+        font-size: 1.7rem !important; /* Reduce font size to prevent line breaks */
     }
     
     .toc-content {
@@ -7494,6 +7494,102 @@ table th {
     }
     
     .profile-bottom-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        margin-top: 2rem !important;
+    }
+}
+
+/* iPhone全モデル対応 - 最強設定 */
+@media only screen and (max-width: 480px) {
+    .profile-grid {
+        display: block !important;
+        grid-template-columns: none !important;
+        gap: 0 !important;
+    }
+    
+    .profile-image-container {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+    }
+    
+    .profile-bottom-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        margin-top: 2rem !important;
+    }
+}
+
+/* iPhone Pro Max等の大画面対応 */
+@media only screen and (max-device-width: 430px), 
+       only screen and (max-width: 430px),
+       screen and (-webkit-min-device-pixel-ratio: 3) and (max-width: 430px) {
+    .profile-grid {
+        display: block !important;
+        grid-template-columns: none !important;
+        gap: 0 !important;
+    }
+    
+    .profile-image-container {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+    }
+    
+    .profile-bottom-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        margin-top: 2rem !important;
+    }
+}
+
+/* Safari Mobile 専用対応 */
+@media screen and (-webkit-min-device-pixel-ratio: 1) and (max-width: 768px) {
+    .profile-grid {
+        display: block !important;
+        grid-template-columns: none !important;
+        gap: 0 !important;
+    }
+    
+    .profile-image-container {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+    }
+    
+    .profile-bottom-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        margin-top: 2rem !important;
+    }
+}
+
+/* 最終兵器 - body要素レベルでの強制適用 */
+@media (max-width: 768px) {
+    body #profile .profile-grid {
+        display: block !important;
+        grid-template-columns: none !important;
+        gap: 0 !important;
+    }
+    
+    body #profile .profile-image-container {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+    
+    body #profile .profile-bottom-grid {
         display: grid !important;
         grid-template-columns: 1fr !important;
         gap: 2rem !important;
