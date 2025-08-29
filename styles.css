@@ -6043,6 +6043,47 @@ h3, h4, h5, h6 {
     margin: 1rem 0 0.5rem 0;
 }
 
+/* ===== Two-column blocks (keyword, heatmap) ===== */
+.keyword-strategy.two-col,
+.heatmap-strategy.two-col {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) 1fr;
+  gap: 1.5rem 2rem;
+  align-items: start;
+}
+
+.keyword-strategy .col-left,
+.heatmap-strategy .col-left {
+  min-height: 220px; /* 画像入れ替え予定のため高さを確保 */
+  border-radius: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px dashed rgba(255,255,255,0.35);
+}
+
+.keyword-strategy .col-right,
+.heatmap-strategy .col-right {
+  background: rgba(255,255,255,0.86);
+  color: #111;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .keyword-strategy.two-col,
+  .heatmap-strategy.two-col {
+    grid-template-columns: 1fr;
+  }
+  .keyword-strategy .col-left,
+  .heatmap-strategy .col-left {
+    min-height: 160px;
+  }
+}
+
+/* 執筆内容の解説内のH6（Problemなど）を白字に */
+.work-details-container .seo-component-subtitle {
+    color: #ffffff !important;
+}
+
 p {
     margin: 0.5rem 0;
 }
@@ -8983,20 +9024,21 @@ html body section#seo-media div.work-details-container h4.work-section-title[cla
     color: #ffffff !important;
 }
 
-/* 深掘り例を角丸白背景に */
+/* 深掘り例を「塗りなし＋角丸の白枠」に */
 .maslow-step .col-right .deep-dive-example {
-    background: rgba(255, 255, 255, 0.95);
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     padding: 1rem 1.5rem;
     margin-top: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
 }
 
 /* 深掘り例ボックス内のテキストを確実に黒文字に */
 #seo-media .maslow-step .col-right .deep-dive-example p,
 .maslow-step .col-right .deep-dive-example p,
 html body #seo-media .maslow-step .col-right .deep-dive-example p {
-    color: #1a1a1a !important;
+    color: #ffffff !important;
     margin: 0;
     line-height: 1.6;
     font-size: 0.9rem !important;
@@ -9005,7 +9047,7 @@ html body #seo-media .maslow-step .col-right .deep-dive-example p {
 /* 深掘り例ボックス内の全要素を黒文字に */
 #seo-media .maslow-step .col-right .deep-dive-example,
 #seo-media .maslow-step .col-right .deep-dive-example * {
-    color: #1a1a1a !important;
+    color: #ffffff !important;
 }
 
 /* SEOセクション内のH4見出しと分析タイトルを白文字に強制 */
@@ -9033,22 +9075,86 @@ section#seo-media .component-title {
 
 /* ピラミッド内のテキストラベル */
 .maslow-label {
-    fill: #ffffff;
-    font-size: 3.2px;
+    /* 非アクティブは半透明の白で目立たせない */
+    fill: rgba(255, 255, 255, 0.22);
+    opacity: 1; /* 透過はfill側で管理 */
+    font-size: 4.6px; /* ラベルの視認性を向上 */
     font-weight: 600;
     font-family: 'Noto Sans JP', sans-serif;
-    opacity: 0.8;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
     pointer-events: none;
 }
 
 /* アクティブラベルの強調 */
 .maslow-label-active {
-    fill: #1d86fc;
+    /* アクティブは白でくっきり表示 */
+    fill: #ffffff;
     opacity: 1;
     font-weight: 700;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    font-size: 5.2px; /* アクティブをやや大きく強調 */
+    text-shadow: 0 0 2px rgba(0,0,0,0.5), 0 0 6px rgba(0,0,0,0.35);
 }
+
+/* ===== ピラミッドの対象階層だけ色を変える ===== */
+/* これまでの「ポリゴン全体の強調」は外側枠に隠れるため、
+   水平の区切り線（line）だけをハイライトしてネオン効果にする */
+
+/* 共通のネオン線スタイル */
+.maslow-divider.is-glow {
+  stroke: #1d86fc !important;
+  stroke-width: calc(var(--maslow-stroke-width) + 0.2) !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter:
+    drop-shadow(0 0 1px rgba(46, 160, 255, 1))
+    drop-shadow(0 0 2px rgba(46, 160, 255, 0.95))
+    drop-shadow(0 0 3px rgba(46, 160, 255, 0.85))
+    drop-shadow(0 0 5px rgba(46, 160, 255, 0.65));
+  mix-blend-mode: screen;
+}
+
+/* 各レベルに対応する水平線だけを選んで .is-glow 相当の見た目を付与 */
+.maslow-step#level-1 .pyr line.maslow-divider:nth-of-type(1),
+.maslow-step#level-2 .pyr line.maslow-divider:nth-of-type(2),
+.maslow-step#level-3 .pyr line.maslow-divider:nth-of-type(3),
+.maslow-step#level-4 .pyr line.maslow-divider:nth-of-type(4),
+.maslow-step#level-5 .pyr line.maslow-divider:nth-of-type(4) {
+  stroke: #1d86fc !important;
+  stroke-width: calc(var(--maslow-stroke-width) + 0.2) !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter:
+    drop-shadow(0 0 1px rgba(46, 160, 255, 1))
+    drop-shadow(0 0 2px rgba(46, 160, 255, 0.95))
+    drop-shadow(0 0 3px rgba(46, 160, 255, 0.85))
+    drop-shadow(0 0 5px rgba(46, 160, 255, 0.65));
+  mix-blend-mode: screen;
+}
+
+/* ===== 台形全体を光らせるグロー層 ===== */
+.glow-layer { pointer-events: none; }
+.glow-layer .glow-seg {
+  display: none;
+  fill: none;
+  stroke: #2ea0ff;
+  vector-effect: non-scaling-stroke;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: calc(var(--maslow-stroke-width) + 0.2);
+  filter:
+    drop-shadow(0 0 1px rgba(46,160,255,1))
+    drop-shadow(0 0 2px rgba(46,160,255,.95))
+    drop-shadow(0 0 3px rgba(46,160,255,.85))
+    drop-shadow(0 0 5px rgba(46,160,255,.65));
+  mix-blend-mode: screen;
+}
+
+/* 表示切替: セクションごとに該当台形のみ可視化 */
+.maslow-step#level-1 .glow-layer .glow-seg:nth-of-type(1) { display: inline; }
+.maslow-step#level-2 .glow-layer .glow-seg:nth-of-type(2) { display: inline; }
+.maslow-step#level-3 .glow-layer .glow-seg:nth-of-type(3) { display: inline; }
+.maslow-step#level-4 .glow-layer .glow-seg:nth-of-type(4) { display: inline; }
+.maslow-step#level-5 .glow-layer .glow-seg:nth-of-type(5) { display: inline; }
 
 /* モバイル対応 */
 @media (max-width: 768px) {
@@ -9081,4 +9187,13 @@ section#seo-media .component-title {
     .maslow-label {
         font-size: 2.8px;
     }
+}
+/* 説明文章（H4直下のリード）を白字に */
+.gsc-analysis .work-overview-details > p,
+.gsc-analysis .work-overview-details > ul,
+.gsc-analysis .work-overview-details > ol,
+.heatmap-analysis .work-overview-details > p,
+.heatmap-analysis .work-overview-details > ul,
+.heatmap-analysis .work-overview-details > ol {
+  color: #ffffff !important;
 }
