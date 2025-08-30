@@ -6062,10 +6062,20 @@ h3, h4, h5, h6 {
 
 .keyword-strategy .col-right,
 .heatmap-strategy .col-right {
-  background: rgba(255,255,255,0.86);
-  color: #111;
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
+  background: transparent; /* 角丸白背景を削除 */
+  border-radius: 0;
+  padding: 0; /* 余白もリセット（必要なら後で個別に付与） */
+  color: #ffffff; /* 白字 */
+}
+
+/* 右カラム内の要素の文字色も白に統一 */
+#seo-media .keyword-strategy .col-right p,
+#seo-media .keyword-strategy .col-right li,
+#seo-media .keyword-strategy .col-right a,
+#seo-media .heatmap-strategy .col-right p,
+#seo-media .heatmap-strategy .col-right li,
+#seo-media .heatmap-strategy .col-right a {
+  color: #ffffff !important;
 }
 
 @media (max-width: 768px) {
@@ -8504,6 +8514,44 @@ body.rindo-text-white #works .seo-component-subtitle::before,
 #seo-media .persona-right p,
 #seo-media .persona-right li {
     color: #ffffff !important;
+}
+
+/* 収益化戦略のバッジデザイン */
+.strategy-section p { display: flex; align-items: center; gap: 0.6rem; margin: 0.5rem 0; }
+/* Personaタグ風のピル型バッジに統一 */
+.strategy-badge {
+    display: inline-block;
+    padding: 0.8rem 2rem; /* persona-section-tag と揃える */
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ffffff;
+    background: #28a745; /* Personaの基本色 */
+}
+/* SEOメディア配色（ペルソナの水色グラデに揃える） */
+#seo-media .strategy-badge { background: linear-gradient(135deg, #1d86fc, #4a9cfd) !important; }
+.strategy-text { color: #ffffff; font-weight: 500; }
+
+/* 記事構成を2カラム化（左：見出し一覧／右：説明） */
+.article-structure {
+    display: grid;
+    grid-template-columns: minmax(260px, 420px) 1fr;
+    gap: 1.5rem 2rem;
+    align-items: start;
+}
+
+.article-structure .structure-list {
+    margin: 0; /* 余白を整える */
+}
+
+.article-structure .structure-explanation {
+    min-width: 0; /* 折り返し制御 */
+}
+
+@media (max-width: 768px) {
+    .article-structure {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* リスト項目の箇条書きマーカーも白色に */
