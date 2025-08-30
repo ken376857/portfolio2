@@ -7246,6 +7246,149 @@ table th {
     margin-bottom: 0;
 }
 
+/* Lead two-column layout (image left, text right) */
+.lead-two-column {
+    display: grid;
+    grid-template-columns: minmax(260px, 420px) 1fr; /* キーワード戦略と同じ幅レンジ */
+    gap: 1.5rem 2rem; /* キーワード戦略と同一のギャップ */
+    align-items: start;
+    margin-top: 1rem;
+}
+
+.lead-left { /* グリッド管理に合わせて固定幅を解除 */
+    max-width: none;
+}
+
+.lead-right {
+    min-width: 0;
+}
+
+.lead-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Cross-sell visual inside left column */
+.crosssell-visual {
+    display: grid;
+    grid-template-columns: auto 28px 1fr; /* さらに矢印を短く */
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 12px 0 16px; /* 図解の上下余白 */
+}
+
+.crosssell-img-slot { margin-bottom: 8px; }
+
+/* Cross-sell heading text above the diagram */
+.crosssell-head { text-align: center; margin-bottom: 8px; }
+.crosssell-title { color: #ffffff; font-weight: 800; letter-spacing: .02em; }
+/* 説明文（explanation-sectionの段落と同じフォント設定に揃える） */
+.crosssell-sub {
+    color: #ffffff !important;
+    font-size: 1rem;        /* 段落と同等 */
+    line-height: 1.7;       /* 段落と同等 */
+    font-weight: 400;
+    margin: 0.5rem 0;       /* 段落標準余白に準拠 */
+    opacity: 1;
+}
+
+.crosssell-visual .cs-item { text-align: center; }
+
+.crosssell-visual .cs-img {
+    width: 90px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Mynaviキャリレーション（クロワッサン側）だけ小さめに */
+.crosssell-visual .cs-img.cs-mynavi {
+    width: 72px;
+}
+
+.crosssell-visual .cs-cap {
+    margin-top: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #111;
+}
+
+.crosssell-visual .cs-arrow {
+    width: 28px;  /* さらに短く */
+    height: 28px;
+    background: #ffffff; /* 白 */
+    clip-path: polygon(0 35%, 70% 35%, 70% 15%, 100% 50%, 70% 85%, 70% 65%, 0 65%);
+    border-radius: 8px;
+}
+
+.crosssell-visual .cs-box {
+    border: 3px solid #ffffff; /* さらに細く */
+    border-radius: 24px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.crosssell-visual .cs-box-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.crosssell-visual .cs-plus {
+    color: #ffffff; /* 白 */
+    font-weight: 800;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+@media (max-width: 420px) {
+    .crosssell-visual {
+        grid-template-columns: auto 24px 1fr; /* モバイルも短く */
+        gap: 8px;
+    }
+    .crosssell-visual .cs-img { width: 72px; }
+    .crosssell-visual .cs-img.cs-mynavi { width: 56px; }
+    .crosssell-visual .cs-arrow { width: 24px; height: 24px; }
+}
+
+/* ===== Desktop tuning for better balance ===== */
+@media (min-width: 1024px) {
+  /* Make the right-side illustration more prominent */
+  .crosssell-sub { margin-bottom: 8px; }
+  .crosssell-visual { gap: 16px; grid-template-columns: auto 64px 1fr; }
+  .crosssell-visual .cs-arrow { width: 64px; height: 48px; }
+  .crosssell-visual .cs-left .cs-img { width: 140px; } /* ミラエール画像を大きく */
+  .crosssell-visual .cs-img { width: 120px; }
+  .crosssell-visual .cs-img.cs-mynavi { width: 92px; } /* マイナビは少し小さめを維持 */
+  .crosssell-visual .cs-box { padding: 14px; border-radius: 28px; }
+  .crosssell-visual .cs-box-inner { gap: 18px; justify-content: space-around; }
+  .crosssell-visual .cs-plus { font-size: 2.2rem; }
+}
+
+@media (max-width: 900px) {
+    .lead-two-column {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .lead-left {
+        max-width: 100%;
+    }
+    .lead-image-placeholder {
+        aspect-ratio: 16 / 9;
+    }
+}
+
 /* Responsive Design for New Sections */
 @media (max-width: 768px) {
     .policy-section {
@@ -8100,7 +8243,8 @@ body.seo-media-text-white #works #seo-media .seo-media-persona-section .persona-
 }
 
 /* 右：カード風 */
-.col-right {
+/* 右：カード風（Maslow専用）。他セクションに波及しないように限定 */
+.maslow-step .col-right {
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: blur(4px);
   border-radius: 16px;
@@ -8246,6 +8390,27 @@ body.rindo-text-white #works .seo-component-subtitle {
 body.rindo-text-white #works .seo-component-subtitle::before,
 #seo-media .component-subtitle::before {
     color: #1d86fc !important;
+}
+
+/* ▶デザインとテキストを横並びに（テキストのY軸は不動、デザインのみ調整） */
+#seo-media .seo-component-subtitle {
+    display: inline-flex;
+    align-items: center; /* テキストと▶を中央揃え */
+    gap: 0.5rem;         /* ▶とテキストの間隔 */
+    padding-top: 0;      /* 余計な上余白は付けない */
+    padding-left: 0;     /* 左のインデントも排除 */
+    margin-bottom: 0;    /* 見出し下の余白をゼロに */
+    margin-top: 1rem;    /* 見出し上に余白を確保 */
+}
+
+#seo-media .seo-component-subtitle::before {
+    position: static;      /* 通常のフローに戻す */
+    content: '▶';          /* 既存デザイン維持 */
+    display: inline-block;
+    line-height: 1;        /* 文字の高さに合わせる */
+    transform: none;       /* 縦位置の補正を打ち消し */
+    margin: 0;
+    font-size: 0.9em;      /* 少しだけ控えめに（調整可） */
 }
 
 /* ===== SEO Media Analysis Content White Text Styling ===== */
@@ -9065,6 +9230,27 @@ section#seo-media .component-title {
 #seo-media .component-title.seo-component-title,
 #seo-media h5.seo-component-title {
     margin-top: 4rem !important;
+}
+
+/* ▼ PASONA小見出しは既存の▶デザインを維持（component-subtitleに従う） */
+
+/* RINDO側（WORKS配下）のPASONA小見出しも横並び＆余白調整。色は緑のまま */
+#works .lp-component .pasona-item .component-subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0;   /* 下を詰める */
+    margin-top: 1rem;   /* 上に余白 */
+    padding-left: 0;    /* 左インデント不要 */
+    padding-bottom: 0;  /* 下線余白も不要なら0に */
+}
+
+#works .lp-component .pasona-item .component-subtitle::before {
+    position: static;      /* 横に並べる */
+    content: '▶';
+    transform: none;
+    line-height: 1;
+    color: #4CAF50 !important; /* RINDOは緑を維持（モバイルの白上書きを抑制） */
 }
 
 /* ピラミッドサイズ調整 */
