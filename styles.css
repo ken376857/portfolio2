@@ -4551,6 +4551,7 @@ body.modal-open {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+  width: 90vw;                 /* 画面幅の約90%に拡張 */
   z-index: 1000;                /* ボタン本体は帯より上 */
   display: none;
   transition: opacity 0.3s ease;
@@ -4559,6 +4560,7 @@ body.modal-open {
 .floating-btn {
     display: flex;
     align-items: center;
+    justify-content: center;    /* 横幅拡張時に中央寄せ */
     background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
     color: white;
     text-decoration: none;
@@ -4570,6 +4572,8 @@ body.modal-open {
     font-size: 1.2rem;
     white-space: nowrap;
     animation: float 3s ease-in-out infinite;
+    width: 100%;                /* コンテナ幅にフィット */
+    box-sizing: border-box;     /* パディングを幅に含める */
 }
 
 .floating-btn:hover {
@@ -4591,6 +4595,16 @@ body.modal-open {
 .floating-btn-text {
     color: white;
     text-decoration: none;
+}
+
+/* フローティングボタン下の注意書き */
+.floating-note {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    pointer-events: none; /* 文言をクリック不可に */
 }
 
 @keyframes float {
@@ -4616,6 +4630,10 @@ body.modal-open {
         padding: 16px 28px;
         font-size: 1.1rem;
     }
+    .floating-note {
+        font-size: 11px;
+        margin-top: 6px;
+    }
     
     .floating-btn i:first-child {
         margin-right: 10px;
@@ -4625,6 +4643,13 @@ body.modal-open {
     .floating-btn i:last-child {
         margin-left: 10px;
         font-size: 1.1rem;
+    }
+}
+
+/* PCのみ幅を70%にする */
+@media (min-width: 769px) {
+    .floating-button {
+        width: 70vw;
     }
 }
 

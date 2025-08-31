@@ -5,6 +5,18 @@ window.addEventListener('load', () => {
   const loadingScreen = document.getElementById('loading-screen');
   let counterStarted = false;
   
+  // ぼかし帯の高さをフローティングボタンに同期
+  function syncFloatingBlurHeight() {
+    const floatingButton = document.querySelector('.floating-button');
+    const floatingBlur = document.querySelector('.floating-blur');
+    if (!floatingButton || !floatingBlur) return;
+    const rect = floatingButton.getBoundingClientRect();
+    // ボタンの上下アニメ(最大5px)とフェード余白分を加算
+    const extra = 24; // 余白
+    const h = Math.max(0, Math.ceil(rect.height + extra));
+    floatingBlur.style.height = `${h}px`;
+  }
+  
   function startSalesCounter() {
     if (!counterStarted) {
       counterStarted = true;
@@ -34,6 +46,12 @@ window.addEventListener('load', () => {
           if (floatingBlur) {
             floatingBlur.style.display = 'block';
           }
+          // レイアウト反映後に高さ同期
+          requestAnimationFrame(() => {
+            syncFloatingBlurHeight();
+            // 念のため遅延でもう一度
+            setTimeout(syncFloatingBlurHeight, 150);
+          });
         }, 1500);
       }, { once: true });
       
@@ -52,6 +70,10 @@ window.addEventListener('load', () => {
           if (floatingBlur) {
             floatingBlur.style.display = 'block';
           }
+          requestAnimationFrame(() => {
+            syncFloatingBlurHeight();
+            setTimeout(syncFloatingBlurHeight, 150);
+          });
         }, 1500);
       }, 3000);
     }, 1200);
@@ -68,6 +90,10 @@ window.addEventListener('load', () => {
       if (floatingBlur) {
         floatingBlur.style.display = 'block';
       }
+      requestAnimationFrame(() => {
+        syncFloatingBlurHeight();
+        setTimeout(syncFloatingBlurHeight, 150);
+      });
     }, 1500);
   }
 
@@ -76,6 +102,29 @@ window.addEventListener('load', () => {
     if (getComputedStyle(m).display !== 'none') m.style.display = 'none';
   });
   document.body.style.overflow = 'auto';
+  
+  // リサイズ・向き変更時に高さ再計算
+  window.addEventListener('resize', () => {
+    // レイアウト確定後に計算
+    requestAnimationFrame(() => {
+      const floatingButton = document.querySelector('.floating-button');
+      if (floatingButton && getComputedStyle(floatingButton).display !== 'none') {
+        const evt = new Event('floating-resize-sync');
+        window.dispatchEvent(evt);
+      }
+    });
+  }, { passive: true });
+  window.addEventListener('orientationchange', () => setTimeout(() => window.dispatchEvent(new Event('floating-resize-sync')), 200));
+  window.addEventListener('floating-resize-sync', () => {
+    const sync = () => {
+      const floatingButton = document.querySelector('.floating-button');
+      if (!floatingButton) return;
+      // 連続で2回実行してフォント・折返しの揺れに対応
+      syncFloatingBlurHeight();
+      setTimeout(syncFloatingBlurHeight, 120);
+    };
+    requestAnimationFrame(sync);
+  });
 });
 
 // Profile Section Interactive Features
@@ -1061,6 +1110,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // 既存の初期化の後にフローティングボタン制御を追加
     setTimeout(() => {
         initFloatingButtonVisibility();
+        // フォント読み込み完了時にも再同期（対応ブラウザ）
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(() => {
+                const evt = new Event('floating-resize-sync');
+                window.dispatchEvent(evt);
+            });
+        }
     }, 100);
 });
 
@@ -1122,4 +1178,3 @@ function initMaslow() {
   window.addEventListener('scroll', handleScroll, { passive: true });
   window.addEventListener('resize', updateActiveStep);
 }
-
