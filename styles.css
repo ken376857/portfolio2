@@ -6106,10 +6106,10 @@ h3, h4, h5, h6 {
 
 .keyword-strategy .col-left,
 .heatmap-strategy .col-left {
-  min-height: 220px; /* 画像入れ替え予定のため高さを確保 */
+  min-height: 220px; /* 画像がない場合の高さ確保 */
   border-radius: 12px;
-  background: rgba(255,255,255,0.06);
-  border: 1px dashed rgba(255,255,255,0.35);
+  background: transparent; /* ダッシュ背景をオフ */
+  border: none;            /* ダッシュ枠線をオフ */
 }
 
 .keyword-strategy .col-right,
@@ -6118,6 +6118,22 @@ h3, h4, h5, h6 {
   border-radius: 0;
   padding: 0; /* 余白もリセット（必要なら後で個別に付与） */
   color: #ffffff; /* 白字 */
+}
+
+/* キーワード戦略 左カラムの画像 */
+.keyword-asset .keyword-slot-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ヒートマップ分析 左カラムの画像 */
+.heatmap-asset .heatmap-slot-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
 }
 
 /* 右カラム内の要素の文字色も白に統一 */
@@ -6138,6 +6154,8 @@ h3, h4, h5, h6 {
   .keyword-strategy .col-left,
   .heatmap-strategy .col-left {
     min-height: 160px;
+    background: transparent;
+    border: none;
   }
 }
 
@@ -7295,6 +7313,8 @@ body.rindo-text-white #works .rindo-research-right * {
     border-radius: 2px;
 }
 
+/* removed subtitle-mark overrides; H5 returns to default styling */
+
 .component-description {
     color: #495057;
     line-height: 1.7;
@@ -7448,6 +7468,13 @@ body.rindo-text-white #works .rindo-research-right * {
     min-width: 0;
 }
 
+.lead-slot-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
 .lead-image-placeholder {
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -7472,6 +7499,12 @@ body.rindo-text-white #works .rindo-research-right * {
 }
 
 .crosssell-img-slot { margin-bottom: 8px; }
+.crosssell-img-slot .crosssell-slot-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
 
 /* Cross-sell heading text above the diagram */
 .crosssell-head { text-align: center; margin-bottom: 8px; }
@@ -7695,11 +7728,94 @@ body.rindo-text-white #works .rindo-research-right * {
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
     
-    .component-description,
-    .component-details {
-        padding: 0 1.5rem;
+.component-description,
+.component-details {
+    padding: 0 1.5rem;
+}
+
+.component-quote {
+    position: relative;
+    background: rgba(255,255,255,0.08); /* ぼかし用の半透明背景 */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    border-left: 4px solid rgba(255,255,255,0.85);
+    padding: 1rem 1.25rem 1.25rem 1.5rem; /* 左に余白を追加 */
+    margin: 1rem 0;
+}
+
+.component-quote::before,
+.component-quote::after {
+    position: absolute;
+    font-family: inherit;
+    font-size: 3rem; /* 大きめの鉤括弧 */
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.45); /* 白のクオーテーション（やや薄め） */
+    content: '';
+    pointer-events: none;
+}
+
+.component-quote::before {
+    content: "\201C"; /* 左ダブル引用符 */
+    top: 0.2rem;
+    left: 0.6rem;
+}
+
+.component-quote::after {
+    content: "\201D"; /* 右ダブル引用符 */
+    right: 0.6rem;
+    bottom: 0.2rem;
+}
+
+/* WORKSセクション内での適用を強化（上書き対策） */
+#works .component-quote {
+    background: rgba(255,255,255,0.08) !important; /* ぼかし背景 */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-left: 4px solid rgba(255,255,255,0.85) !important;
+}
+#works .component-quote::before,
+#works .component-quote::after {
+    color: rgba(255, 255, 255, 0.45) !important; /* 白で視認性UP */
+}
+
+.component-quote p {
+    margin: 0.4rem 0;
+    font-style: italic; /* サンプルに寄せて斜体 */
+}
+
+.component-quote p:first-child { margin-top: 0; }
+.component-quote p:last-child { margin-bottom: 0; }
+
+@media (max-width: 768px) {
+    .component-quote {
+        padding: 0.85rem 1rem 1rem 1rem;
     }
-    
+    .component-quote::before,
+    .component-quote::after {
+        font-size: 2.4rem;
+    }
+}
+
+/* 強制適用（他スタイルが強い場合の保険） */
+#works 
+.lp-component 
+.component-description 
+blockquote.component-quote {
+    display: block;
+    position: relative;
+    background: rgba(255,255,255,0.08) !important; /* ぼかし背景（強制） */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-left: 4px solid rgba(255,255,255,0.85) !important;
+    padding-left: 1.5rem !important; /* 左余白を統一 */
+    border-radius: 8px;
+}
+#works .lp-component .component-description blockquote.component-quote::before,
+#works .lp-component .component-description blockquote.component-quote::after {
+    color: rgba(255,255,255,0.45) !important; /* 白に変更 */
+}
+
     .component-highlight {
         margin: 0 1.5rem 1.5rem 1.5rem;
         padding: 0.8rem 1.5rem;
@@ -9476,6 +9592,22 @@ section#seo-media .component-title {
     color: #4CAF50 !important; /* RINDOは緑を維持（モバイルの白上書きを抑制） */
 }
 
+/* 統一: WORKS内のH6小見出しは、すべてテキストの前にデザイン（▶）をインライン表示 */
+#works .lp-component .component-subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 0;
+    padding-bottom: 0.5rem;
+}
+
+#works .lp-component .component-subtitle::before {
+    position: static;
+    content: '▶';
+    transform: none;
+    line-height: 1;
+}
+
 /* ピラミッドサイズ調整 */
 .maslow-step .pyr {
     width: 400px;
@@ -9605,4 +9737,43 @@ section#seo-media .component-title {
 .heatmap-analysis .work-overview-details > ul,
 .heatmap-analysis .work-overview-details > ol {
   color: #ffffff !important;
+}
+/* 強制適用（どこに配置されても一致させる） */
+blockquote.component-quote {
+    position: relative !important;
+    display: block !important;
+    background: rgba(255,255,255,0.08) !important; /* ぼかし背景（最後の砦） */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-radius: 8px !important;
+    border-left: 4px solid rgba(255,255,255,0.85) !important;
+    padding: 1rem 1.25rem 1.25rem 1.5rem !important;
+    margin: 1rem 0 !important;
+}
+
+blockquote.component-quote::before,
+blockquote.component-quote::after {
+    position: absolute !important;
+    font-size: 3rem !important;
+    line-height: 1 !important;
+    color: rgba(255,255,255,0.45) !important; /* 白に変更 */
+    content: '';
+    pointer-events: none;
+}
+
+blockquote.component-quote::before {
+    content: "\201C" !important;
+    top: 0.2rem !important;
+    left: 0.6rem !important;
+}
+
+blockquote.component-quote::after {
+    content: "\201D" !important;
+    right: 0.6rem !important;
+    bottom: 0.2rem !important;
+}
+
+blockquote.component-quote p {
+    margin: 0.4rem 0 !important;
+    font-style: italic;
 }
