@@ -3475,7 +3475,7 @@ section#sales-letter .funnel-badge.primary,
     text-align: center;
     color: #666;
     font-size: 0.9rem;
-    margin-bottom: 3rem;
+    margin: 0; /* 余白をすべて0に */
     font-weight: 500;
 }
 
@@ -3487,12 +3487,18 @@ section#sales-letter .funnel-badge.primary,
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    align-items: start; /* 伸長をやめてカード高さを内容に合わせる */
 }
 
 .impact-card {
     background: #ffffff;
     border-radius: 20px;
-    padding: 2.5rem 2rem;
+    padding: 2.5rem 2rem; /* default padding for cards */
+}
+
+/* Tighten bottom space for the first card (応募率) */
+.business-impact-cards > .impact-card {
+    padding-bottom: 1rem !important; /* すべてのカードで統一 */
 }
 
 
@@ -3709,7 +3715,7 @@ section#sales-letter .funnel-badge.primary,
 
 .impact-details {
     border-top: 2px solid #E8F4F8;
-    padding-top: 1.5rem;
+    padding-top: 0; /* 余白を0に */
     text-align: left;
 }
 
@@ -3726,7 +3732,7 @@ section#sales-letter .funnel-badge.primary,
 
 .detail-label {
     font-weight: 700;
-    color: #4A90E2;
+    color: #27AE60; /* 緑フォント */
     min-width: 70px;
     font-size: 0.9rem;
 }
@@ -3735,6 +3741,23 @@ section#sales-letter .funnel-badge.primary,
     color: #555;
     line-height: 1.5;
     font-size: 0.9rem;
+}
+
+/* Business Impact note below cards */
+.business-impact-note {
+    color: #ffffff;
+    margin-top: 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+}
+.business-impact-note a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Match spacing: hide per-card note in 3rd card to align with 1st */
+.business-impact-cards > .impact-card:nth-child(3) .business-impact-subtitle {
+    display: none;
 }
 
 /* Responsive Design */
@@ -3747,6 +3770,10 @@ section#sales-letter .funnel-badge.primary,
     
     .impact-card {
         padding: 2rem 1.5rem;
+    }
+
+    .business-impact-cards > .impact-card {
+        padding-bottom: 0.5rem !important; /* モバイルも統一 */
     }
 }
 
@@ -7075,11 +7102,11 @@ table th {
 /* Research Section */
 .research-section {
     margin: 2rem 0;
-    background: #ffffff;
-    border-radius: 12px;
+    background: transparent; /* 角丸白背景を削除 */
+    border-radius: 0;
     padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-left: 5px solid #4CAF50;
+    box-shadow: none;
+    border-left: none; /* 左の緑縦線を削除 */
 }
 
 .research-description {
@@ -7092,11 +7119,122 @@ table th {
 .research-highlight {
     color: #2c3e50;
     font-weight: 600;
-    background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
-    padding: 1rem;
-    border-radius: 8px;
-    border-left: 3px solid #4CAF50;
+    background: transparent; /* 角丸背景を削除 */
+    padding: 1.5rem 5.5rem; /* 余白をさらに広げる */
+    border-radius: 0; /* 角丸を削除 */
+    border-left: none; /* 左の緑縦線を削除 */
     margin-bottom: 0;
+    position: relative; /* 擬似要素用 */
+}
+
+/* 大きな鉤括弧デザイン */
+.research-highlight::before,
+.research-highlight::after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem; /* 少し小さくして視覚的に細く */
+    line-height: 1;
+    color: currentColor; /* 現在の文字色に追従 */
+    opacity: 0.9;
+    font-weight: 300; /* 括弧のみ細く */
+    pointer-events: none;
+    content: '';
+}
+
+.research-highlight::before {
+    content: '「';
+    left: 0.8rem; /* 左括弧を少し外側に */
+}
+
+.research-highlight::after {
+    content: '」';
+    right: 0.8rem; /* 右括弧を少し外側に */
+}
+
+@media (max-width: 900px) {
+    .research-highlight::before,
+    .research-highlight::after {
+        font-size: 1.6rem; /* モバイルはさらに控えめ */
+    }
+    .research-highlight {
+        padding: 1.25rem 4rem; /* モバイルの左右余白も増やす */
+    }
+}
+
+/* RINDO Research two-column layout (50% / 50%) */
+.rindo-research-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.rindo-research-left,
+.rindo-research-right {
+    width: 50%;
+}
+
+/* Placeholder until image is provided */
+.rindo-research-image-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0; /* 角丸を削除 */
+    background: repeating-linear-gradient(45deg, #f2f2f2, #f2f2f2 10px, #e9ecef 10px, #e9ecef 20px);
+    border: 1px solid #dee2e6;
+}
+
+/* リサーチ右カラムの文字色を白に */
+.rindo-research-right,
+.rindo-research-right .research-description,
+.rindo-research-right .research-highlight {
+    color: #ffffff;
+}
+
+@media (max-width: 900px) {
+    .rindo-research-layout {
+        flex-direction: column;
+    }
+    .rindo-research-left,
+    .rindo-research-right {
+        width: 100%;
+    }
+}
+
+/* RINDO Research images layout */
+.rindo-research-images {
+    display: flex;
+    flex-direction: row; /* 横並び */
+    gap: 1rem;
+}
+
+.rindo-research-figure {
+    width: calc((100% - 2rem) / 3);
+    display: flex;
+    flex-direction: column;
+}
+
+.rindo-research-image {
+    width: 100%;
+    height: 500px; /* 表示される画像の高さを500pxに */
+    display: block;
+    border-radius: 0; /* 角丸なし */
+    object-fit: cover; /* 一部のみ表示（切り抜き） */
+    object-position: 50% 0; /* 上寄せで表示 */
+}
+
+.rindo-research-caption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #8a8f98; /* 目立たないグレー */
+    text-align: center; /* 画像に対して中央寄せ */
+}
+
+
+/* リサーチ右カラムを白字に（強制上書き） */
+body.rindo-text-white #works .rindo-research-right,
+body.rindo-text-white #works .rindo-research-right * {
+    color: #ffffff !important;
 }
 
 /* LP Design Section */
@@ -7239,6 +7377,18 @@ table th {
     line-height: 1.6;
     margin: 0;
     font-size: 0.95rem;
+}
+
+/* Business Impact: remove spacing between 改善前／改善後 */
+.impact-details .detail-item {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.impact-details .detail-item + .detail-item {
+    margin-top: 0 !important;
+}
+.impact-details .detail-item:first-child {
+    margin-top: 1rem !important; /* 最初の行の上に余白を付与 */
 }
 
 /* PASONA Framework */
